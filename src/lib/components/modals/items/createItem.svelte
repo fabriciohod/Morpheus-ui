@@ -1,0 +1,60 @@
+<script lang="ts">
+    import {
+        Tab,
+        TabGroup,
+        toastStore,
+        type ToastSettings,
+    } from "@skeletonlabs/skeleton";
+    import type {
+        EquipmentItem,
+        ItemWithRoll,
+        SimpleItem,
+    } from "$lib/scripts/types";
+    import { Bag } from "$lib/characterData";
+    import ItemWithRollCreator from "../itemWithRollCreator.svelte";
+    import SimpleItemCreator from "../simpleItemCreator.svelte";
+    import EquippableItemCreator from "./creation/equippableItemCreator.svelte";
+    let tabSet: number = 0;
+
+    const success: ToastSettings = {
+        message: "Habilidade adicionada",
+        background: "variant-filled-success",
+    };
+
+    const addToInventory = (
+        item: SimpleItem | EquipmentItem | ItemWithRoll
+    ) => {
+        toastStore.trigger(success);
+        $Bag.push(item);
+    };
+</script>
+
+<TabGroup justify="justify-center" active="bg-warning-700/70" regionList="h-9">
+    <Tab bind:group={tabSet} class="scale-90" name="tab1" value={0}>Simples</Tab
+    >
+    <Tab bind:group={tabSet} class="scale-90" name="tab2" value={1}
+        >Equipável</Tab
+    >
+    <Tab bind:group={tabSet} class="scale-90" name="tab3" value={2}
+        >Com rolagem</Tab
+    >
+
+    <svelte:fragment slot="panel">
+        {#if tabSet === 0}
+            <SimpleItemCreator
+                bind:inventory={$Bag}
+                on:itemCreated={(i) => addToInventory({...i.detail})}
+            />
+        {:else if tabSet === 1}
+            <EquippableItemCreator
+                bind:inventory={$Bag}
+                on:itemCreated={(i) => addToInventory({...i.detail})}
+            />
+        {:else if tabSet === 2}
+            <ItemWithRollCreator
+                bind:inventory={$Bag}
+                on:itemCreated={(i) => addToInventory({...i.detail})}
+            />
+        {/if}
+    </svelte:fragment>
+</TabGroup>
