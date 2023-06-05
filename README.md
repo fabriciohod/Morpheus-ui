@@ -2,7 +2,7 @@
 
 ![M.C.C.T](./static/FEDERACAO_GALATICA_TITULO.png)
 
-This is a character creator tool for a tabletop RPG called Morpheus. The user interface is currently in Portuguese, but the components and logic are written in English. You are free to use this code as a reference or as a foundation to build your own character creator.
+This is a character creator tool for a tabletop RPG called Morpheus. The user interface is currently in Portuguese, but you can modify the code to display the content in your desired language. Additionally, you have the flexibility to add features or make corrections based on player feedback.
 
 To download the latest build, visit the [releases](https://github.com/fabriciohod/Morpheus-ui/releases) page. **Windows Only**
 
