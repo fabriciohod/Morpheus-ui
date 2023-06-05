@@ -1,4 +1,4 @@
-import type { DiceType, RollResult, Weapon } from './types';
+import type { DiceType, RollResult, Weapon, WeaponRollResult } from './types';
 import { GetBaseStat, GetProficiency, GetValueProficiency, RollHistory } from '../characterData';
 
 
@@ -43,9 +43,17 @@ export const WeaponDicesRoll = (weapon: Weapon) => {
     const hitRes = RollDice(weapon.name, weapon.hitDice, weapon.hitDice_rollTimes, hitBonus)
     const damageRes = RollDice(weapon.name, weapon.damageDice, weapon.damageDice_rollTimes, [weapon.damageBonusFlat])
 
-    // pus to history
+    const res: WeaponRollResult = {
+        hitRes,
+        damageRes
+    }
 
-    return { hitRes, damageRes }
+    RollHistory.update(u => {
+        u.push(res);
+        return u;
+    });
+
+    return res
 };
 
 export const RollDiceString = (diceNotation: string) => {

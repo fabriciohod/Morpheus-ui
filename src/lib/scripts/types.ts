@@ -103,6 +103,10 @@ export type RollResult = {
     rollSummary: string;
     result: number;
 };
+export type WeaponRollResult = {
+    hitRes: RollResult;
+    damageRes: RollResult;
+}
 
 export type Inventory = (SimpleItem | EquipmentItem | ItemWithRoll | Weapon)[]
 

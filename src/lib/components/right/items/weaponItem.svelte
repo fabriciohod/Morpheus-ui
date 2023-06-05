@@ -6,7 +6,7 @@
         ProficiencysEnum,
     } from "$lib/scripts/types";
     import Icon from "@iconify/svelte";
-    import { AccordionItem, type ToastSettings } from "@skeletonlabs/skeleton";
+    import { AccordionItem, toastStore, type ToastSettings } from "@skeletonlabs/skeleton";
     import { createEventDispatcher } from "svelte";
     import BookMark from "../bookMark.svelte";
     import { WeaponDicesRoll } from "$lib/scripts/diceRoller";
@@ -16,7 +16,13 @@
 
     const roll = () => {
         const res = WeaponDicesRoll(data);
-        console.log(res);
+
+        const t: ToastSettings = {
+            message: `Acerto:${res.hitRes.rollSummary} = ${res.hitRes.result}</br>
+            Dano:${res.damageRes.rollSummary} = ${res.damageRes.result}`,
+        };
+
+        toastStore.trigger(t)
     };
 
     const dispatcher = createEventDispatcher();

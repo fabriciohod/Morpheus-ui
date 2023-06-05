@@ -140,4 +140,4 @@ export const Bag = writable<types.Inventory>([])
 export const HpBar = writable<types.RuntimeBar>({ maxValue: 0, currentValue: 0 });
 export const ApBar = writable<types.RuntimeBar>({ maxValue: 0, currentValue: 0 });
 
-export const RollHistory = writable<types.RollResult[]>([]);
+export const RollHistory = writable<(types.RollResult | types.WeaponRollResult)[]>([]);
