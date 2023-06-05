@@ -12,7 +12,7 @@ export enum StatModifiers {
 }
 
 export enum TrainingLevel {
-    Novato,
+    Leigo,
     Treinado,
 }
 

@@ -60,7 +60,7 @@
         />
     </div>
     <select
-        class="select variant-form-material w-32 h-[2.25rem] translate-y-[0.2rem]"
+        class="select variant-form-material w-32 translate-y-[0.2rem]"
         bind:value={data.training}
         on:change={() =>
             MainProficiencys.update((arr) => {
@@ -72,7 +72,7 @@
         <option value={1}>{TrainingLevel[1]}</option>
     </select>
     <select
-        class="select variant-form-material w-20 h-[2.25rem] mx-2 translate-y-[0.2rem]"
+        class="select variant-form-material w-20 mx-2 translate-y-[0.2rem]"
         bind:value={data.selectedIndex}
         on:change={() =>
             MainProficiencys.update((arr) => {
