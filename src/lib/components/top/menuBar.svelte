@@ -17,17 +17,11 @@
         Bag,
         HpBar,
         ApBar,
-        PinnedAbilitys,
-        PinnedItems,
     } from "$lib/characterData";
     import { toastStore, type ToastSettings } from "@skeletonlabs/skeleton";
     import type {
-        AbilityCollection,
-        CharBio,
         CharInfo,
         DefensiveStats,
-        DefensiveStats,
-        EquipmentItem,
         Inventory,
         Proficiency,
         RuntimeBar,
@@ -58,8 +52,6 @@
         $RaceAbilitys: Inventory
         $HpBar: RuntimeBar;
         $ApBar: RuntimeBar;
-        $PinnedAbilitys: Inventory;
-        $PinnedItems: Inventory;
     }
 
     const getJSONData = () => {
@@ -73,8 +65,6 @@
             $RaceAbilitys,
             $HpBar,
             $ApBar,
-            $PinnedAbilitys,
-            $PinnedItems,
         };
 
         return JSON.stringify(temp);
@@ -143,8 +133,6 @@
         $RaceAbilitys = char.$RaceAbilitys
         $HpBar = char.$HpBar;
         $ApBar = char.$ApBar;
-        $PinnedAbilitys = char.$PinnedAbilitys;
-        $PinnedItems = char.$PinnedItems;
     };
 
     onMount(async () => {

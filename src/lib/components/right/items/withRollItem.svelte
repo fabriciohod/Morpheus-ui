@@ -22,7 +22,6 @@
 
     export let data: ItemWithRoll;
     export let canBeRemove: boolean = true;
-    export let pinnedList: Inventory;
 
     const roll = () => {
         const baseValue: number[] = data.baseStat.map((v) => {
@@ -65,19 +64,7 @@
 </script>
 
 <div class="relative">
-    <BookMark
-        bind:isPinned={data.pinned}
-        on:PinClicked={(e) => {
-            switch (e.detail) {
-                case true:
-                    pinnedList.push({ ...data });
-                    break;
-                case true:
-                    pinnedList.splice(pinnedList.indexOf({ ...data }), 1);
-                    break;
-            }
-        }}
-    />
+    <BookMark bind:isPinned={data.pinned} />
     <button
         type="button"
         on:click={(e) => roll()}

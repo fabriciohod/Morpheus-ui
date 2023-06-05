@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Abilitys, RaceAbilitys, PinnedAbilitys } from "$lib/characterData";
+    import { Abilitys, RaceAbilitys } from "$lib/characterData";
     import {
         Accordion,
         modalStore,
@@ -37,40 +37,47 @@
             Adicionar
         </button>
     </div>
-    <TabGroup active="bg-warning-700/70">
-        <Tab bind:group={tabSet} name="tab1" value={1}>Pinados</Tab>
-        <Tab bind:group={tabSet} name="tab2" value={0}>Ver tudo</Tab>
-        <svelte:fragment slot="panel">
-            {#if tabSet === 1}
-                <Accordion
-                    regionControl="bg-surface-700"
-                    regionPanel="bg-surface-700 space-y-4"
-                >
-                    {#each $PinnedAbilitys as item, i}
-                        {#if "diceToRoll" in item}
-                            <WithRollItem
-                                pinnedList={$PinnedAbilitys}
-                                bind:data={item}
-                                canBeRemove={false}
-                            />
-                        {:else}
-                            <SimpleItem
-                                pinnedList={$PinnedAbilitys}
-                                bind:data={item}
-                                canBeRemove={false}
-                            />
-                        {/if}
-                    {/each}
-                </Accordion>
-            {:else if tabSet === 0}
-                {#key unique}
+    {#key unique}
+        <TabGroup active="bg-warning-700/70">
+            <Tab bind:group={tabSet} name="tab1" value={1}>Pinados</Tab>
+            <Tab bind:group={tabSet} name="tab2" value={0}>Ver tudo</Tab>
+            <svelte:fragment slot="panel">
+                {#if tabSet === 1}
+                    <Accordion
+                        regionControl="bg-surface-700"
+                        regionPanel="bg-surface-700 space-y-4"
+                    >
+                        {#each $RaceAbilitys as ability, i}
+                            {#if ability.pinned}
+                                <SimpleItem
+                                    canBeRemove={false}
+                                    bind:data={ability}
+                                />
+                            {/if}
+                        {/each}
+                        {#each $Abilitys as ability, i}
+                            {#if ability.pinned}
+                                {#if "diceToRoll" in ability}
+                                    <WithRollItem
+                                        canBeRemove={false}
+                                        bind:data={ability}
+                                    />
+                                {:else}
+                                    <SimpleItem
+                                        canBeRemove={false}
+                                        bind:data={ability}
+                                    />
+                                {/if}
+                            {/if}
+                        {/each}
+                    </Accordion>
+                {:else if tabSet === 0}
                     <Accordion
                         regionControl="bg-surface-700"
                         regionPanel="bg-surface-700 space-y-4"
                     >
                         {#each $RaceAbilitys as ability, i}
                             <SimpleItem
-                                pinnedList={$PinnedAbilitys}
                                 bind:data={ability}
                                 canBeRemove={false}
                             />
@@ -78,7 +85,6 @@
                         {#each $Abilitys as ability, i}
                             {#if "diceToRoll" in ability}
                                 <WithRollItem
-                                    pinnedList={$PinnedAbilitys}
                                     bind:data={ability}
                                     on:RemoveClicked={() => {
                                         removeItem(i);
@@ -87,7 +93,6 @@
                                 />
                             {:else}
                                 <SimpleItem
-                                    pinnedList={$PinnedAbilitys}
                                     bind:data={ability}
                                     on:RemoveClicked={() => {
                                         removeItem(i);
@@ -97,8 +102,8 @@
                             {/if}
                         {/each}
                     </Accordion>
-                {/key}
-            {/if}
-        </svelte:fragment>
-    </TabGroup>
+                {/if}
+            </svelte:fragment>
+        </TabGroup>
+    {/key}
 </div>

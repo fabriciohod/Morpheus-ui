@@ -6,7 +6,6 @@
 
     export let data: SimpleItem = { name: "", description: "", pinned: false };
     export let canBeRemove = true;
-    export let pinnedList: Inventory;
 
     const dispatcher = createEventDispatcher();
     const remove = () => {
@@ -15,19 +14,7 @@
 </script>
 
 <div class="items-center bg-surface-800 rounded-md relative">
-    <BookMark
-        bind:isPinned={data.pinned}
-        on:PinClicked={(e) => {
-            switch (e.detail) {
-                case true:
-                    pinnedList.push({...data});
-                    break;
-                case true:
-                    pinnedList.splice(pinnedList.indexOf({...data}), 1);
-                    break;
-            }
-        }}
-    />
+    <BookMark bind:isPinned={data.pinned} />
     <AccordionItem>
         <svelte:fragment slot="lead">
             <span class="ml-2">

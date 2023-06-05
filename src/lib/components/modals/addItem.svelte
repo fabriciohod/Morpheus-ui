@@ -1,10 +1,11 @@
 <script lang="ts">
-    import type { EquipmentItem, ItemWithRoll, SimpleItem } from "$lib/scripts/types";
+    import type { EquipmentItem, ItemWithRoll, SimpleItem, Weapon } from "$lib/scripts/types";
     import { AccordionItem } from "@skeletonlabs/skeleton";
     import { createEventDispatcher } from "svelte";
 
-    export let data: (SimpleItem| EquipmentItem | ItemWithRoll);
+    export let data: (SimpleItem| EquipmentItem | ItemWithRoll | Weapon);
     export let summary = " ";
+
     const dispatcher = createEventDispatcher();
 
     const addBtnClicked = () => {
@@ -12,7 +13,7 @@
     };
 </script>
 
-<div class="relative">
+<div class="relative m-1">
     <button
         class="font-semibold btn-icon variant-filled-success absolute h-8 w-8 translate-y-1 translate-x-[42rem]"
         on:click={(e) => addBtnClicked()}>+</button
@@ -26,7 +27,7 @@
         </svelte:fragment>
         <svelte:fragment slot="content">
             <slot />
-            {data.description}
+            {@html data.description}
         </svelte:fragment>
     </AccordionItem>
 </div>

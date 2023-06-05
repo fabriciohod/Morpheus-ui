@@ -43,17 +43,17 @@
         {#if tabSet === 0}
             <SimpleItemCreator
                 bind:inventory={$Bag}
-                on:itemCreated={(i) => addToInventory({...i.detail})}
+                on:itemCreated={(i) => addToInventory({ ...i.detail })}
             />
         {:else if tabSet === 1}
             <EquippableItemCreator
                 bind:inventory={$Bag}
-                on:itemCreated={(i) => addToInventory({...i.detail})}
+                on:itemCreated={(i) => addToInventory({ ...i.detail })}
             />
         {:else if tabSet === 2}
             <ItemWithRollCreator
                 bind:inventory={$Bag}
-                on:itemCreated={(i) => addToInventory({...i.detail})}
+                on:itemCreated={(i) => addToInventory({ ...i.detail })}
             />
         {/if}
     </svelte:fragment>

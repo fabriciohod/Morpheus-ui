@@ -11,7 +11,6 @@
 
     export let data: EquipmentItem;
     export let canBeRemove = true;
-    export let pinnedList: Inventory;
 
     const applyModifier = () => {
         data.isEquip = !data.isEquip;
@@ -56,19 +55,7 @@
         }}
         type="checkbox"
     />
-    <BookMark
-        bind:isPinned={data.pinned}
-        on:PinClicked={(e) => {
-            switch (e.detail) {
-                case true:
-                    pinnedList.push({...data});
-                    break;
-                case true:
-                    pinnedList.splice(pinnedList.indexOf({...data}), 1);
-                    break;
-            }
-        }}
-    />
+    <BookMark bind:isPinned={data.pinned} />
     <AccordionItem>
         <svelte:fragment slot="lead">
             <span class="ml-2">
