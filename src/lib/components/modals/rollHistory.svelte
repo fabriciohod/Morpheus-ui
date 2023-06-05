@@ -5,7 +5,7 @@
 </script>
 
 <div class="p-4">
-    {#each $RollHistory as roll, i}
+    {#each ($RollHistory.reverse()) as roll, i}
         <div class="mb-2">
             {#if "hitRes" in roll}
                 <WeaponRollCard data={roll} index={i}/>
