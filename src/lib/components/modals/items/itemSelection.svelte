@@ -13,16 +13,17 @@
     } from "@skeletonlabs/skeleton";
     import CreateItem from "./createItem.svelte";
     import AddItem from "../addItem.svelte";
+    import WeaponsSection from "./weaponsSection.svelte";
 
     let tabSet: number = 0;
 
     const success: ToastSettings = {
-        message: "Habilidade adicionada",
+        message: "Adicionada com sucesso",
         background: "variant-filled-success",
     };
 
     const error: ToastSettings = {
-        message: "Habilidade ja existente",
+        message: "ja existente",
         background: "variant-filled-error",
     };
     const addToInventory = (item: EquipmentItem) => {
@@ -59,7 +60,7 @@
                     {/each}
                 </Accordion>
             {:else if tabSet === 1}
-                (Ainda não tem items)
+                <WeaponsSection/>
             {:else if tabSet === 2}
                 (Ainda não tem items)
             {:else if tabSet === 3}

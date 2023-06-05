@@ -12,7 +12,7 @@
 
     let tabSet: number = 0;
     const success: ToastSettings = {
-        message: "Habilidade adicionada",
+        message: "Adicionada com sucesso",
         background: "variant-filled-success",
     };
 

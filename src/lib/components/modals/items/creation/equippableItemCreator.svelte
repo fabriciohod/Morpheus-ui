@@ -20,7 +20,7 @@
         background: "variant-filled-error",
     };
     const error2: ToastSettings = {
-        message: "Habilidade ja existe",
+        message: "ja existente",
         background: "variant-filled-error",
     };
 
