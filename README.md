@@ -6,6 +6,8 @@ This is a character creator tool for a tabletop RPG called Morpheus. The user in
 
 To download the latest build, visit the [releases](https://github.com/fabriciohod/Morpheus-ui/releases) page. **Windows Only**
 
+![demo](static/demo.png)
+
 ## Development
 
 Before getting started, make sure you have [Node.js](https://nodejs.org/) and [Cargo](https://www.rust-lang.org/tools/install) (Rust package manager) installed on your system. Please refer to the respective websites for OS-specific installation guides.
