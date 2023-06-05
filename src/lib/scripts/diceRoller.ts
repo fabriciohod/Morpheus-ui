@@ -1,12 +1,12 @@
-import type { DiceType, RollResult } from './types';
-import { RollHistory } from '../characterData';
+import type { DiceType, RollResult, Weapon } from './types';
+import { GetBaseStat, GetProficiency, GetValueProficiency, RollHistory } from '../characterData';
 
 
 const rollDiceSimple = (diceType: DiceType) => {
     return Math.floor(Math.random() * diceType) + 1;
 };
 
-export const RollDice = (name: string, diceType: DiceType, rollTimes: number = 1, bonus: number[] = []) => {
+export const RollDice = (name: string, diceType: DiceType, rollTimes: number = 1, bonus: number[] = [], resultToHistory: boolean = true) => {
     const rolls: number[] = [];
 
     for (let i = 0; i < rollTimes; i++) {
@@ -14,7 +14,6 @@ export const RollDice = (name: string, diceType: DiceType, rollTimes: number = 1
     }
     const bonusValue = bonus.length > 0 ? bonus.reduce((accumulator, currentValue) => accumulator + currentValue, 0) : 0;
     const bonusString = bonus.length > 0 ? bonus.join("+") : "";
-    console.log(bonusString)
     const rollsBonus = rolls.reduce((total, roll) => total + roll, 0) + bonusValue;
 
     const res: RollResult = {
@@ -24,12 +23,29 @@ export const RollDice = (name: string, diceType: DiceType, rollTimes: number = 1
         result: rollsBonus
     };
 
+    if (!resultToHistory) return res;
+
     RollHistory.update(u => {
         u.push(res);
         return u;
     });
 
     return res;
+};
+
+export const WeaponDicesRoll = (weapon: Weapon) => {
+    const hitBonus = [
+        weapon.hitDiceBonusFlat,
+        ...weapon.profBonus.map(p => GetValueProficiency(GetProficiency(p))),
+        ...weapon.mainStatBonus.map(m => GetBaseStat(m).value)
+    ]
+
+    const hitRes = RollDice(weapon.name, weapon.hitDice, weapon.hitDice_rollTimes, hitBonus)
+    const damageRes = RollDice(weapon.name, weapon.damageDice, weapon.damageDice_rollTimes, [weapon.damageBonusFlat])
+
+    // pus to history
+
+    return { hitRes, damageRes }
 };
 
 export const RollDiceString = (diceNotation: string) => {

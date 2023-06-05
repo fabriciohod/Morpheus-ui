@@ -104,7 +104,7 @@ export type RollResult = {
     result: number;
 };
 
-export type Inventory = (SimpleItem | EquipmentItem | ItemWithRoll)[]
+export type Inventory = (SimpleItem | EquipmentItem | ItemWithRoll | Weapon)[]
 
 export type SimpleItem = {
     name: string;
@@ -124,3 +124,14 @@ export type ItemWithRoll = {
     baseStat: UseStat[];
     proficiencys: ProficiencysEnum[];
 } & SimpleItem;
+
+export type Weapon = {
+    hitDice: DiceType;
+    hitDice_rollTimes: number;
+    hitDiceBonusFlat: number;
+    damageDice: DiceType;
+    damageDice_rollTimes: number;
+    damageBonusFlat: number;
+    mainStatBonus: (UseStat)[];
+    profBonus: (ProficiencysEnum)[];
+} & SimpleItem

@@ -134,10 +134,8 @@ export const MainDefensiveStats = writable<types.DefensiveStats>(defaultDefensiv
 
 export const Abilitys = writable<types.Inventory>([]);
 export const RaceAbilitys = writable<types.Inventory>([])
-export const PinnedAbilitys = writable<types.Inventory>([])
 
 export const Bag = writable<types.Inventory>([])
-export const PinnedItems = writable<types.Inventory>([])
 
 export const HpBar = writable<types.RuntimeBar>({ maxValue: 0, currentValue: 0 });
 export const ApBar = writable<types.RuntimeBar>({ maxValue: 0, currentValue: 0 });
