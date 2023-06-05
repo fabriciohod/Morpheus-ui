@@ -169,12 +169,12 @@
         class="btn variant-filled-warning bg-opacity-80 h-3 text-sm"
         on:click={(e) => saveFile()}
     >
-        Save
+        Salvar
     </button>
     <button
         class="btn variant-filled-warning bg-opacity-80 h-3 text-sm mx-4"
         on:click={(e) => readFile()}
     >
-        Load
+        Carregar
     </button>
 </div>

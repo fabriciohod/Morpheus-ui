@@ -18,6 +18,7 @@
         "readDir": true,
         "createDir": true,
         "scope": [
+          "$DOCUMENT/*",
           "$DOCUMENT/Morpheus/*"
         ]
       },
