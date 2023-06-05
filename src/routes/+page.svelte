@@ -133,7 +133,7 @@
         </svelte:fragment>
         <svelte:fragment slot="sidebarRight">
             <div
-                class="min-h-[44.53rem] h-fit w-[34rem] bg-surface-600 p-3 mx-2 mt-2 rounded-2xl"
+                class="min-h-[44.53rem] h-fit w-[34rem] max-2xl:w-[30rem] bg-surface-600 p-3 mx-2 mt-2 rounded-2xl"
             >
                 <TabGroup active="bg-warning-700/70">
                     <Tab bind:group={tabSet} name="tab2" value={0}
@@ -156,15 +156,15 @@
             </div>
         </svelte:fragment>
         <div
-            class="min-h-[44.53rem] w-full mt-2 px-4 py-2 bg-surface-600 flex justify-center rounded-2xl"
+            class="min-h-[44.53rem] w-full max-2xl:w-fit mt-2 px-4 py-2 bg-surface-600 flex justify-center rounded-2xl"
         >
             <div class="pt-4">
                 <div class="grid grid-cols-5">
-                    <span class="-translate-x-5">Upgrade</span>
-                    <span class="-translate-x-5">Treino</span>
-                    <span class="translate-x-5">Dado</span>
-                    <span class="translate-x-5">Perícia</span>
-                    <span class="translate-x-[4.5rem]">Bonus</span>
+                    <span class=" -translate-x-5 max-2xl:-translate-x-3 max-2xl:text-sm">Upgrade</span>
+                    <span class=" -translate-x-5 max-2xl:-translate-x-4 max-2xl:text-sm">Treino</span>
+                    <span class=" translate-x-5 max-2xl:-translate-x-1 max-2xl:text-sm">Dado</span>
+                    <span class=" translate-x-5 max-2xl:-translate-x-3 max-2xl:text-sm">Perícia</span>
+                    <span class=" translate-x-[4.5rem] max-2xl:translate-x-12 max-2xl:text-sm">Bonus</span>
                 </div>
                 {#each $MainProficiencys as proficiency, i}
                     <Prominence data={proficiency} />

@@ -36,7 +36,7 @@
 </script>
 
 <div
-    class="grid grid-cols-[2rem_8.5rem_6.5rem_10.2rem_auto] gap-8 items-center"
+    class="flex"
 >
     <div class="flex items-center relative">
         {#if data.value > 0}
@@ -85,7 +85,7 @@
         {/each}
     </select>
     <button
-        class="pt-4 text-justify h-fit cursor-pointer hover:text-warning-600 hover:underline"
+        class="pt-4 text-justify h-fit w-44 cursor-pointer hover:text-warning-600 hover:underline"
         on:click={(e) => rollTest()}
     >
         {data.name}
