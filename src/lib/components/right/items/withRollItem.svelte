@@ -81,7 +81,7 @@
     <button
         type="button"
         on:click={(e) => roll()}
-        class="btn-icon variant-filled absolute w-8 translate-y-1 translate-x-[28rem]"
+        class="btn-icon variant-filled absolute w-8 translate-y-1 translate-x-[28rem] max-2xl:translate-x-[24rem]"
     >
         <Icon icon="fa-solid:dice-d20" />
     </button>
