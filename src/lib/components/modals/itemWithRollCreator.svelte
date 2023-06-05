@@ -14,7 +14,7 @@
         name: "",
         description: "",
         rollTimes: 1,
-        hitDice: DiceType.D20,
+        diceToRoll: DiceType.D20,
         baseStat: [],
         proficiencys: [],
     };

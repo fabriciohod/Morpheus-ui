@@ -5,7 +5,8 @@ const coleteLeve: EquipmentItem = {
     description: "Pouca proteção mas ótima mobilidade",
     value: 2,
     modifyStat: StatModifiers.Defesa,
-    isEquip: false
+    isEquip: false,
+    pinned:false
 };
 
 const coleteMedio: EquipmentItem = {
@@ -13,7 +14,8 @@ const coleteMedio: EquipmentItem = {
     description: "Média proteção e mobilidade",
     value: 5,
     modifyStat: StatModifiers.Defesa,
-    isEquip: false
+    isEquip: false,
+    pinned:false
 };
 
 const coletePesado: EquipmentItem = {
@@ -21,7 +23,8 @@ const coletePesado: EquipmentItem = {
     description: "Ótima proteção e pouca mobilidade",
     value: 10,
     modifyStat: StatModifiers.Defesa,
-    isEquip: false
+    isEquip: false,
+    pinned:false
 };
 
 export const DefItemsList: EquipmentItem[] = [

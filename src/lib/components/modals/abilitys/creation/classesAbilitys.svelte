@@ -67,9 +67,9 @@
                         data={ability}
                         on:addBtnClicked={(e) => addAbility(e.detail)}
                     >
-                        {#if "hitDice" in ability}
+                        {#if "diceToRoll" in ability}
                             <p class="text-xs opacity-70 mb-1">
-                                Rolagem: {`${ability.rollTimes}xD${ability.hitDice} + ` +
+                                Rolagem: {`${ability.rollTimes}xD${ability.diceToRoll} + ` +
                                     ability.baseStat
                                         .map((v) => UseStat[v])
                                         .join(" + ") +
@@ -92,9 +92,9 @@
                         data={ability}
                         on:addBtnClicked={(e) => addAbility(e.detail)}
                     >
-                        {#if "hitDice" in ability}
+                        {#if "diceToRoll" in ability}
                             <p class="text-xs opacity-70 mb-1">
-                                Rolagem: {`${ability.rollTimes}xD${ability.hitDice} + ` +
+                                Rolagem: {`${ability.rollTimes}xD${ability.diceToRoll} + ` +
                                     ability.baseStat
                                         .map((v) => UseStat[v])
                                         .join(" + ") +
@@ -117,9 +117,9 @@
                         data={ability}
                         on:addBtnClicked={(e) => addAbility(e.detail)}
                     >
-                        {#if "hitDice" in ability}
+                        {#if "diceToRoll" in ability}
                             <p class="text-xs opacity-70 mb-1">
-                                Rolagem: {`${ability.rollTimes}xD${ability.hitDice} + ` +
+                                Rolagem: {`${ability.rollTimes}xD${ability.diceToRoll} + ` +
                                     ability.baseStat
                                         .map((v) => UseStat[v])
                                         .join(" + ") +

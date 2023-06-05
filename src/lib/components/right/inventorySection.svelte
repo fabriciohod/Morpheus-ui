@@ -46,7 +46,7 @@
                     regionPanel="bg-surface-700 space-y-4"
                 >
                     {#each $PinnedItems as item, i}
-                        {#if "hitDice" in item}
+                        {#if "diceToRoll" in item}
                             <WithRollItem
                                 pinnedList={$PinnedItems}
                                 bind:data={item}
@@ -74,7 +74,7 @@
                         regionPanel="bg-surface-700 space-y-4"
                     >
                         {#each $Bag as item, i}
-                            {#if "hitDice" in item}
+                            {#if "diceToRoll" in item}
                                 <WithRollItem
                                     pinnedList={$PinnedItems}
                                     bind:data={item}

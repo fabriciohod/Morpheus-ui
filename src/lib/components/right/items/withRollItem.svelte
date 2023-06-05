@@ -39,7 +39,7 @@
             return value;
         });
 
-        const res = RollDice(data.name, data.hitDice, data.rollTimes, [
+        const res = RollDice(data.name, data.diceToRoll, data.rollTimes, [
             ...baseValue,
             ...proficiencysValue,
         ]);
@@ -58,7 +58,7 @@
     };
 
     const calcInfo =
-        `${data.rollTimes}xD${data.hitDice} + ` +
+        `${data.rollTimes}xD${data.diceToRoll} + ` +
         data.baseStat.map((v) => UseStat[v]).join(" + ") +
         " + " +
         data.proficiencys.map((v) => ProficiencysEnum[v]).join(" + ");
@@ -70,10 +70,10 @@
         on:PinClicked={(e) => {
             switch (e.detail) {
                 case true:
-                    pinnedList.push({...data});
+                    pinnedList.push({ ...data });
                     break;
                 case true:
-                    pinnedList.splice(pinnedList.indexOf({...data}), 1);
+                    pinnedList.splice(pinnedList.indexOf({ ...data }), 1);
                     break;
             }
         }}

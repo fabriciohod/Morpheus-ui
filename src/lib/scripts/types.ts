@@ -120,7 +120,7 @@ export type EquipmentItem = {
 
 export type ItemWithRoll = {
     rollTimes: number;
-    hitDice: DiceType;
+    diceToRoll: DiceType;
     baseStat: UseStat[];
     proficiencys: ProficiencysEnum[];
 } & SimpleItem;

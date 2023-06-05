@@ -47,7 +47,7 @@
                     regionPanel="bg-surface-700 space-y-4"
                 >
                     {#each $PinnedAbilitys as item, i}
-                        {#if "hitDice" in item}
+                        {#if "diceToRoll" in item}
                             <WithRollItem
                                 pinnedList={$PinnedAbilitys}
                                 bind:data={item}
@@ -76,7 +76,7 @@
                             />
                         {/each}
                         {#each $Abilitys as ability, i}
-                            {#if "hitDice" in ability}
+                            {#if "diceToRoll" in ability}
                                 <WithRollItem
                                     pinnedList={$PinnedAbilitys}
                                     bind:data={ability}
