@@ -2,7 +2,7 @@
 
 ![M.C.C.T](./static/FEDERACAO_GALATICA_TITULO.png)
 
-M.C.C.T is a character creator tool for a tabletop RPG called Morpheus. This project is developed using [SvelteKit](https://kit.svelte.dev/), [Skeleton](https://www.skeleton.dev/) UI, and [Tauri](https://tauri.app/). While the final app is currently available only in Brazilian Portuguese, the components and logic are written in English. Feel free to use this code as a reference or as a foundation to build your own character creator.
+This is a character creator tool for a tabletop RPG called Morpheus. The user interface is currently in Portuguese, but the components and logic are written in English. You are free to use this code as a reference or as a foundation to build your own character creator.
 
 To download the latest build, visit the [releases](https://github.com/fabriciohod/Morpheus-ui/releases) page. **Windows Only**
 
@@ -41,5 +41,5 @@ Before getting started, make sure you have [Node.js](https://nodejs.org/) and [C
    # to create a debug build, add --debug at the end
    tauri build --debug
    ```
-   
-Please note that the current release is available for Windows only. However, you can build the tool for other platforms using the respective Tauri commands on your target system.
+
+Please note that the user interface is currently in Portuguese, but you can modify the code to display the content in your desired language.

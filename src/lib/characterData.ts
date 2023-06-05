@@ -3,21 +3,21 @@ import { writable, get } from "svelte/store";
 import * as types from './scripts/types';
 
 const defaultProficiencys: types.Proficiency[] = [
-    { name: "Pilotagem", upgraded: false, value: 0, use: [types.UseStat.DEX, types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Novato, bonus: 0 },
-    { name: "Tiro", upgraded: false, value: 0, use: [types.UseStat.DEX, types.UseStat.FOR], selectedIndex: 0, training: types.TrainingLevel.Novato, bonus: 0 },
-    { name: "Lâmina", upgraded: false, value: 0, use: [types.UseStat.DEX, types.UseStat.FOR], selectedIndex: 0, training: types.TrainingLevel.Novato, bonus: 0 },
-    { name: "Charlata", upgraded: false, value: 0, use: [types.UseStat.CAR, types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Novato, bonus: 0 },
-    { name: "Percepção", upgraded: false, value: 0, use: [types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Novato, bonus: 0 },
-    { name: "Enganação", upgraded: false, value: 0, use: [types.UseStat.CAR, types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Novato, bonus: 0 },
-    { name: "Intimidação", upgraded: false, value: 0, use: [types.UseStat.CAR, types.UseStat.CON], selectedIndex: 0, training: types.TrainingLevel.Novato, bonus: 0 },
-    { name: "Investigação", upgraded: false, value: 0, use: [types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Novato, bonus: 0 },
-    { name: "Atletismo", upgraded: false, value: 0, use: [types.UseStat.DEX], selectedIndex: 0, training: types.TrainingLevel.Novato, bonus: 0 },
-    { name: "Rusticidade", upgraded: false, value: 0, use: [types.UseStat.CON, types.UseStat.FOR], selectedIndex: 0, training: types.TrainingLevel.Novato, bonus: 0 },
-    { name: "Vontade", upgraded: false, value: 0, use: [types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Novato, bonus: 0 },
-    { name: "Eng.Mecânica", upgraded: false, value: 0, use: [types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Novato, bonus: 0 },
-    { name: "Eng.Armamentista", upgraded: false, value: 0, use: [types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Novato, bonus: 0 },
-    { name: "Historia", upgraded: false, value: 0, use: [types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Novato, bonus: 0 },
-    { name: "Luta", upgraded: false, value: 0, use: [types.UseStat.FOR, types.UseStat.DEX], selectedIndex: 0, training: types.TrainingLevel.Novato, bonus: 0 },
+    { name: "Pilotagem", upgraded: false, value: 0, use: [types.UseStat.DEX, types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Leigo, bonus: 0 },
+    { name: "Tiro", upgraded: false, value: 0, use: [types.UseStat.DEX, types.UseStat.FOR], selectedIndex: 0, training: types.TrainingLevel.Leigo, bonus: 0 },
+    { name: "Lâmina", upgraded: false, value: 0, use: [types.UseStat.DEX, types.UseStat.FOR], selectedIndex: 0, training: types.TrainingLevel.Leigo, bonus: 0 },
+    { name: "Charlata", upgraded: false, value: 0, use: [types.UseStat.CAR, types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Leigo, bonus: 0 },
+    { name: "Percepção", upgraded: false, value: 0, use: [types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Leigo, bonus: 0 },
+    { name: "Enganação", upgraded: false, value: 0, use: [types.UseStat.CAR, types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Leigo, bonus: 0 },
+    { name: "Intimidação", upgraded: false, value: 0, use: [types.UseStat.CAR, types.UseStat.CON], selectedIndex: 0, training: types.TrainingLevel.Leigo, bonus: 0 },
+    { name: "Investigação", upgraded: false, value: 0, use: [types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Leigo, bonus: 0 },
+    { name: "Atletismo", upgraded: false, value: 0, use: [types.UseStat.DEX], selectedIndex: 0, training: types.TrainingLevel.Leigo, bonus: 0 },
+    { name: "Rusticidade", upgraded: false, value: 0, use: [types.UseStat.CON, types.UseStat.FOR], selectedIndex: 0, training: types.TrainingLevel.Leigo, bonus: 0 },
+    { name: "Vontade", upgraded: false, value: 0, use: [types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Leigo, bonus: 0 },
+    { name: "Eng.Mecânica", upgraded: false, value: 0, use: [types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Leigo, bonus: 0 },
+    { name: "Eng.Armamentista", upgraded: false, value: 0, use: [types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Leigo, bonus: 0 },
+    { name: "Historia", upgraded: false, value: 0, use: [types.UseStat.INT], selectedIndex: 0, training: types.TrainingLevel.Leigo, bonus: 0 },
+    { name: "Luta", upgraded: false, value: 0, use: [types.UseStat.FOR, types.UseStat.DEX], selectedIndex: 0, training: types.TrainingLevel.Leigo, bonus: 0 },
 ]
 
 const defaultMainStats: types.Stat[] = [
@@ -100,7 +100,7 @@ export const GetValueProficiency = (prof: types.Proficiency) => {
     let multiplier: number;
 
     switch (prof.training) {
-        case types.TrainingLevel.Novato:
+        case types.TrainingLevel.Leigo:
             multiplier = 0;
             break;
         case types.TrainingLevel.Treinado:
