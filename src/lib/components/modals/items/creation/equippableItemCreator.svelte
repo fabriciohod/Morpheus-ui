@@ -11,6 +11,7 @@
         modifyStat: StatModifiers.Defesa,
         value: 0,
         isEquip: false,
+        pinned:false
     };
 
     const dispatch = createEventDispatcher();

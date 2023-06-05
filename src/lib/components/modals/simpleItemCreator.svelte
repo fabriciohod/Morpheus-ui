@@ -4,7 +4,7 @@
     import { createEventDispatcher } from "svelte";
 
     export let inventory: Inventory;
-    let item: SimpleItem = { name: "", description: "" };
+    let item: SimpleItem = { name: "", description: "", pinned: false };
     const dispatch = createEventDispatcher();
 
     const error1: ToastSettings = {
@@ -32,7 +32,7 @@
             return;
         }
 
-        dispatch("itemCreated", {...item});
+        dispatch("itemCreated", { ...item });
     };
 </script>
 

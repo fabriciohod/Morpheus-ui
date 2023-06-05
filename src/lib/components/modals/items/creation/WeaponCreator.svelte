@@ -3,21 +3,25 @@
         DiceType,
         ProficiencysEnum,
         UseStat,
-        type ItemWithRoll,
         type Inventory,
+        type Weapon,
     } from "$lib/scripts/types";
     import { toastStore, type ToastSettings } from "@skeletonlabs/skeleton";
     import { createEventDispatcher } from "svelte";
 
     export let inventory: Inventory;
-    let item: ItemWithRoll = {
+    let item: Weapon = {
         name: "",
         description: "",
-        rollTimes: 1,
-        diceToRoll: DiceType.D20,
-        baseStat: [],
-        proficiencys: [],
-        pinned: false,
+        hitDice: DiceType.D20,
+        hitDice_rollTimes: 1,
+        hitDiceBonusFlat: 0,
+        damageDice: DiceType.D20,
+        damageDice_rollTimes: 1,
+        damageBonusFlat: 0,
+        mainStatBonus: [],
+        profBonus: [],
+        pinned:false
     };
     const dispatch = createEventDispatcher();
 
@@ -50,10 +54,10 @@
     const addOrRemoveBaseStat = (add: boolean, stat: UseStat) => {
         switch (add) {
             case true:
-                item.baseStat.push(stat);
+                item.mainStatBonus.push(stat);
                 break;
             case false:
-                item.baseStat.splice(item.baseStat.indexOf(stat));
+                item.mainStatBonus.splice(item.mainStatBonus.indexOf(stat));
         }
 
         console.log(item);
@@ -62,10 +66,10 @@
     const addOrRemoveProficiency = (add: boolean, prof: ProficiencysEnum) => {
         switch (add) {
             case true:
-                item.proficiencys.push(prof);
+                item.profBonus.push(prof);
                 break;
             case false:
-                item.proficiencys.splice(item.proficiencys.indexOf(prof));
+                item.profBonus.splice(item.profBonus.indexOf(prof));
         }
     };
 
@@ -83,32 +87,64 @@
     />
     <textarea
         cols="30"
-        rows="10"
+        rows="5"
         class="input variant-form-material resize-none"
         placeholder="Descrição"
         bind:value={item.description}
     />
     <div class="grid grid-cols-2">
-        <div class="flex h-15">
-            <div class="flex flex-col mr-4">
-                <span>Quantidade</span>
-                <input
-                    type="number"
-                    bind:value={item.rollTimes}
-                    min="1"
-                    class="input variant-form-material w-24"
-                />
-            </div>
+        <div>
             <div>
-                <span class="m-auto">Dado</span>
-                <select class="select variant-form-material" value={20}>
-                    {#each Object.values(DiceType).filter((v) => !isNaN(Number(v))) as dice}
-                        <option value={dice}>D{dice}</option>
-                    {/each}
-                </select>
+                <span>Acerto</span>
+                <div class="flex justify-around">
+                    <div class="flex flex-col">
+                        Quantidade
+                        <input
+                            type="number"
+                            bind:value={item.hitDice_rollTimes}
+                            min="1"
+                            class="input variant-form-material w-24"
+                        />
+                    </div>
+                    <div class="flex flex-col">
+                        Dado
+                        <select
+                            class="select variant-form-material w-24"
+                            bind:value={item.hitDice}
+                        >
+                            {#each Object.values(DiceType).filter((v) => !isNaN(Number(v))) as dice}
+                                <option value={dice}>D{dice}</option>
+                            {/each}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="my-2">
+                <span>Dano</span>
+                <div class="flex justify-around">
+                    <div class="flex flex-col">
+                        Quantidade
+                        <input
+                            type="number"
+                            bind:value={item.damageDice_rollTimes}
+                            min="1"
+                            class="input variant-form-material w-24"
+                        />
+                    </div>
+                    <div class="flex flex-col">
+                        Dado
+                        <select
+                            class="select variant-form-material w-24"
+                            bind:value={item.damageDice}
+                        >
+                            {#each Object.values(DiceType).filter((v) => !isNaN(Number(v))) as dice}
+                                <option value={dice}>D{dice}</option>
+                            {/each}
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
-
         <div class="mx-6">
             <span class="m-auto">Stats Base</span>
             <div class="flex flex-wrap justify-between w-32">

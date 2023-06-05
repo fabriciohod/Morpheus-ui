@@ -14,6 +14,7 @@
     import ItemWithRollCreator from "../itemWithRollCreator.svelte";
     import SimpleItemCreator from "../simpleItemCreator.svelte";
     import EquippableItemCreator from "./creation/equippableItemCreator.svelte";
+    import WeaponCreator from "./creation/WeaponCreator.svelte";
     let tabSet: number = 0;
 
     const success: ToastSettings = {
@@ -38,6 +39,9 @@
     <Tab bind:group={tabSet} class="scale-90" name="tab3" value={2}
         >Com rolagem</Tab
     >
+    <Tab bind:group={tabSet} class="scale-90" name="tab3" value={3}
+        >Arma</Tab
+    >
 
     <svelte:fragment slot="panel">
         {#if tabSet === 0}
@@ -52,6 +56,11 @@
             />
         {:else if tabSet === 2}
             <ItemWithRollCreator
+                bind:inventory={$Bag}
+                on:itemCreated={(i) => addToInventory({ ...i.detail })}
+            />
+        {:else if tabSet === 3}
+            <WeaponCreator
                 bind:inventory={$Bag}
                 on:itemCreated={(i) => addToInventory({ ...i.detail })}
             />

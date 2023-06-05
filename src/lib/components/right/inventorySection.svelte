@@ -97,7 +97,12 @@
                                     }}
                                 />
                             {:else if "hitDice" in item}
-                                <WeaponItem bind:data={item} />
+                                <WeaponItem bind:data={item} 
+                                    on:RemoveClicked={() => {
+                                        removeItem(i);
+                                        item.pinned = false;
+                                    }}
+                                />
                             {:else}
                                 <SimpleItem
                                     bind:data={item}
