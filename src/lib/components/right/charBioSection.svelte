@@ -4,7 +4,7 @@
 
     export let content: CharInfo;
 
-    const GetData = (index: number): string[] => {
+    const GetData = (index: number) => {
         switch (index) {
             case 0:
                 return ["Anotações", content.notes];
@@ -22,14 +22,40 @@
     };
 </script>
 
-<VirtualList itemCount={5} height={676} width="fit" itemSize={100}>
-    <div slot="item" let:index>
-        <span>{GetData(index)[0]}</span>
-        <textarea
-            class="textarea variant-form-material"
-            rows="4"
-            placeholder="Enter some long form content."
-            value={GetData(index)[1]}
-        />
-    </div>
-</VirtualList>
+<div >
+    <span>Anotações</span>
+    <textarea
+        class="textarea variant-form-material resize-none"
+        rows="4"
+        placeholder="Enter some long form content."
+        bind:value={content.notes}
+    />
+    <span>Aparência</span>
+    <textarea
+        class="textarea variant-form-material resize-none"
+        rows="4"
+        placeholder="Enter some long form content."
+        bind:value={content.appearance}
+    />
+    <span>Personalidade</span>
+    <textarea
+        class="textarea variant-form-material resize-none"
+        rows="4"
+        placeholder="Enter some long form content."
+        bind:value={content.personality}
+    />
+    <span>Historia</span>
+    <textarea
+        class="textarea variant-form-material resize-none"
+        rows="4"
+        placeholder="Enter some long form content."
+        bind:value={content.lore}
+    />
+    <span>Objetivo</span>
+    <textarea
+        class="textarea variant-form-material resize-none"
+        rows="4"
+        placeholder="Enter some long form content."
+        bind:value={content.objective}
+    />
+</div>

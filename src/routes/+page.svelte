@@ -118,7 +118,7 @@
                     <StatBar
                         name="AP"
                         color="bg-warning-800"
-                        data={$ApBar}
+                        bind:data={$ApBar}
                         baseStatIndex={3}
                         proficiencyIndex={8}
                     />
@@ -149,7 +149,7 @@
                         {:else if tabSet === 1}
                             <Inventory />
                         {:else if tabSet === 2}
-                            <CharBio content={$CharacterData} />
+                            <CharBio bind:content={$CharacterData} />
                         {/if}
                     </svelte:fragment>
                 </TabGroup>
@@ -167,7 +167,7 @@
                     <span class=" translate-x-12 max-2xl:translate-x-12 max-2xl:text-sm">Bonus</span>
                 </div>
                 {#each $MainProficiencys as proficiency, i}
-                    <Prominence data={proficiency} />
+                    <Prominence bind:data={proficiency} />
                 {/each}
             </div>
         </div>
