@@ -60,13 +60,13 @@
         >
             <Icon icon="fe:arrow-up" rotate={3} />
         </button>
-        <div class="w-24 flex justify-between -translate-x-4 m-auto mx-4">
+        <div class="w-24 flex m-auto mx-4">
             <input
                 type="text"
                 bind:value={data.currentValue}
                 min="0"
                 on:blur={(e) => calculateResult()}
-                class="bg-transparent w-16 h-5 text-right p-0 m-auto outline-none border-transparent"
+                class="bg-transparent w-16 h-5 text-right p-0 m-auto mr-1 outline-none border-transparent"
             />
             <span class="mr-1">|</span>
             <span>{data.maxValue}</span>
@@ -75,7 +75,7 @@
             type="button"
             use:taphold={100}
             on:taphold={incresse}
-            class="btn-icon variant-filled translate-x-[4.1rem] -translate-y-[0.15rem]"
+            class="btn-icon variant-filled translate-x-[6.2rem] -translate-y-[0.15rem]"
         >
             <Icon icon="fe:arrow-up" rotate={1} />
         </button>
