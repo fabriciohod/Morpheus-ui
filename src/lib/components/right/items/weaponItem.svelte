@@ -6,13 +6,26 @@
         ProficiencysEnum,
     } from "$lib/scripts/types";
     import Icon from "@iconify/svelte";
-    import { AccordionItem, toastStore, type ToastSettings } from "@skeletonlabs/skeleton";
+    import {
+        AccordionItem,
+        toastStore,
+        type ToastSettings,
+        modalStore,
+        type ModalSettings,
+    } from "@skeletonlabs/skeleton";
     import { createEventDispatcher } from "svelte";
     import BookMark from "../bookMark.svelte";
     import { WeaponDicesRoll } from "$lib/scripts/diceRoller";
 
     export let data: Weapon;
     export let canBeRemove: boolean = true;
+    export let canBeEditable: boolean = true;
+
+    const modal: ModalSettings = {
+        type: "component",
+        component: "weaponEdit",
+        meta: { info: data },
+    };
 
     const roll = () => {
         const res = WeaponDicesRoll(data);
@@ -22,7 +35,7 @@
             Dano:${res.damageRes.rollSummary} = ${res.damageRes.result}`,
         };
 
-        toastStore.trigger(t)
+        toastStore.trigger(t);
     };
 
     const dispatcher = createEventDispatcher();
@@ -109,16 +122,24 @@
                     </div>
                 </svelte:fragment>
             </AccordionItem>
-            {#if canBeRemove}
-                <div class="flex justify-end mt-4">
+            <div class="flex flex-row-reverse justify-between mt-4">
+                {#if canBeRemove}
                     <button
                         class="btn variant-ghost-error text-xs tracking-widest uppercase"
                         on:click={(e) => remove()}
                     >
                         remover
                     </button>
-                </div>
-            {/if}
+                {/if}
+                {#if canBeEditable}
+                    <button
+                        class="btn variant-ghost-success text-xs tracking-widest uppercase"
+                        on:click={() => modalStore.trigger(modal)}
+                    >
+                        Editar
+                    </button>
+                {/if}
+            </div>
         </svelte:fragment>
     </AccordionItem>
 </div>

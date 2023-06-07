@@ -5,12 +5,19 @@
         type EquipmentItem,
         type Inventory,
     } from "$lib/scripts/types";
-    import { AccordionItem } from "@skeletonlabs/skeleton";
+    import { AccordionItem, modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
     import { createEventDispatcher } from "svelte";
     import BookMark from "../bookMark.svelte";
 
     export let data: EquipmentItem;
     export let canBeRemove = true;
+    export let canBeEditable = true;
+
+    const modal: ModalSettings = {
+        type: "component",
+        component: "equipItemEdit",
+        meta: { info: data },
+    };
 
     const applyModifier = () => {
         data.isEquip = !data.isEquip;
@@ -68,16 +75,25 @@
         <svelte:fragment slot="content">
             {data.description}
 
-            {#if canBeRemove}
-                <div class="flex justify-end mt-4">
+            <div class="flex flex-row-reverse justify-between mt-4">
+                {#if canBeRemove}
                     <button
                         class="btn variant-ghost-error text-xs tracking-widest uppercase"
                         on:click={(e) => remove()}
                     >
                         remover
                     </button>
-                </div>
-            {/if}
+                {/if}
+
+                {#if canBeEditable}
+                    <button
+                        class="btn variant-ghost-success text-xs tracking-widest uppercase"
+                        on:click={() => modalStore.trigger(modal)}
+                    >
+                        Editar
+                    </button>
+                {/if}
+            </div>
         </svelte:fragment>
     </AccordionItem>
 </div>

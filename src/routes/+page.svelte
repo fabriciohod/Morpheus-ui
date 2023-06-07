@@ -33,6 +33,10 @@
     import Icon from "@iconify/svelte";
     import { RollDiceString } from "$lib/scripts/diceRoller";
     import type { RollResult } from "$lib/scripts/types";
+    import SimpleItemEditor from "$lib/components/modals/edit/simpleItemEditor.svelte";
+    import EquippableItemEditor from "$lib/components/modals/edit/equippableItemEditor.svelte";
+    import ItemWithRollEditor from "$lib/components/modals/edit/itemWithRollEditor.svelte";
+    import WeaponEditor from "$lib/components/modals/edit/WeaponEditor.svelte";
 
     let tabSet: number = 0;
     let diceString = "";
@@ -44,6 +48,18 @@
         modalComponentTwo: {
             ref: ItemSelection,
         },
+        simpleItemEdit: {
+            ref: SimpleItemEditor
+        },
+        equipItemEdit: {
+            ref: EquippableItemEditor
+        },
+        withRollItemEdit: {
+            ref:ItemWithRollEditor
+        },
+        weaponEdit: {
+            ref:WeaponEditor
+        }
     };
 
     const error1: ToastSettings = {
