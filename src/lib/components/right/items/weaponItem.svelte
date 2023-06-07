@@ -67,61 +67,6 @@
                 <span>Dano: {data.damageDice_rollTimes}d{data.damageDice}</span>
             </div>
             {@html data.description}
-            <AccordionItem>
-                <svelte:fragment slot="lead">Modificadores</svelte:fragment>
-                <svelte:fragment slot="summary">{""}</svelte:fragment>
-                <svelte:fragment slot="content">
-                    <div class="flex justify-around">
-                        <div class="flex flex-col">
-                            <span>Bonus de acerto</span>
-                            <input
-                                type="number"
-                                class="input variant-form-material w-32"
-                                placeholder="0"
-                                bind:value={data.hitDiceBonusFlat}
-                            />
-                        </div>
-                        <div class="flex flex-col">
-                            <span>Bonus de dano</span>
-                            <input
-                                type="number"
-                                class="input variant-form-material w-32"
-                                placeholder="0"
-                                bind:value={data.damageBonusFlat}
-                            />
-                        </div>
-                    </div>
-                    <hr class="variant-filled-surface opacity-40" />
-                    <div class="flex justify-around">
-                        <div class="flex flex-col items-center">
-                            <p>Base Stats</p>
-                            <p>
-                                <select
-                                    multiple
-                                    class="select variant-form-material w-32"
-                                    bind:value={data.mainStatBonus}
-                                >
-                                    {#each Object.values(UseStat).filter( (v) => isNaN(Number(v)) ) as stat, i}
-                                        <option value={i}>{stat}</option>
-                                    {/each}
-                                </select>
-                            </p>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <p>Pericias</p>
-                            <select
-                                multiple
-                                class="select variant-form-material w-fit"
-                                bind:value={data.profBonus}
-                            >
-                                {#each Object.values(ProficiencysEnum).filter( (v) => isNaN(Number(v)) ) as stat, i}
-                                    <option value={i}>{stat}</option>
-                                {/each}
-                            </select>
-                        </div>
-                    </div>
-                </svelte:fragment>
-            </AccordionItem>
             <div class="flex flex-row-reverse justify-between mt-4">
                 {#if canBeRemove}
                     <button

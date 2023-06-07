@@ -107,29 +107,51 @@
                     </div>
                 </div>
             </div>
-            <div class="mx-6">
-                <span class="m-auto">Stats Base</span>
-                <div class="flex flex-wrap justify-between w-32">
-                    {#each mainStatsNames as stat, i}
-                        <label class="flex items-center space-x-2">
-                            <input
-                                checked={item.mainStatBonus.find((m) => m === i)
-                                    ? true
-                                    : false}
-                                on:click={(e) =>
-                                    addOrRemoveBaseStat(
-                                        e.srcElement.checked,
-                                        i
-                                    )}
-                                class="checkbox"
-                                type="checkbox"
-                            />
-                            <p>{stat}</p>
-                        </label>
-                    {/each}
+            <div class="flex flex-col justify-between"> 
+                <div class=" flex items-center">
+                    <div class="flex flex-col">
+                        <span>Bonus de<br />Acerto</span>
+                        <input
+                            type="number"
+                            class="input variant-form-material w-24"
+                            bind:value={item.hitDiceBonusFlat}
+                        />
+                    </div>
+                    <div class="flex flex-col ml-4">
+                        <span>Bonus de<br />Dano</span>
+                        <input
+                            type="number"
+                            class="input variant-form-material w-24"
+                            bind:value={item.damageBonusFlat}
+                        />
+                    </div>
+                </div>
+
+                <div class="mx-6">
+                    <span class="m-auto">Stats Base</span>
+                    <div class="flex flex-wrap justify-between w-32">
+                        {#each mainStatsNames as stat, i}
+                            <label class="flex items-center space-x-2">
+                                <input
+                                    checked={item.mainStatBonus.find(
+                                        (m) => m === i
+                                    )
+                                        ? true
+                                        : false}
+                                    on:click={(e) =>
+                                        addOrRemoveBaseStat(
+                                            e.srcElement.checked,
+                                            i
+                                        )}
+                                    class="checkbox"
+                                    type="checkbox"
+                                />
+                                <p>{stat}</p>
+                            </label>
+                        {/each}
+                    </div>
                 </div>
             </div>
-
             <div class="col-span-2">
                 <span class="m-auto">Proficiências</span>
                 <div class="grid grid-cols-4 gap-x-12 justify-between">
