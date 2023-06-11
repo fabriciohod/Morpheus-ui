@@ -72,7 +72,7 @@ export const melee: Weapon[] = [
 
     {
         name: "Espada",
-        description: "Altíssima potência, porém pouca mira e recarga</br>1 ação de dano antes de recarregar",
+        description: "Foco em corte, pode usar perfuração</br>pode realizar 2 ataques",
         hitDice: DiceType.D20,
         hitDice_rollTimes: 1,
         hitDiceBonusFlat: 0,
@@ -85,7 +85,7 @@ export const melee: Weapon[] = [
     },
     {
         name: "Lança",
-        description: "Foco em perfuração, pode usar impacto</br>pode atacar de uma distância média",
+        description: "Foco em perfuração, pode usar impacto</br>pode atacar de uma distancia média",
         hitDice: DiceType.D20,
         hitDice_rollTimes: 1,
         hitDiceBonusFlat: 0,
