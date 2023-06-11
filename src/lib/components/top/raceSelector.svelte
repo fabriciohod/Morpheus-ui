@@ -4,7 +4,7 @@
     import type { CharInfo, SimpleItem } from "$lib/scripts/types";
 
     export let data: CharInfo;
-    let leastAbilitys: SimpleItem[]
+    let leastAbilitys: SimpleItem[];
 
     const addRaceAbilitys = () => {
         if (data.race === 0) return;
@@ -14,9 +14,8 @@
         console.log(data.race);
         console.log(temp);
 
-        
         $RaceAbilitys = [];
-        $RaceAbilitys = temp;
+        $RaceAbilitys = { ...temp };
     };
 </script>
 

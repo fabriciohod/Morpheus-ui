@@ -26,7 +26,7 @@
         item: SimpleItem | EquipmentItem | ItemWithRoll
     ) => {
         toastStore.trigger(success);
-        $Bag.push(item);
+        $Bag.push({...item});
     };
 </script>
 

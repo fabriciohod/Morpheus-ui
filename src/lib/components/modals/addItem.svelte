@@ -9,7 +9,7 @@
     const dispatcher = createEventDispatcher();
 
     const addBtnClicked = () => {
-        dispatcher("addBtnClicked", data);
+        dispatcher("addBtnClicked", {...data});
     };
 </script>
 

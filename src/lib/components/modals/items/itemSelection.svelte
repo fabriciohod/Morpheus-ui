@@ -33,7 +33,7 @@
         }
 
         toastStore.trigger(success);
-        $Bag.push(item);
+        $Bag.push({...item});
     };
 </script>
 
@@ -55,7 +55,7 @@
                             summary={`${StatModifiers[item.modifyStat]}: +${
                                 item.value
                             }`}
-                            on:addBtnClicked={(e) => addToInventory({...e.detail})}
+                            on:addBtnClicked={(e) => addToInventory(e.detail)}
                         />
                     {/each}
                 </Accordion>
