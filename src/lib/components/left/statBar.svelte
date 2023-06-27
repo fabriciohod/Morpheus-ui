@@ -10,6 +10,7 @@
     import type { RuntimeBar } from "$lib/scripts/types";
 
     export let color: string = "bg-error-500";
+    export let rounded:string = "rounded-xl";
     export let data: RuntimeBar;
     export let baseStatIndex: number;
     export let proficiencyIndex: number;
@@ -90,6 +91,7 @@
             meter={color}
             track="bg-surface-800/60"
             class="h-[2.5rem] z-[-1]"
+            rounded={rounded}
             value={-1}
             max={data.maxValue}
         />
@@ -98,6 +100,7 @@
             meter={color}
             track="bg-surface-800/60"
             class="h-[2.5rem]"
+            rounded={rounded}
             value={data.currentValue}
             max={data.maxValue}
         />

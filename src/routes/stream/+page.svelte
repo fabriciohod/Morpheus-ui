@@ -1,5 +1,6 @@
 <script lang="ts">
     import { listen } from "@tauri-apps/api/event";
+    import { bounceIn, elasticIn, sineIn } from 'svelte/easing';
     import { fade, fly, slide } from "svelte/transition";
     import StatBar from "$lib/components/left/statBar.svelte";
     import type {
@@ -37,9 +38,9 @@
 </script>
 
 <body class="bg-[#00ff00] flex items-center justify-center h-screen w-full p-4">
-    <div class="w-[21rem] text-white z-10">
+    <div class="w-[21rem] text-white z-10 scale-[2] translate-y-16">
         <div
-            class="h-fit grid grid-rows-3 gap-2 bg-surface-500 p-3 m-2 rounded-2xl"
+            class="h-fit grid grid-rows-3 gap-2 bg-surface-500 p-3 m-2 rounded-md z-50 border-[0.15rem] border-[#ff8f00]"
         >
             <p class="m-auto text-xl">{char}</p>
             <StatBar
@@ -50,6 +51,7 @@
                 multipliers={10}
                 animateWhenCloseToEnd={true}
                 showBtns={false}
+                rounded="rounded-md"
             />
             <StatBar
                 name="AP"
@@ -58,14 +60,15 @@
                 baseStatIndex={3}
                 proficiencyIndex={8}
                 showBtns={false}
+                rounded="rounded-md"
             />
         </div>
-        <div class="absolute w-80 translate-x-2 -translate-y-[15.8rem]">
+        <div class="absolute w-80 translate-x-2 -translate-y-[15.8rem] -z-10 scale-95">
             {#if roll != undefined}
                 {#if roll != leastRoll}
                     <div
-                        in:fly={{ y: 10, duration: 300 }}
-                        out:fly={{y: 10 ,delay: 2000 }}
+                        in:fly={{ y: 80,duration:300 ,opacity: 1}}
+                        out:fly={{ y: 90, delay: 2500, opacity: 1 }}
                         on:introend={() => (leastRoll = roll)}
                     >
                         {#if "hitRes" in roll}

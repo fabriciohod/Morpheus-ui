@@ -9,7 +9,7 @@
     export let index: number = 0;
 </script>
 
-<div class="bg-surface-800 flex flex-row items-center justify-between h-20 px-4 rounded-2xl outline outline-1 outline-warning-500/50">
+<div class="bg-surface-800 flex flex-row items-center justify-between h-20 px-4 rounded-md">
     <button class=" flex flex-row [&>*]:pointer-events-none">
         <Icon class="m-auto" icon="fa-solid:dice-d20" width={32} />
         <div class="ml-2">

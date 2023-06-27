@@ -10,7 +10,7 @@
 </script>
 
 <div
-class="bg-surface-800 flex flex-col h-20 px-4 rounded-2xl outline outline-1 outline-warning-500/50"
+class="bg-surface-800 flex flex-col h-20 px-4 rounded-md"
 >
 {data.hitRes.name}
     <div class="grid grid-cols-4 gap-x-4 items-center">
@@ -19,7 +19,7 @@ class="bg-surface-800 flex flex-col h-20 px-4 rounded-2xl outline outline-1 outl
             <p class="text-2xl">{data.hitRes.result}</p>
             Acerto
         </div>
-        <hr class="rotate-90 -translate-y-1"/>
+        <hr class="rotate-90 -translate-y-[.6rem]"/>
         <div class="flex flex-col items-center">
             <p class="text-2xl">{data.damageRes.result}</p>
             Dano
