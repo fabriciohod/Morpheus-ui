@@ -80,7 +80,7 @@ export const melee: Weapon[] = [
         damageDice_rollTimes: 2,
         damageBonusFlat: 0,
         mainStatBonus: [UseStat.DEX],
-        profBonus: [],
+        profBonus: [ProficiencysEnum.Lamina],
         pinned: false
     },
     {
@@ -93,7 +93,7 @@ export const melee: Weapon[] = [
         damageDice_rollTimes: 3,
         damageBonusFlat: 0,
         mainStatBonus: [UseStat.FOR],
-        profBonus: [],
+        profBonus: [ProficiencysEnum.Lamina],
         pinned: false
     },
     {
@@ -106,7 +106,7 @@ export const melee: Weapon[] = [
         damageDice_rollTimes: 3,
         damageBonusFlat: 0,
         mainStatBonus: [UseStat.FOR, UseStat.DEX],
-        profBonus: [],
+        profBonus: [ProficiencysEnum.Lamina],
         pinned: false
     },
     {
@@ -119,7 +119,7 @@ export const melee: Weapon[] = [
         damageDice_rollTimes: 3,
         damageBonusFlat: 0,
         mainStatBonus: [UseStat.FOR],
-        profBonus: [],
+        profBonus: [ProficiencysEnum.Lamina],
         pinned: false
     }
 ]
