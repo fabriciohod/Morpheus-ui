@@ -172,7 +172,7 @@
         class="btn variant-filled-warning bg-opacity-80 h-3 text-sm mx-4"
         on:click={(e) => {
             const webview = new WebviewWindow("a", {
-                url: "http://localhost:5173/stream",
+                url: "/stream",
             });
         }}
     >
