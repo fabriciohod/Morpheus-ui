@@ -5,13 +5,14 @@
     import RaceSelector from "./raceSelector.svelte";
 
     import { CharacterData } from "$lib/characterData";
-    let files: FileList;
+    import { onMount } from "svelte";
 
     const drawerSettings: DrawerSettings = {
         id: "roll-history",
         position: "right",
         rounded: "rounded-2xl",
     };
+
 </script>
 
 <div class="flex justify-evenly">

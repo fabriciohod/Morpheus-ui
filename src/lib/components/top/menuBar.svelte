@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { WebviewWindow } from "@tauri-apps/api/window";
     import {
         writeTextFile,
         BaseDirectory,
@@ -27,6 +28,7 @@
         RuntimeBar,
         Stat,
     } from "$lib/scripts/types";
+    import { debug } from "svelte/internal";
 
     const savedBaseDir = BaseDirectory.Document;
 
@@ -49,7 +51,7 @@
         $MainDefensiveStats: DefensiveStats;
         $Bag: Inventory;
         $Abilitys: Inventory;
-        $RaceAbilitys: Inventory
+        $RaceAbilitys: Inventory;
         $HpBar: RuntimeBar;
         $ApBar: RuntimeBar;
     }
@@ -119,6 +121,7 @@
             console.log(err);
         }
     };
+
     const saveLeast = (char: string) => {
         localStorage.setItem("leastOpen", char);
     };
@@ -130,7 +133,7 @@
         $MainDefensiveStats = char.$MainDefensiveStats;
         $Bag = char.$Bag;
         $Abilitys = char.$Abilitys;
-        $RaceAbilitys = char.$RaceAbilitys
+        $RaceAbilitys = char.$RaceAbilitys;
         $HpBar = char.$HpBar;
         $ApBar = char.$ApBar;
     };
@@ -164,5 +167,15 @@
         on:click={(e) => readFile()}
     >
         Carregar
+    </button>
+    <button
+        class="btn variant-filled-warning bg-opacity-80 h-3 text-sm mx-4"
+        on:click={(e) => {
+            const webview = new WebviewWindow("a", {
+                url: "http://localhost:5173/stream",
+            });
+        }}
+    >
+        Stream Mode
     </button>
 </div>

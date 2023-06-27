@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { emit } from "@tauri-apps/api/event";
     import {
         computePosition,
         autoUpdate,
@@ -16,7 +17,13 @@
     import { Drawer, Modal, Toast, drawerStore } from "@skeletonlabs/skeleton";
     import { AppShell, Tab, TabGroup } from "@skeletonlabs/skeleton";
     import BaseStat from "$lib/components/left/primaryStats.svelte";
-    import { MainStats, CharacterData, HpBar, ApBar } from "$lib/characterData";
+    import {
+        MainStats,
+        CharacterData,
+        HpBar,
+        ApBar,
+        RollHistory,
+    } from "$lib/characterData";
     import { MainProficiencys } from "$lib/characterData";
     import Prominence from "$lib/components/center/proficiency.svelte";
     import DefCalc from "$lib/components/left/defCounter.svelte";
@@ -25,7 +32,7 @@
     import CharBio from "$lib/components/right/charBioSection.svelte";
     import AbilitysSection from "$lib/components/right/abilitysSection.svelte";
     import MenuBar from "$lib/components/top/menuBar.svelte";
-    import RollHistory from "$lib/components/modals/rollHistory.svelte";
+    import RollHistoryComp from "$lib/components/modals/rollHistory.svelte";
     import AbilitysSelection from "$lib/components/modals/abilitys/abilitysSelection.svelte";
     import Inventory from "$lib/components/right/inventorySection.svelte";
     import ItemSelection from "$lib/components/modals/items/itemSelection.svelte";
@@ -49,17 +56,17 @@
             ref: ItemSelection,
         },
         simpleItemEdit: {
-            ref: SimpleItemEditor
+            ref: SimpleItemEditor,
         },
         equipItemEdit: {
-            ref: EquippableItemEditor
+            ref: EquippableItemEditor,
         },
         withRollItemEdit: {
-            ref:ItemWithRollEditor
+            ref: ItemWithRollEditor,
         },
         weaponEdit: {
-            ref:WeaponEditor
-        }
+            ref: WeaponEditor,
+        },
     };
 
     const error1: ToastSettings = {
@@ -88,6 +95,10 @@
         toastStore.trigger(t);
     };
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
+
+    HpBar.subscribe((v) => localStorage.setItem("hpBar", JSON.stringify(v)));
+    ApBar.subscribe((v) => localStorage.setItem("apBar", JSON.stringify(v)));
+    RollHistory.subscribe((v) => emit("NewRoll", JSON.stringify(v)));
 </script>
 
 <main class="h-screen bg-surface-800 text-white p-1">
@@ -176,11 +187,26 @@
         >
             <div class="pt-4">
                 <div class="grid grid-cols-5">
-                    <span class=" -translate-x-6 max-2xl:-translate-x-3 max-2xl:text-sm">Upgrade</span>
-                    <span class=" -translate-x-6 max-2xl:-translate-x-4 max-2xl:text-sm">Treino</span>
-                    <span class=" translate-x-0 max-2xl:-translate-x-1 max-2xl:text-sm">Dado</span>
-                    <span class=" translate-x-0 max-2xl:-translate-x-3 max-2xl:text-sm">Perícia</span>
-                    <span class=" translate-x-12 max-2xl:translate-x-12 max-2xl:text-sm">Bonus</span>
+                    <span
+                        class=" -translate-x-6 max-2xl:-translate-x-3 max-2xl:text-sm"
+                        >Upgrade</span
+                    >
+                    <span
+                        class=" -translate-x-6 max-2xl:-translate-x-4 max-2xl:text-sm"
+                        >Treino</span
+                    >
+                    <span
+                        class=" translate-x-0 max-2xl:-translate-x-1 max-2xl:text-sm"
+                        >Dado</span
+                    >
+                    <span
+                        class=" translate-x-0 max-2xl:-translate-x-3 max-2xl:text-sm"
+                        >Perícia</span
+                    >
+                    <span
+                        class=" translate-x-12 max-2xl:translate-x-12 max-2xl:text-sm"
+                        >Bonus</span
+                    >
                 </div>
                 {#each $MainProficiencys as proficiency, i}
                     <Prominence bind:data={proficiency} />
@@ -199,7 +225,7 @@
         width="w-96"
     >
         {#if $drawerStore.id === "roll-history"}
-            <RollHistory />
+            <RollHistoryComp />
         {/if}
     </Drawer>
     <Toast />

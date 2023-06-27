@@ -15,6 +15,7 @@
     export let proficiencyIndex: number;
     export let multipliers = 1;
     export let name: string;
+    export let showBtns: boolean = true;
     export let animateWhenCloseToEnd: boolean = false;
 
     const incresse = () => {
@@ -56,7 +57,9 @@
             type="button"
             use:taphold={100}
             on:taphold={decresce}
-            class="btn-icon variant-filled -translate-x-14 -translate-y-[0.15rem]"
+            class={`btn-icon variant-filled -translate-x-14 -translate-y-[0.15rem] ${
+                showBtns ? "" : "opacity-0"
+            }`}
         >
             <Icon icon="fe:arrow-up" rotate={3} />
         </button>
@@ -75,7 +78,9 @@
             type="button"
             use:taphold={100}
             on:taphold={incresse}
-            class="btn-icon variant-filled translate-x-[6.2rem] -translate-y-[0.15rem]"
+            class={`btn-icon variant-filled translate-x-[6.2rem] -translate-y-[0.15rem] ${
+                showBtns ? "" : "opacity-0"
+            }`}
         >
             <Icon icon="fe:arrow-up" rotate={1} />
         </button>

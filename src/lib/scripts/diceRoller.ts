@@ -1,5 +1,6 @@
 import type { DiceType, RollResult, Weapon, WeaponRollResult } from './types';
 import { GetBaseStat, GetProficiency, GetValueProficiency, RollHistory } from '../characterData';
+import { emit } from '@tauri-apps/api/event';
 
 
 const rollDiceSimple = (diceType: DiceType) => {
@@ -40,8 +41,8 @@ export const WeaponDicesRoll = (weapon: Weapon) => {
         ...weapon.mainStatBonus.map(m => GetBaseStat(m).value)
     ]
 
-    const hitRes = RollDice(weapon.name, weapon.hitDice, weapon.hitDice_rollTimes, hitBonus)
-    const damageRes = RollDice(weapon.name, weapon.damageDice, weapon.damageDice_rollTimes, [weapon.damageBonusFlat])
+    const hitRes = RollDice(weapon.name, weapon.hitDice, weapon.hitDice_rollTimes, hitBonus, false)
+    const damageRes = RollDice(weapon.name, weapon.damageDice, weapon.damageDice_rollTimes, [weapon.damageBonusFlat], false)
 
     const res: WeaponRollResult = {
         hitRes,
