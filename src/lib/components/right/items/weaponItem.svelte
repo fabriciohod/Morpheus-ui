@@ -1,10 +1,5 @@
 <script lang="ts">
-    import {
-        UseStat,
-        type Inventory,
-        type Weapon,
-        ProficiencysEnum,
-    } from "$lib/scripts/types";
+    import type { Weapon } from "$lib/scripts/types";
     import Icon from "@iconify/svelte";
     import {
         AccordionItem,
@@ -29,12 +24,13 @@
 
     const roll = () => {
         const res = WeaponDicesRoll(data);
+        const damageValue = res.damageRes.isCrit ? `${res.damageRes.result/2} * 2 = <strong>${res.damageRes.result}</strong>` : `${res.damageRes.result}`
 
         const t: ToastSettings = {
             message: `Acerto:${res.hitRes.rollSummary} = ${res.hitRes.result}</br>
-            Dano:${res.damageRes.rollSummary} = ${res.damageRes.result}`,
+            Dano:${res.damageRes.rollSummary} = ${damageValue}`,
         };
-
+        console.log(res)
         toastStore.trigger(t);
     };
 

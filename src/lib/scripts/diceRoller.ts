@@ -21,7 +21,8 @@ export const RollDice = (name: string, diceType: DiceType, rollTimes: number = 1
         name,
         individualRolls: rolls,
         rollSummary: `[${rolls.toString()}]${bonus.length > 0 ? ` + ${bonusString}` : ""}`,
-        result: rollsBonus
+        result: rollsBonus,
+        isCrit: false
     };
 
     if (!resultToHistory) return res;
@@ -43,6 +44,15 @@ export const WeaponDicesRoll = (weapon: Weapon) => {
 
     const hitRes = RollDice(weapon.name, weapon.hitDice, weapon.hitDice_rollTimes, hitBonus, false)
     const damageRes = RollDice(weapon.name, weapon.damageDice, weapon.damageDice_rollTimes, [weapon.damageBonusFlat], false)
+
+    hitRes.individualRolls.map(v => {
+        if (v == 20) {
+            console.log("ok")
+            damageRes.result *= 2
+            damageRes.isCrit = true;
+            return;
+        }
+    })
 
     const res: WeaponRollResult = {
         hitRes,

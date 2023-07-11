@@ -102,6 +102,7 @@ export type RollResult = {
     individualRolls: number[],
     rollSummary: string;
     result: number;
+    isCrit: boolean
 };
 export type WeaponRollResult = {
     hitRes: RollResult;
