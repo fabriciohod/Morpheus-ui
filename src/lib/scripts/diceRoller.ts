@@ -47,7 +47,6 @@ export const WeaponDicesRoll = (weapon: Weapon) => {
 
     hitRes.individualRolls.map(v => {
         if (v == 20) {
-            console.log("ok")
             damageRes.result *= 2
             damageRes.isCrit = true;
             return;

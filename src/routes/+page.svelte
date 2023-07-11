@@ -110,7 +110,7 @@
             </div>
         </svelte:fragment>
         <svelte:fragment slot="sidebarLeft">
-            <div class="h-fit w-[20rem] bg-surface-600 p-3 m-2 rounded-2xl">
+            <div class="h-fit w-[22rem] bg-surface-600 p-3 m-2 rounded-2xl">
                 <div class="flex">
                     <button
                         type="button"
@@ -123,11 +123,15 @@
                         type="text"
                         placeholder="Rolar Dados"
                         bind:value={diceString}
-                        class="input variant-form-material w-[15.5rem]"
+                        class="input variant-form-material w-[17rem]"
                     />
                 </div>
             </div>
             <div class="h-fit bg-surface-600 p-3 m-2 rounded-2xl">
+                <div class="grid grid-cols-2 translate-x-[6rem] items-center">
+                    <span class="ml-20">Valor</span>
+                    <span class="ml-2">Bonus</span>
+                </div>
                 {#each $MainStats as stat, i}
                     <BaseStat bind:data={$MainStats[i]} />
                 {/each}

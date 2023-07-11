@@ -52,13 +52,13 @@
 </script>
 
 <div class="relative">
-    <div class="flex absolute translate-x-6 scale-[0.78] z-[1]">
+    <div class="flex absolute translate-x-12 scale-[0.78] z-[1]">
         <span class="absolute translate-y-[0.45rem] text-lg">{name}</span>
         <button
             type="button"
             use:taphold={100}
             on:taphold={decresce}
-            class={`btn-icon variant-filled -translate-x-14 -translate-y-[0.15rem] ${
+            class={`btn-icon variant-filled -translate-x-20 -translate-y-[0.15rem] ${
                 showBtns ? "" : "opacity-0"
             }`}
         >
@@ -79,7 +79,7 @@
             type="button"
             use:taphold={100}
             on:taphold={incresse}
-            class={`btn-icon variant-filled translate-x-[6.2rem] -translate-y-[0.15rem] ${
+            class={`btn-icon variant-filled translate-x-[6.5rem] -translate-y-[0.15rem] ${
                 showBtns ? "" : "opacity-0"
             }`}
         >

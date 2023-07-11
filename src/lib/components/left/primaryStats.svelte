@@ -12,7 +12,10 @@
     export let data: Stat;
 
     const rollTest = () => {
-        const res: RollResult = RollDice(data.name, DiceType.D20, 1);
+        const res: RollResult = RollDice(data.name, DiceType.D20, 1, [
+            data.value,
+            data.bonus,
+        ]);
 
         const t: ToastSettings = {
             message: `${res.rollSummary} = ${res.result}`,
@@ -22,7 +25,7 @@
     };
 </script>
 
-<div class="grid grid-cols-[20%_40%_30%] gap-x-2 my-1 items-center">
+<div class="flex justify-start my-1 items-center">
     <button
         type="button"
         on:click={(e) => rollTest()}
@@ -31,11 +34,28 @@
         <Icon icon="fa-solid:dice-d20" />
     </button>
 
-    <span class="mr-4">{data.name}</span>
-    <input
-        class="input variant-form-material w-20"
-        type="number"
-        min="0"
-        bind:value={data.value}
-    />
+    <span class="mx-4 w-[6.25rem]">{data.name}</span>
+    <div class="flex">
+        <input
+            class="input variant-form-material w-[3.3rem]"
+            type="number"
+            min="0"
+            bind:value={data.value}
+        />
+        <input
+            class="input ml-8 variant-form-material w-[3.3rem]"
+            type="number"
+            min="0"
+            bind:value={data.bonus}
+        />
+    </div>
 </div>
+
+<style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
