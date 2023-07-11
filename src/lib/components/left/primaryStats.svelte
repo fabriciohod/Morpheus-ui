@@ -1,13 +1,10 @@
 <script lang="ts">
     import Icon from "@iconify/svelte";
-    import { createEventDispatcher } from "svelte";
     import { DiceType, type RollResult, type Stat } from "$lib/scripts/types";
 
     import { RollDice } from "$lib/scripts/diceRoller";
     import { toastStore } from "@skeletonlabs/skeleton";
     import type { ToastSettings } from "@skeletonlabs/skeleton";
-
-    const dispatcher = createEventDispatcher();
 
     export let data: Stat;
 

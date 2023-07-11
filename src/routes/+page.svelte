@@ -39,7 +39,7 @@
     import StatBar from "$lib/components/left/statBar.svelte";
     import Icon from "@iconify/svelte";
     import { RollDiceString } from "$lib/scripts/diceRoller";
-    import type { RollResult } from "$lib/scripts/types";
+    import type { RollResult, RuntimeBar } from "$lib/scripts/types";
     import SimpleItemEditor from "$lib/components/modals/edit/simpleItemEditor.svelte";
     import EquippableItemEditor from "$lib/components/modals/edit/equippableItemEditor.svelte";
     import ItemWithRollEditor from "$lib/components/modals/edit/itemWithRollEditor.svelte";
@@ -96,8 +96,13 @@
     };
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
-    HpBar.subscribe((v) => localStorage.setItem("hpBar", JSON.stringify(v)));
-    ApBar.subscribe((v) => localStorage.setItem("apBar", JSON.stringify(v)));
+    const saveHpAndAp = () => {
+        console.log("stop");
+
+        localStorage.setItem("hpBar", JSON.stringify($HpBar));
+        localStorage.setItem("apBar", JSON.stringify($ApBar));
+    };
+
     RollHistory.subscribe((v) => emit("NewRoll", JSON.stringify(v)));
 </script>
 
@@ -141,6 +146,7 @@
                     <StatBar
                         name="PV"
                         bind:data={$HpBar}
+                        on:stopChange={saveHpAndAp}
                         baseStatIndex={0}
                         proficiencyIndex={9}
                         multipliers={10}
@@ -148,6 +154,7 @@
                     />
                     <StatBar
                         name="AP"
+                        on:stopChange={saveHpAndAp}
                         color="bg-warning-800"
                         bind:data={$ApBar}
                         baseStatIndex={3}

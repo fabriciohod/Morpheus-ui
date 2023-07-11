@@ -8,9 +8,10 @@
     import Icon from "@iconify/svelte";
     import { taphold } from "$lib/scripts/taphold";
     import type { RuntimeBar } from "$lib/scripts/types";
+    import { element } from "svelte/internal";
 
     export let color: string = "bg-error-500";
-    export let rounded:string = "rounded-xl";
+    export let rounded: string = "rounded-xl";
     export let data: RuntimeBar;
     export let baseStatIndex: number;
     export let proficiencyIndex: number;
@@ -47,6 +48,12 @@
             multipliers;
     };
 
+    function handleKeyDown(event: KeyboardEvent) {
+        if (event.key === "Enter") {
+            event.target.blur();
+        }
+    }
+
     MainStats.subscribe((_) => calc());
     MainProficiencys.subscribe((_) => calc());
 </script>
@@ -57,6 +64,7 @@
         <button
             type="button"
             use:taphold={100}
+            on:mouseup={() => console.log("OK")}
             on:taphold={decresce}
             class={`btn-icon variant-filled -translate-x-20 -translate-y-[0.15rem] ${
                 showBtns ? "" : "opacity-0"
@@ -70,6 +78,8 @@
                 bind:value={data.currentValue}
                 min="0"
                 on:blur={(e) => calculateResult()}
+                on:keypress={handleKeyDown}
+                on:focusout={() => console.log("ok")}
                 class="bg-transparent w-16 h-5 text-right p-0 m-auto mr-1 outline-none border-transparent"
             />
             <span class="mr-1">|</span>
@@ -78,6 +88,7 @@
         <button
             type="button"
             use:taphold={100}
+            on:mouseup={() => console.log("OK")}
             on:taphold={incresse}
             class={`btn-icon variant-filled translate-x-[6.5rem] -translate-y-[0.15rem] ${
                 showBtns ? "" : "opacity-0"
@@ -91,7 +102,7 @@
             meter={color}
             track="bg-surface-800/60"
             class="h-[2.5rem] z-[-1]"
-            rounded={rounded}
+            {rounded}
             value={-1}
             max={data.maxValue}
         />
@@ -100,7 +111,7 @@
             meter={color}
             track="bg-surface-800/60"
             class="h-[2.5rem]"
-            rounded={rounded}
+            {rounded}
             value={data.currentValue}
             max={data.maxValue}
         />
