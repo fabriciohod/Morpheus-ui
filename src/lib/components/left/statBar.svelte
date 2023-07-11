@@ -8,7 +8,9 @@
     import Icon from "@iconify/svelte";
     import { taphold } from "$lib/scripts/taphold";
     import type { RuntimeBar } from "$lib/scripts/types";
-    import { element } from "svelte/internal";
+    import { createEventDispatcher } from "svelte";
+    const dispatch = createEventDispatcher();
+
 
     export let color: string = "bg-error-500";
     export let rounded: string = "rounded-xl";
@@ -64,7 +66,7 @@
         <button
             type="button"
             use:taphold={100}
-            on:mouseup={() => console.log("OK")}
+            on:mouseup={() => dispatch("stopChange")}
             on:taphold={decresce}
             class={`btn-icon variant-filled -translate-x-20 -translate-y-[0.15rem] ${
                 showBtns ? "" : "opacity-0"
@@ -79,7 +81,7 @@
                 min="0"
                 on:blur={(e) => calculateResult()}
                 on:keypress={handleKeyDown}
-                on:focusout={() => console.log("ok")}
+                on:focusout={() => dispatch("stopChange")}
                 class="bg-transparent w-16 h-5 text-right p-0 m-auto mr-1 outline-none border-transparent"
             />
             <span class="mr-1">|</span>
@@ -88,7 +90,7 @@
         <button
             type="button"
             use:taphold={100}
-            on:mouseup={() => console.log("OK")}
+            on:mouseup={() => dispatch("stopChange")}
             on:taphold={incresse}
             class={`btn-icon variant-filled translate-x-[6.5rem] -translate-y-[0.15rem] ${
                 showBtns ? "" : "opacity-0"
