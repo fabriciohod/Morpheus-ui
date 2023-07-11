@@ -18,7 +18,6 @@
         target: `damageRollPopup-${index}`,
         placement: "bottom",
     };
-
 </script>
 
 <div
@@ -32,7 +31,13 @@
         </div>
         <hr class="rotate-90" />
         <div class="flex flex-col items-center" use:popup={damagePopupSettings}>
-            <p class="text-2xl">{data.damageRes.result}</p>
+            {#if data.damageRes.isCrit}
+                <p class="text-2xl">
+                    <strong>{data.damageRes.result}</strong>
+                </p>
+            {:else}
+                <p class="text-2xl">{data.damageRes.result}</p>
+            {/if}
             Dano
         </div>
     </div>
@@ -50,6 +55,13 @@
     class="card p-4 variant-filled-secondary"
     data-popup={`damageRollPopup-${index}`}
 >
-    <p>{data.damageRes.rollSummary}</p>
+    {#if data.damageRes.isCrit}
+        <p class="text-2xl">
+            {data.damageRes.result / 2} * 2 =
+            <strong>{data.damageRes.result}</strong>
+        </p>
+    {:else}
+        <p class="text-2xl">{data.damageRes.result}</p>
+    {/if}
     <div class="arrow variant-filled-secondary" />
 </div>
