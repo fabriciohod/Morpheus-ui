@@ -46,6 +46,9 @@
     import WeaponEditor from "$lib/components/modals/edit/WeaponEditor.svelte";
     import { getClient } from "$lib/supabaseClient";
     import ServerInfo from "$lib/components/modals/serverInfo.svelte";
+    import type { SupabaseClient } from "@supabase/supabase-js";
+    import { onMount } from "svelte";
+    import { db } from "$lib/scripts/store";
 
     let tabSet: number = 0;
     let diceString = "";
@@ -83,7 +86,10 @@
         message: "Coloque os dados do servidor",
         background: "variant-filled-error",
     };
-
+    $db = getClient(
+        localStorage.getItem("url") as string,
+        localStorage.getItem("key") as string
+    );
     const rollTest = () => {
         const regex = /^(\d*)?d(\d+)((\s*[+-]\s*\d+\s*)+)?$/i;
 
@@ -119,11 +125,7 @@
             return;
         }
 
-        getClient(
-            localStorage.getItem("url") as string,
-            localStorage.getItem("key") as string
-        )
-            .from("characters")
+        $db.from("characters")
             .upsert(
                 {
                     id: $CharacterData.name,
@@ -131,10 +133,13 @@
                     apBar: $ApBar,
                 },
                 { onConflict: "id" }
-            );
+            )
+            .then((onrejected) => console.log(onrejected));
     };
 
-    RollHistory.subscribe((v) => emit("NewRoll", JSON.stringify(v)));
+    RollHistory.subscribe((v) => {
+        emit("NewRoll", JSON.stringify(v));
+    });
 </script>
 
 <main class="h-screen bg-surface-800 text-white p-1">

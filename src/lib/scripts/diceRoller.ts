@@ -1,6 +1,8 @@
 import type { DiceType, RollResult, Weapon, WeaponRollResult } from './types';
-import { GetBaseStat, GetProficiency, GetValueProficiency, RollHistory } from '../characterData';
-import { emit } from '@tauri-apps/api/event';
+import { CharacterData, GetBaseStat, GetProficiency, GetValueProficiency, RollHistory } from '../characterData';
+import { getClient } from '$lib/supabaseClient';
+import { get } from 'svelte/store';
+import { db } from './store';
 
 
 const rollDiceSimple = (diceType: DiceType) => {
@@ -32,6 +34,19 @@ export const RollDice = (name: string, diceType: DiceType, rollTimes: number = 1
         return u;
     });
 
+    if (get(db) !== null || get(db) !== undefined) {
+        get(db)
+            .from("rolls")
+            .upsert(
+                { id: get(CharacterData).name, roll: res },
+                { onConflict: "id" }
+            )
+            .then((onrejected) => {
+                console.log(onrejected);
+                console.log(res);
+            });
+    }
+
     return res;
 };
 
@@ -62,6 +77,19 @@ export const WeaponDicesRoll = (weapon: Weapon) => {
         u.push(res);
         return u;
     });
+
+    if (get(db) !== null || get(db) !== undefined) {
+        get(db)
+            .from("rolls")
+            .upsert(
+                { id: get(CharacterData).name, roll: res },
+                { onConflict: "id" }
+            )
+            .then((onrejected) => {
+                console.log(onrejected);
+                console.log(res);
+            });
+    }
 
     return res
 };
@@ -103,6 +131,19 @@ export const RollDiceString = (diceNotation: string) => {
         u.push(res);
         return u;
     });
+
+    if (get(db) !== null || get(db) !== undefined) {
+        get(db)
+            .from("rolls")
+            .upsert(
+                { id: get(CharacterData).name, roll: res },
+                { onConflict: "id" }
+            )
+            .then((onrejected) => {
+                console.log(onrejected);
+                console.log(res);
+            });
+    }
 
     return res;
 };
