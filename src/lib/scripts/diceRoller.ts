@@ -132,7 +132,7 @@ export const RollDiceString = (diceNotation: string) => {
         return u;
     });
 
-    if (get(db) !== null || get(db) !== undefined) {
+    if (get(db) !== undefined) {
         get(db)
             .from("rolls")
             .upsert(
