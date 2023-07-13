@@ -19,7 +19,7 @@
         HpBar,
         ApBar,
     } from "$lib/characterData";
-    import { toastStore, type ToastSettings } from "@skeletonlabs/skeleton";
+    import { toastStore, type ToastSettings, Modal, modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
     import type {
         CharInfo,
         DefensiveStats,
@@ -153,6 +153,11 @@
             console.log(err);
         }
     });
+
+    const modal: ModalSettings = {
+	type: 'component',
+	component: 'serverInfo',
+};
 </script>
 
 <div class="flex items-center h-8 bg-surface-600 mb-2 px-4 py-2 rounded-md">
@@ -177,5 +182,11 @@
         }}
     >
         Stream Mode
+    </button>
+    <button
+        class="btn variant-filled-warning bg-opacity-80 h-3 text-sm mx-4"
+        on:click={(e) => modalStore.trigger(modal)}
+    >
+        Server Info
     </button>
 </div>

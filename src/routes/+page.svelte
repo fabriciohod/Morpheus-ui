@@ -44,6 +44,8 @@
     import EquippableItemEditor from "$lib/components/modals/edit/equippableItemEditor.svelte";
     import ItemWithRollEditor from "$lib/components/modals/edit/itemWithRollEditor.svelte";
     import WeaponEditor from "$lib/components/modals/edit/WeaponEditor.svelte";
+    import { getClient } from "$lib/supabaseClient";
+    import ServerInfo from "$lib/components/modals/serverInfo.svelte";
 
     let tabSet: number = 0;
     let diceString = "";
@@ -67,10 +69,18 @@
         weaponEdit: {
             ref: WeaponEditor,
         },
+        serverInfo: {
+            ref: ServerInfo,
+        },
     };
 
     const error1: ToastSettings = {
         message: "Rolagem invalida",
+        background: "variant-filled-error",
+    };
+
+    const error2: ToastSettings = {
+        message: "Coloque os dados do servidor",
         background: "variant-filled-error",
     };
 
@@ -101,6 +111,27 @@
 
         localStorage.setItem("hpBar", JSON.stringify($HpBar));
         localStorage.setItem("apBar", JSON.stringify($ApBar));
+
+        if ($CharacterData.name == "") return;
+
+        if (!(localStorage.getItem("url") && localStorage.getItem("key"))) {
+            toastStore.trigger(error2);
+            return;
+        }
+
+        getClient(
+            localStorage.getItem("url") as string,
+            localStorage.getItem("key") as string
+        )
+            .from("characters")
+            .upsert(
+                {
+                    id: $CharacterData.name,
+                    hpBar: $HpBar,
+                    apBar: $ApBar,
+                },
+                { onConflict: "id" }
+            );
     };
 
     RollHistory.subscribe((v) => emit("NewRoll", JSON.stringify(v)));
