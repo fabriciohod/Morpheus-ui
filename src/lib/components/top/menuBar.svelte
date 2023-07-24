@@ -19,7 +19,13 @@
         HpBar,
         ApBar,
     } from "$lib/characterData";
-    import { toastStore, type ToastSettings, Modal, modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
+    import {
+        toastStore,
+        type ToastSettings,
+        Modal,
+        modalStore,
+        type ModalSettings,
+    } from "@skeletonlabs/skeleton";
     import type {
         CharInfo,
         DefensiveStats,
@@ -155,38 +161,44 @@
     });
 
     const modal: ModalSettings = {
-	type: 'component',
-	component: 'serverInfo',
-};
+        type: "component",
+        component: "serverInfo",
+    };
 </script>
 
-<div class="flex items-center h-8 bg-surface-600 mb-2 px-4 py-2 rounded-md">
-    <button
-        class="btn variant-filled-warning bg-opacity-80 h-3 text-sm"
-        on:click={(e) => saveFile()}
-    >
-        Salvar
-    </button>
-    <button
-        class="btn variant-filled-warning bg-opacity-80 h-3 text-sm mx-4"
-        on:click={(e) => readFile()}
-    >
-        Carregar
-    </button>
-    <button
-        class="btn variant-filled-warning bg-opacity-80 h-3 text-sm mx-4"
-        on:click={(e) => {
-            const webview = new WebviewWindow("a", {
-                url: "/stream",
-            });
-        }}
-    >
-        Stream Mode
-    </button>
-    <button
-        class="btn variant-filled-warning bg-opacity-80 h-3 text-sm mx-4"
-        on:click={(e) => modalStore.trigger(modal)}
-    >
-        Server Info
-    </button>
+<div
+    class="flex items-center justify-between h-8 mx-2 mt-1 mb-2 max-w-[100rem] bg-surface-600 rounded-md p-2"
+>
+    <div>
+        <button
+            class="btn variant-filled-warning bg-opacity-80 h-3 text-sm"
+            on:click={(e) => saveFile()}
+        >
+            Salvar
+        </button>
+        <button
+            class="btn variant-filled-warning bg-opacity-80 h-3 text-sm mx-2"
+            on:click={(e) => readFile()}
+        >
+            Carregar
+        </button>
+    </div>
+    <div>
+        <button
+            class="btn variant-filled-warning bg-opacity-80 h-3 text-sm"
+            on:click={(e) => {
+                const webview = new WebviewWindow("a", {
+                    url: "/stream",
+                });
+            }}
+        >
+            Stream Mode
+        </button>
+        <button
+            class="btn variant-filled-warning bg-opacity-80 h-3 text-sm mx-2"
+            on:click={(e) => modalStore.trigger(modal)}
+        >
+            Server Info
+        </button>
+    </div>
 </div>

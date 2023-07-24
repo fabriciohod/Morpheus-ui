@@ -41,7 +41,7 @@
     <div class="flex items-center relative">
         {#if data.value > 0}
             <p
-                class={`absolute ${
+                class={`absolute text-left ${
                     data.value >= 100 ? "-translate-x-12" : "-translate-x-10"
                 }`}
             >

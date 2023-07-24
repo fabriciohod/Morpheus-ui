@@ -56,7 +56,7 @@
 <div class="items-center bg-surface-800 rounded-md relative">
     <input
         checked={data.isEquip}
-        class="checkbox absolute translate-y-2 translate-x-[28rem]"
+        class="checkbox absolute translate-y-2 translate-x-[34.4rem]"
         on:click={(e) => {
             applyModifier();
         }}

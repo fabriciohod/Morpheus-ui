@@ -22,16 +22,12 @@
     };
 </script>
 
-<div class="flex justify-start my-1 items-center">
+<div class="flex items-center justify-between my-1 max-lg:mx-3">
     <button
-        type="button"
         on:click={(e) => rollTest()}
-        class="btn-icon variant-filled"
+        class="pt-4 text-justify h-fit w-44 cursor-pointer hover:text-warning-600 hover:underline"
+        >{data.name}</button
     >
-        <Icon icon="fa-solid:dice-d20" />
-    </button>
-
-    <span class="mx-4 w-[6.25rem]">{data.name}</span>
     <div class="flex">
         <input
             class="input variant-form-material w-[3.3rem]"

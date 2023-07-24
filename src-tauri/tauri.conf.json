@@ -61,8 +61,12 @@
         "resizable": true,
         "decorations": true,
         "title": "M.C.C.T",
-        "width": 1600,
-        "height": 900
+        "width": 1632,
+        "height": 795,
+        "minWidth": 700,
+        "maxWidth": 1632,
+        "minHeight": 800,
+        "maxHeight": 930
       }
     ]
   }

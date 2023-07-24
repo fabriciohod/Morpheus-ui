@@ -4,7 +4,7 @@
   import "../app.postcss";
 </script>
 
-<body>
+<body class="h-fit w-screen bg-surface-800">
   <slot />
 </body>
 

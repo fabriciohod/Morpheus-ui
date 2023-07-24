@@ -19,7 +19,7 @@
     };
 </script>
 
-<div class="m-auto">
+<div>
     <select
         bind:value={data.race}
         on:change={(e) => addRaceAbilitys()}
