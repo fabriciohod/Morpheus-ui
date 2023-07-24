@@ -1,13 +1,14 @@
 <script lang="ts">
-    import { ApBar, HpBar, MainStats, CharacterData } from "$lib/characterData";
-    import { RollDiceString } from "$lib/scripts/diceRoller";
-    import { db } from "$lib/scripts/store";
-    import Icon from "@iconify/svelte";
-    import { toastStore, type ToastSettings } from "@skeletonlabs/skeleton";
+    import { CharacterData, MainStats } from "$lib/characterData";
     import DefCalc from "$lib/components/left/defCounter.svelte";
     import DogeCalc from "$lib/components/left/dogeCounter.svelte";
     import BaseStat from "$lib/components/left/primaryStats.svelte";
     import StatsBar from "$lib/components/left/statBar.svelte";
+    import { RollDiceString } from "$lib/scripts/diceRoller";
+    import { db } from "$lib/scripts/store";
+    import { ApBar, HpBar } from "$lib/scripts/stores/hpAndAp";
+    import Icon from "@iconify/svelte";
+    import { toastStore, type ToastSettings } from "@skeletonlabs/skeleton";
 
     let diceString = "";
 
@@ -21,7 +22,7 @@
         background: "variant-filled-error",
     };
 
-    const rollTest = () => {
+    function rollTest() {
         const regex = /^(\d*)?d(\d+)((\s*[+-]\s*\d+\s*)+)?$/i;
 
         if (diceString === "") {
@@ -42,9 +43,9 @@
         };
 
         toastStore.trigger(t);
-    };
+    }
 
-    const saveHpAndAp = () => {
+    function saveHpAndAp() {
         localStorage.setItem("hpBar", JSON.stringify($HpBar));
         localStorage.setItem("apBar", JSON.stringify($ApBar));
 
@@ -65,7 +66,7 @@
                 { onConflict: "id" }
             )
             .then((onrejected) => console.log(onrejected));
-    };
+    }
 </script>
 
 <div class=" max-lg:w-[42rem]">

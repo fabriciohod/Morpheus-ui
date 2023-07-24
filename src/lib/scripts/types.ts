@@ -61,10 +61,6 @@ export type DefensiveStats = {
     DOGE_equipment: number;
 };
 
-export type RuntimeBar = {
-    maxValue: number;
-    currentValue: number;
-};
 
 export type CharInfo = {
     name: string;

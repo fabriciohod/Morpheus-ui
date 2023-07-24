@@ -7,13 +7,13 @@
     } from "$lib/characterData";
     import Icon from "@iconify/svelte";
     import { taphold } from "$lib/scripts/taphold";
-    import type { RuntimeBar } from "$lib/scripts/types";
     import { createEventDispatcher } from "svelte";
+    import type { StatBarType } from "$lib/scripts/stores/hpAndAp";
     const dispatch = createEventDispatcher();
 
     export let color: string = "bg-error-500";
     export let rounded: string = "rounded-xl";
-    export let data: RuntimeBar;
+    export let data: StatBarType;
     export let baseStatIndex: number;
     export let proficiencyIndex: number;
     export let multipliers = 1;

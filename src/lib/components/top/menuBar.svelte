@@ -16,8 +16,6 @@
         Abilitys,
         RaceAbilitys,
         Bag,
-        HpBar,
-        ApBar,
     } from "$lib/characterData";
     import {
         toastStore,
@@ -31,11 +29,11 @@
         DefensiveStats,
         Inventory,
         Proficiency,
-        RuntimeBar,
         Stat,
     } from "$lib/scripts/types";
-    import { debug } from "svelte/internal";
-
+    import type { StatBarType } from "$lib/scripts/stores/hpAndAp";
+    import { HpBar, ApBar } from "$lib/scripts/stores/hpAndAp";
+    
     const savedBaseDir = BaseDirectory.Document;
 
     const saved: ToastSettings = {
@@ -58,8 +56,8 @@
         $Bag: Inventory;
         $Abilitys: Inventory;
         $RaceAbilitys: Inventory;
-        $HpBar: RuntimeBar;
-        $ApBar: RuntimeBar;
+        $HpBar: StatBarType;
+        $ApBar: StatBarType;
     }
 
     const getJSONData = () => {
