@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { ApBar, HpBar, MainStats } from "$lib/characterData";
+    import { ApBar, HpBar, MainStats, CharacterData } from "$lib/characterData";
     import { RollDiceString } from "$lib/scripts/diceRoller";
     import { db } from "$lib/scripts/store";
     import Icon from "@iconify/svelte";
@@ -48,7 +48,7 @@
         localStorage.setItem("hpBar", JSON.stringify($HpBar));
         localStorage.setItem("apBar", JSON.stringify($ApBar));
 
-        if (CharacterData.name == "") return;
+        if ($CharacterData.name == "") return;
 
         if (!(localStorage.getItem("url") && localStorage.getItem("key"))) {
             toastStore.trigger(error2);
@@ -58,7 +58,7 @@
         $db.from("characters")
             .upsert(
                 {
-                    id: CharacterData.name,
+                    id: $CharacterData.name,
                     hpBar: $HpBar,
                     apBar: $ApBar,
                 },

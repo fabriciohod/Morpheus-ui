@@ -11,7 +11,6 @@
     import { createEventDispatcher } from "svelte";
     const dispatch = createEventDispatcher();
 
-
     export let color: string = "bg-error-500";
     export let rounded: string = "rounded-xl";
     export let data: RuntimeBar;
@@ -61,43 +60,41 @@
 </script>
 
 <div class="relative">
-    <div class="flex absolute translate-x-12 scale-[0.78] z-[1]">
-        <span class="absolute translate-y-[0.45rem] text-lg">{name}</span>
-        <button
-            type="button"
-            use:taphold={100}
-            on:mouseup={() => dispatch("stopChange")}
-            on:taphold={decresce}
-            class={`btn-icon variant-filled -translate-x-20 -translate-y-[0.15rem] ${
-                showBtns ? "" : "opacity-0"
-            }`}
-        >
-            <Icon icon="fe:arrow-up" rotate={3} />
-        </button>
-        <div class="w-24 flex m-auto mx-4">
-            <input
-                type="text"
-                bind:value={data.currentValue}
-                min="0"
-                on:blur={(e) => calculateResult()}
-                on:keypress={handleKeyDown}
-                on:focusout={() => dispatch("stopChange")}
-                class="bg-transparent w-16 h-5 text-right p-0 m-auto mr-1 outline-none border-transparent"
-            />
-            <span class="mr-1">|</span>
-            <span>{data.maxValue}</span>
+    <div class="flex absolute w-full scale-[0.78] z-[1]">
+        <div class="flex justify-evenly w-full items-center">
+            <button
+                type="button"
+                use:taphold={100}
+                on:mouseup={() => dispatch("stopChange")}
+                on:taphold={decresce}
+                class={`btn-icon variant-filled ${showBtns ? "" : "opacity-0"}`}
+            >
+                <Icon icon="fe:arrow-up" rotate={3} />
+            </button>
+            <div class="w-24 flex mx-[5.4rem] max-lg:mx-16 items-center">
+                <span class="text-lg">{name}</span>
+                <input
+                    type="text"
+                    bind:value={data.currentValue}
+                    min="0"
+                    on:blur={(e) => calculateResult()}
+                    on:keypress={handleKeyDown}
+                    on:focusout={() => dispatch("stopChange")}
+                    class="bg-transparent w-16 h-5 text-right outline-none border-transparent"
+                />
+                <span class="mr-1">|</span>
+                <span>{data.maxValue}</span>
+            </div>
+            <button
+                type="button"
+                use:taphold={100}
+                on:mouseup={() => dispatch("stopChange")}
+                on:taphold={incresse}
+                class={`btn-icon variant-filled${showBtns ? "" : "opacity-0"}`}
+            >
+                <Icon icon="fe:arrow-up" rotate={1} />
+            </button>
         </div>
-        <button
-            type="button"
-            use:taphold={100}
-            on:mouseup={() => dispatch("stopChange")}
-            on:taphold={incresse}
-            class={`btn-icon variant-filled translate-x-[6.5rem] -translate-y-[0.15rem] ${
-                showBtns ? "" : "opacity-0"
-            }`}
-        >
-            <Icon icon="fe:arrow-up" rotate={1} />
-        </button>
     </div>
     {#if animateWhenCloseToEnd ? data.currentValue <= data.maxValue * 0.1 : false}
         <ProgressBar
