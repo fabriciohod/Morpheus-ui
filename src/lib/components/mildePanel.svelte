@@ -1,6 +1,7 @@
 <script>
-    import { MainProficiencys } from "$lib/characterData";
-    import Proficiency from "./center/proficiency.svelte";
+    import { get } from "svelte/store";
+    import { Proficiency } from "$lib/scripts/stores/proficiencys";
+    import ProficiencyC from "./center/proficiency.svelte";
 </script>
 
 <div
@@ -24,8 +25,8 @@
                 >Bonus</span
             >
         </div>
-        {#each $MainProficiencys as proficiency, i}
-            <Proficiency bind:data={proficiency} />
+        {#each get(Proficiency.store) as proficiency, i}
+            <ProficiencyC bind:data={proficiency} />
         {/each}
     </div>
 </div>
