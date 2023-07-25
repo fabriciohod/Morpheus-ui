@@ -7,11 +7,13 @@
     import { db } from "$lib/scripts/stores/db";
     import CharInfo from "$lib/scripts/stores/character";
     import { ApBar, HpBar } from "$lib/scripts/stores/hpAndAp";
-    import { BaseStats } from "$lib/scripts/stores/stats";
     import type { T_RollResult } from "$lib/scripts/types/dice";
     import Icon from "@iconify/svelte";
     import { toastStore, type ToastSettings } from "@skeletonlabs/skeleton";
     import { get } from "svelte/store";
+    import { subscribe } from "svelte/internal";
+    import { E_Stat, type T_Stat } from "$lib/scripts/types/stat";
+    import { storeBaseState } from "$lib/scripts/stores/stats";
 
     let diceString = "";
 
@@ -92,7 +94,7 @@
         <div
             class="h-fit bg-surface-600 p-3 m-2 rounded-2xl flex flex-wrap max-lg:grid grid-cols-2"
         >
-            {#each get(BaseStats.store) as stat, i}
+            {#each $storeBaseState as stat, i}
                 <BaseStat bind:data={stat} />
             {/each}
         </div>

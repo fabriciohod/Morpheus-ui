@@ -26,9 +26,9 @@
         type T_Inventory,
     } from "$lib/scripts/stores/storege";
     import CharacterData from "$lib/scripts/stores/character";
-    import { BaseStats, DefensiveStats } from "$lib/scripts/stores/stats";
     import { Proficiency } from "$lib/scripts/stores/proficiencys";
     import { get } from "svelte/store";
+    import { storeBaseState, storeDefensiveStats } from "$lib/scripts/stores/stats";
 
     const savedBaseDir = BaseDirectory.Document;
 
@@ -59,9 +59,9 @@
     const getJSONData = () => {
         const temp = {
             $CharacterData: get(CharacterData),
-            $MainStats: get(BaseStats.store),
+            $MainStats: get(storeBaseState),
             $MainProficiencys: get(Proficiency.store),
-            $MainDefensiveStats: get(DefensiveStats.store),
+            $MainDefensiveStats: get(storeDefensiveStats),
             $Bag,
             $Abilitys,
             $RaceAbilitys,
@@ -128,9 +128,9 @@
 
     const loadCharData = (char: charData) => {
         CharacterData.set(char.$CharacterData);
-        BaseStats.store.set(char.$MainStats);
+        storeBaseState.set(char.$MainStats);
         Proficiency.store.set(char.$MainProficiencys);
-        DefensiveStats.store.set(char.$MainDefensiveStats);
+        storeDefensiveStats.set(char.$MainDefensiveStats);
         Bag.set(char.$Bag);
         Abilitys.set(char.$Abilitys);
         RaceAbilitys.set(char.$RaceAbilitys);

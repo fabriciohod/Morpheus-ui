@@ -26,6 +26,7 @@
     import MenuBar from "$lib/components/top/menuBar.svelte";
     import CharacterInfo from "$lib/components/top/characterInfo.svelte";
     import { RollHistory } from "$lib/scripts/stores/roll";
+    import { storeBaseState } from "$lib/scripts/stores/stats";
 
     const modalComponentRegistry: Record<string, ModalComponent> = {
         modalComponentOne: {
@@ -51,14 +52,15 @@
         },
     };
 
-    $db = getClient(
-        localStorage.getItem("url") as string,
-        localStorage.getItem("key") as string
-    );
     storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
 
     RollHistory.subscribe((v) => {
         emit("NewRoll", JSON.stringify(v));
+    });
+
+    storeBaseState.subscribe((v) => {
+        console.log($db)
+        console.log(v);
     });
 </script>
 

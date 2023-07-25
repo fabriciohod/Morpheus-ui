@@ -1,9 +1,12 @@
 <script lang="ts">
     import { RollDice } from "$lib/scripts/diceRoller";
     import { Proficiency } from "$lib/scripts/stores/proficiencys";
-    import { BaseStats } from "$lib/scripts/stores/stats";
+    import { storeBaseState } from "$lib/scripts/stores/stats";
     import { E_DiceType, type T_RollResult } from "$lib/scripts/types/dice";
-    import { E_TrainingLevel, type T_Proficiency } from "$lib/scripts/types/proficiencys";
+    import {
+        E_TrainingLevel,
+        type T_Proficiency,
+    } from "$lib/scripts/types/proficiencys";
     import { E_Stat } from "$lib/scripts/types/stat";
     import { toastStore } from "@skeletonlabs/skeleton";
     import type { ToastSettings } from "@skeletonlabs/skeleton";
@@ -25,12 +28,12 @@
         toastStore.trigger(t);
     };
 
-    BaseStats.store.subscribe((_) => (data.value = Proficiency.GetValueProficiency(data)));
+    storeBaseState.subscribe(
+        (_) => (data.value = Proficiency.GetValueProficiency(data))
+    );
 </script>
 
-<div
-    class="flex"
->
+<div class="flex">
     <div class="flex items-center relative">
         {#if data.value > 0}
             <p

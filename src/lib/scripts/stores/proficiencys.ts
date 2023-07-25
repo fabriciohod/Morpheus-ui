@@ -1,7 +1,7 @@
 import { get, writable } from "svelte/store";
 import { E_Proficiencys, E_TrainingLevel, type T_Proficiency } from "../types/proficiencys";
 import { E_Stat } from "../types/stat";
-import { BaseStats } from "./stats";
+import { storeBaseState } from "./stats";
 
 export namespace Proficiency {
     const defaultProficiencys: T_Proficiency[] = [
@@ -84,7 +84,7 @@ export namespace Proficiency {
                 break;
         }
 
-        const res = Math.floor(get(BaseStats.store)[prof.use[prof.selectedIndex]].value * multiplier)
+        const res = Math.floor(get(storeBaseState)[prof.use[prof.selectedIndex]].value * multiplier)
         return res;
     };
 

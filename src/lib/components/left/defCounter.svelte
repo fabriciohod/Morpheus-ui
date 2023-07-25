@@ -1,6 +1,6 @@
 <script lang="ts">
     import { Proficiency } from "$lib/scripts/stores/proficiencys";
-    import { BaseStats, DefensiveStats } from "$lib/scripts/stores/stats";
+    import { FindStat, storeDefensiveStats } from "$lib/scripts/stores/stats";
     import { E_Proficiencys } from "$lib/scripts/types/proficiencys";
     import { E_Stat } from "$lib/scripts/types/stat";
     import { IconShield } from "@tabler/icons-svelte";
@@ -10,9 +10,9 @@
 
 <div class="relative w-fit h-fit flex flex-col items-center m-auto">
     <span class="absolute translate-y-5 bg-surface-600"
-        >{BaseStats.FindStat(E_Stat.CON).value +
+        >{FindStat(E_Stat.CON).value +
             Proficiency.FindAndGetValue(E_Proficiencys.Rusticidade) +
-            get(DefensiveStats.store).DEF_equipment}</span
+            $storeDefensiveStats.DEF_equipment}</span
     >
     <IconShield class="m-auto" size={67} stroke={1} />
     <p>Defesa</p>

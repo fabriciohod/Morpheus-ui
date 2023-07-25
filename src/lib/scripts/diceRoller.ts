@@ -1,9 +1,9 @@
 import { get } from 'svelte/store';
 import { db } from './stores/db';
-import  CharInfo  from './stores/character';
+import CharInfo from './stores/character';
 import { Proficiency } from './stores/proficiencys';
 import { RollHistory } from './stores/roll';
-import { BaseStats } from './stores/stats';
+import { FindStat } from './stores/stats';
 import type { E_DiceType, T_RollResult, T_WeaponRollResult } from './types/dice';
 import type { T_Weapon } from './types/items';
 
@@ -38,7 +38,7 @@ export const RollDice = (name: string, diceType: E_DiceType, rollTimes: number =
         return u;
     });
 
-    if (get(db) !== null || get(db) !== undefined) {
+    if (get(db) !== undefined) {
         get(db)
             .from("rolls")
             .upsert(
@@ -58,7 +58,7 @@ export function WeaponDicesRoll(weapon: T_Weapon) {
     const hitBonus = [
         weapon.hitDiceBonusFlat,
         ...weapon.profBonus.map(p => Proficiency.FindAndGetValue(p)),
-        ...weapon.mainStatBonus.map(b => BaseStats.FindStat(b).value)
+        ...weapon.mainStatBonus.map(b => FindStat(b).value)
     ]
 
     const hitRes = RollDice(weapon.name, weapon.hitDice, weapon.hitDice_rollTimes, hitBonus, false)
@@ -82,7 +82,7 @@ export function WeaponDicesRoll(weapon: T_Weapon) {
         return u;
     });
 
-    if (get(db) !== null || get(db) !== undefined) {
+    if (get(db) !== undefined) {
         get(db)
             .from("rolls")
             .upsert(

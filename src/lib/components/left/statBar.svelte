@@ -4,7 +4,7 @@
     import { taphold } from "$lib/scripts/taphold";
     import { createEventDispatcher } from "svelte";
     import type { StatBarType } from "$lib/scripts/stores/hpAndAp";
-    import { BaseStats } from "$lib/scripts/stores/stats";
+    import { storeBaseState } from "$lib/scripts/stores/stats";
     import { get } from "svelte/store";
     import { Proficiency } from "$lib/scripts/stores/proficiencys";
     const dispatch = createEventDispatcher();
@@ -42,7 +42,7 @@
     }
     function calc() {
         data.maxValue =
-            (get(BaseStats.store)[baseStatIndex].value +
+            ($storeBaseState[baseStatIndex].value +
                 Proficiency.GetValueProficiency(
                     get(Proficiency.store)[proficiencyIndex]
                 )) *
@@ -55,7 +55,7 @@
         }
     }
 
-    BaseStats.store.subscribe((_) => calc());
+    storeBaseState.subscribe((_) => calc());
     Proficiency.store.subscribe((_) => calc());
 </script>
 

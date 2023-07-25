@@ -2,8 +2,7 @@
     import { AccordionItem, modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
     import { createEventDispatcher } from "svelte";
     import BookMark from "../bookMark.svelte";
-    import { get } from "svelte/store";
-    import { DefensiveStats } from "$lib/scripts/stores/stats";
+    import { storeDefensiveStats } from "$lib/scripts/stores/stats";
     import { E_StatModifiers, type T_EquipmentItem } from "$lib/scripts/types/items";
 
     export let data: T_EquipmentItem;
@@ -22,13 +21,13 @@
         switch (data.modifyStat) {
             case E_StatModifiers.Defesa:
                 if (data.isEquip)
-                    get(DefensiveStats.store).DEF_equipment += data.value;
-                else get(DefensiveStats.store).DEF_equipment -= data.value;
+                    $storeDefensiveStats.DEF_equipment += data.value;
+                else $storeDefensiveStats.DEF_equipment -= data.value;
                 break;
             case E_StatModifiers.Esquiva:
                 if (data.isEquip)
-                    get(DefensiveStats.store).DOGE_equipment += data.value;
-                else get(DefensiveStats.store).DOGE_equipment -= data.value;
+                    $storeDefensiveStats.DOGE_equipment += data.value;
+                else $storeDefensiveStats.DOGE_equipment -= data.value;
                 break;
         }
     };
@@ -38,10 +37,10 @@
         if (data.isEquip) {
             switch (data.modifyStat) {
                 case E_StatModifiers.Defesa:
-                    get(DefensiveStats.store).DEF_equipment -= data.value;
+                    $storeDefensiveStats.DEF_equipment -= data.value;
                     break;
                 case E_StatModifiers.Esquiva:
-                    get(DefensiveStats.store).DOGE_equipment -= data.value;
+                    $storeDefensiveStats.DOGE_equipment -= data.value;
                     break;
             }
         }

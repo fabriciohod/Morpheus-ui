@@ -10,11 +10,11 @@
     } from "@skeletonlabs/skeleton";
     import { createEventDispatcher } from "svelte";
     import BookMark from "../bookMark.svelte";
-    import { BaseStats } from "$lib/scripts/stores/stats";
     import { Proficiency } from "$lib/scripts/stores/proficiencys";
     import type { T_ItemWithRoll } from "$lib/scripts/types/items";
     import { E_Stat } from "$lib/scripts/types/stat";
     import { E_Proficiencys } from "$lib/scripts/types/proficiencys";
+    import { FindStat } from "$lib/scripts/stores/stats";
 
     export let data: T_ItemWithRoll;
     export let canBeRemove: boolean = true;
@@ -27,8 +27,8 @@
     };
     const roll = () => {
         const baseValue: number[] = data.baseStat.map((v) => {
-            const value = BaseStats.FindStat(v).value;
-            const bonus = BaseStats.FindStat(v).bonus;
+            const value = FindStat(v).value;
+            const bonus = FindStat(v).bonus;
 
             return value + bonus;
         });
