@@ -58,7 +58,7 @@
             toastStore.trigger(error2);
             return;
         }
-
+        
         $db.from("characters")
             .upsert(
                 {

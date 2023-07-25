@@ -1,5 +1,7 @@
 <script lang="ts">
+    import { db } from "$lib/scripts/stores/db";
     import { toastStore, type ToastSettings } from "@skeletonlabs/skeleton";
+    import { createClient } from "@supabase/supabase-js";
     import { onMount } from "svelte";
 
     let url: string;
@@ -13,8 +15,11 @@
     function save() {
         localStorage.setItem("url", url);
         localStorage.setItem("key", key);
+        
+        if (url === undefined || key === undefined) return;
 
         toastStore.trigger(success);
+        $db = createClient(url, key);
     }
 
     onMount(() => {
