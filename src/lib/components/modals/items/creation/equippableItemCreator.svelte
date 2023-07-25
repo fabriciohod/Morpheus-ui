@@ -1,14 +1,15 @@
 <script lang="ts">
-    import { StatModifiers, type EquipmentItem, type Inventory } from "$lib/scripts/types";
+    import type { T_Inventory } from "$lib/scripts/stores/storege";
+    import { type T_EquipmentItem, E_StatModifiers } from "$lib/scripts/types/items";
     import { toastStore, type ToastSettings } from "@skeletonlabs/skeleton";
     import { createEventDispatcher } from "svelte";
 
-    export let inventory: Inventory;
+    export let inventory: T_Inventory;
 
-    let item: EquipmentItem = {
+    let item: T_EquipmentItem = {
         name: "",
         description: "",
-        modifyStat: StatModifiers.Defesa,
+        modifyStat: E_StatModifiers.Defesa,
         value: 0,
         isEquip: false,
         pinned:false
@@ -72,7 +73,7 @@
         <div class="flex flex-col">
             <span class="mb-2">Modificador de</span>
             <select class="select w-32" bind:value={item.modifyStat}>
-                {#each Object.values(StatModifiers).filter( (v) => isNaN(Number(v)) ) as modifier, i}
+                {#each Object.values(E_StatModifiers).filter( (v) => isNaN(Number(v)) ) as modifier, i}
                     <option value={i}>{modifier}</option>
                 {/each}
             </select>

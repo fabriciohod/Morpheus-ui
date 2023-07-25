@@ -1,10 +1,11 @@
 <script lang="ts">
-    import type { Inventory, SimpleItem } from "$lib/scripts/types";
+    import type { T_Inventory } from "$lib/scripts/stores/storege";
+    import type { T_SimpleItem } from "$lib/scripts/types/items";
     import { toastStore, type ToastSettings } from "@skeletonlabs/skeleton";
     import { createEventDispatcher } from "svelte";
 
-    export let inventory: Inventory;
-    let item: SimpleItem = { name: "", description: "", pinned: false };
+    export let inventory: T_Inventory;
+    let item: T_SimpleItem = { name: "", description: "", pinned: false };
     const dispatch = createEventDispatcher();
 
     const error1: ToastSettings = {

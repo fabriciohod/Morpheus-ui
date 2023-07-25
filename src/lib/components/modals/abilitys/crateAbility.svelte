@@ -5,10 +5,10 @@
         toastStore,
         type ToastSettings,
     } from "@skeletonlabs/skeleton";
-    import type { SimpleItem, ItemWithRoll } from "$lib/scripts/types";
-    import { Abilitys } from "$lib/characterData";
     import SimpleItemCreator from "../simpleItemCreator.svelte";
     import ItemWithRollCreator from "../itemWithRollCreator.svelte";
+    import { Abilitys } from "$lib/scripts/stores/storege";
+    import type { T_SimpleItem, T_ItemWithRoll } from "$lib/scripts/types/items";
 
     let tabSet: number = 0;
     const success: ToastSettings = {
@@ -16,7 +16,7 @@
         background: "variant-filled-success",
     };
 
-    const addAbility = (newAbility: SimpleItem | ItemWithRoll) => {
+    const addAbility = (newAbility: T_SimpleItem | T_ItemWithRoll) => {
 
         toastStore.trigger(success);
         $Abilitys.push(newAbility);

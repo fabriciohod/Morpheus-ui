@@ -1,15 +1,14 @@
 <script lang="ts">
-    import Icon from "@iconify/svelte";
-    import { DiceType, type RollResult, type Stat } from "$lib/scripts/types";
-
     import { RollDice } from "$lib/scripts/diceRoller";
-    import { toastStore } from "@skeletonlabs/skeleton";
+    import { E_DiceType, type T_RollResult } from "$lib/scripts/types/dice";
+    import type { T_Stat } from "$lib/scripts/types/stat";
     import type { ToastSettings } from "@skeletonlabs/skeleton";
+    import { toastStore } from "@skeletonlabs/skeleton";
 
-    export let data: Stat;
+    export let data: T_Stat;
 
     const rollTest = () => {
-        const res: RollResult = RollDice(data.name, DiceType.D20, 1, [
+        const res: T_RollResult = RollDice(data.name, E_DiceType.D20, 1, [
             data.value,
             data.bonus,
         ]);
@@ -22,16 +21,12 @@
     };
 </script>
 
-<div class="flex justify-start my-1 items-center">
+<div class="flex items-center justify-between my-1 max-lg:mx-3">
     <button
-        type="button"
         on:click={(e) => rollTest()}
-        class="btn-icon variant-filled"
+        class="pt-4 text-justify h-fit w-44 cursor-pointer hover:text-warning-600 hover:underline"
+        >{data.name}</button
     >
-        <Icon icon="fa-solid:dice-d20" />
-    </button>
-
-    <span class="mx-4 w-[6.25rem]">{data.name}</span>
     <div class="flex">
         <input
             class="input variant-form-material w-[3.3rem]"
@@ -49,7 +44,6 @@
 </div>
 
 <style>
-    /* Chrome, Safari, Edge, Opera */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;

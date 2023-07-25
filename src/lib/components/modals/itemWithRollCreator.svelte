@@ -1,20 +1,18 @@
 <script lang="ts">
-    import {
-        DiceType,
-        ProficiencysEnum,
-        UseStat,
-        type ItemWithRoll,
-        type Inventory,
-    } from "$lib/scripts/types";
+    import type { T_Inventory } from "$lib/scripts/stores/storege";
+    import { E_DiceType } from "$lib/scripts/types/dice";
+    import type { T_ItemWithRoll } from "$lib/scripts/types/items";
+    import { E_Proficiencys } from "$lib/scripts/types/proficiencys";
+    import { E_Stat } from "$lib/scripts/types/stat";
     import { toastStore, type ToastSettings } from "@skeletonlabs/skeleton";
     import { createEventDispatcher } from "svelte";
 
-    export let inventory: Inventory;
-    let item: ItemWithRoll = {
+    export let inventory: T_Inventory;
+    let item: T_ItemWithRoll = {
         name: "",
         description: "",
         rollTimes: 1,
-        diceToRoll: DiceType.D20,
+        diceToRoll: E_DiceType.D20,
         baseStat: [],
         proficiencys: [],
         pinned: false,
@@ -47,7 +45,7 @@
         }
         dispatch("itemCreated", { ...item });
     };
-    const addOrRemoveBaseStat = (add: boolean, stat: UseStat) => {
+    const addOrRemoveBaseStat = (add: boolean, stat: E_Stat) => {
         switch (add) {
             case true:
                 item.baseStat.push(stat);
@@ -59,7 +57,7 @@
         console.log(item);
     };
 
-    const addOrRemoveProficiency = (add: boolean, prof: ProficiencysEnum) => {
+    const addOrRemoveProficiency = (add: boolean, prof: E_Proficiencys) => {
         switch (add) {
             case true:
                 item.proficiencys.push(prof);
@@ -69,7 +67,7 @@
         }
     };
 
-    const proficiencysNames = Object.values(ProficiencysEnum).filter((v) =>
+    const proficiencysNames = Object.values(E_Proficiencys).filter((v) =>
         isNaN(Number(v))
     );
 </script>
@@ -102,7 +100,7 @@
             <div>
                 <span class="m-auto">Dado</span>
                 <select class="select variant-form-material" value={20}>
-                    {#each Object.values(DiceType).filter((v) => !isNaN(Number(v))) as dice}
+                    {#each Object.values(E_DiceType).filter((v) => !isNaN(Number(v))) as dice}
                         <option value={dice}>D{dice}</option>
                     {/each}
                 </select>
@@ -112,7 +110,7 @@
         <div class="mx-6">
             <span class="m-auto">Stats Base</span>
             <div class="flex flex-wrap justify-between w-32">
-                {#each Object.values(UseStat).filter( (v) => isNaN(Number(v)) ) as stat, i}
+                {#each Object.values(E_Stat).filter( (v) => isNaN(Number(v)) ) as stat, i}
                     <label class="flex items-center space-x-2">
                         <input
                             on:click={(e) =>

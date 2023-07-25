@@ -8,8 +8,8 @@
     } from "@skeletonlabs/skeleton";
     import AddItem from "../addItem.svelte";
     import { explosives, fireArms, melee } from "$lib/scripts/items/weapons";
-    import type { Weapon } from "$lib/scripts/types";
-    import { Bag } from "$lib/characterData";
+    import { Bag } from "$lib/scripts/stores/storege";
+    import type { T_Weapon } from "$lib/scripts/types/items";
 
     let tabSet: number = 0;
 
@@ -24,13 +24,11 @@
         background: "variant-filled-error",
     };
 
-    const addToInventory = (item: Weapon) => {
+    const addToInventory = (item: T_Weapon) => {
         if ($Bag.find((i) => i.name === item.name)) {
             toastStore.trigger(error);
             return;
         }
-        console.log(item);
-        console.log($Bag);
 
         toastStore.trigger(success)
         $Bag.push({...item});

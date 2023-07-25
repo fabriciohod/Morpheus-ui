@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { RollHistory } from "$lib/characterData";
+    import { RollHistory } from "$lib/scripts/stores/roll";
     import Roll from "../cards/roll.svelte";
     import WeaponRollCard from "../cards/weaponRollCard.svelte";
 </script>

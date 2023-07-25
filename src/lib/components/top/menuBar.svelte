@@ -9,26 +9,26 @@
     import { onMount } from "svelte";
     import { open } from "@tauri-apps/api/dialog";
     import {
-        CharacterData,
-        MainStats,
-        MainProficiencys,
-        MainDefensiveStats,
+        toastStore,
+        type ToastSettings,
+        modalStore,
+        type ModalSettings,
+    } from "@skeletonlabs/skeleton";
+    import type { StatBarType } from "$lib/scripts/stores/hpAndAp";
+    import { HpBar, ApBar } from "$lib/scripts/stores/hpAndAp";
+    import type { T_CharInfo } from "$lib/scripts/types/character";
+    import type { T_DefensiveStats, T_Stat } from "$lib/scripts/types/stat";
+    import type { T_Proficiency } from "$lib/scripts/types/proficiencys";
+    import {
         Abilitys,
-        RaceAbilitys,
         Bag,
-        HpBar,
-        ApBar,
-    } from "$lib/characterData";
-    import { toastStore, type ToastSettings, Modal, modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
-    import type {
-        CharInfo,
-        DefensiveStats,
-        Inventory,
-        Proficiency,
-        RuntimeBar,
-        Stat,
-    } from "$lib/scripts/types";
-    import { debug } from "svelte/internal";
+        RaceAbilitys,
+        type T_Inventory,
+    } from "$lib/scripts/stores/storege";
+    import CharacterData from "$lib/scripts/stores/character";
+    import { Proficiency } from "$lib/scripts/stores/proficiencys";
+    import { get } from "svelte/store";
+    import { storeBaseState, storeDefensiveStats } from "$lib/scripts/stores/stats";
 
     const savedBaseDir = BaseDirectory.Document;
 
@@ -45,23 +45,23 @@
     };
 
     interface charData {
-        $CharacterData: CharInfo;
-        $MainStats: Stat[];
-        $MainProficiencys: Proficiency[];
-        $MainDefensiveStats: DefensiveStats;
-        $Bag: Inventory;
-        $Abilitys: Inventory;
-        $RaceAbilitys: Inventory;
-        $HpBar: RuntimeBar;
-        $ApBar: RuntimeBar;
+        $CharacterData: T_CharInfo;
+        $MainStats: T_Stat[];
+        $MainProficiencys: T_Proficiency[];
+        $MainDefensiveStats: T_DefensiveStats;
+        $Bag: T_Inventory;
+        $Abilitys: T_Inventory;
+        $RaceAbilitys: T_Inventory;
+        $HpBar: StatBarType;
+        $ApBar: StatBarType;
     }
 
     const getJSONData = () => {
-        const temp: charData = {
-            $CharacterData,
-            $MainStats,
-            $MainProficiencys,
-            $MainDefensiveStats,
+        const temp = {
+            $CharacterData: get(CharacterData),
+            $MainStats: get(storeBaseState),
+            $MainProficiencys: get(Proficiency.store),
+            $MainDefensiveStats: get(storeDefensiveStats),
             $Bag,
             $Abilitys,
             $RaceAbilitys,
@@ -127,15 +127,15 @@
     };
 
     const loadCharData = (char: charData) => {
-        $CharacterData = char.$CharacterData;
-        $MainStats = char.$MainStats;
-        $MainProficiencys = char.$MainProficiencys;
-        $MainDefensiveStats = char.$MainDefensiveStats;
-        $Bag = char.$Bag;
-        $Abilitys = char.$Abilitys;
-        $RaceAbilitys = char.$RaceAbilitys;
-        $HpBar = char.$HpBar;
-        $ApBar = char.$ApBar;
+        CharacterData.set(char.$CharacterData);
+        storeBaseState.set(char.$MainStats);
+        Proficiency.store.set(char.$MainProficiencys);
+        storeDefensiveStats.set(char.$MainDefensiveStats);
+        Bag.set(char.$Bag);
+        Abilitys.set(char.$Abilitys);
+        RaceAbilitys.set(char.$RaceAbilitys);
+        HpBar.set(char.$HpBar);
+        ApBar.set(char.$ApBar);
     };
 
     onMount(async () => {
@@ -155,38 +155,44 @@
     });
 
     const modal: ModalSettings = {
-	type: 'component',
-	component: 'serverInfo',
-};
+        type: "component",
+        component: "serverInfo",
+    };
 </script>
 
-<div class="flex items-center h-8 bg-surface-600 mb-2 px-4 py-2 rounded-md">
-    <button
-        class="btn variant-filled-warning bg-opacity-80 h-3 text-sm"
-        on:click={(e) => saveFile()}
-    >
-        Salvar
-    </button>
-    <button
-        class="btn variant-filled-warning bg-opacity-80 h-3 text-sm mx-4"
-        on:click={(e) => readFile()}
-    >
-        Carregar
-    </button>
-    <button
-        class="btn variant-filled-warning bg-opacity-80 h-3 text-sm mx-4"
-        on:click={(e) => {
-            const webview = new WebviewWindow("a", {
-                url: "/stream",
-            });
-        }}
-    >
-        Stream Mode
-    </button>
-    <button
-        class="btn variant-filled-warning bg-opacity-80 h-3 text-sm mx-4"
-        on:click={(e) => modalStore.trigger(modal)}
-    >
-        Server Info
-    </button>
+<div
+    class="flex items-center justify-between h-8 mx-2 mt-1 mb-2 max-w-[100rem] bg-surface-600 rounded-md p-2"
+>
+    <div>
+        <button
+            class="btn variant-filled-warning bg-opacity-80 h-3 text-sm"
+            on:click={(e) => saveFile()}
+        >
+            Salvar
+        </button>
+        <button
+            class="btn variant-filled-warning bg-opacity-80 h-3 text-sm mx-2"
+            on:click={(e) => readFile()}
+        >
+            Carregar
+        </button>
+    </div>
+    <div>
+        <button
+            class="btn variant-filled-warning bg-opacity-80 h-3 text-sm"
+            on:click={(e) => {
+                const webview = new WebviewWindow("a", {
+                    url: "/stream",
+                });
+            }}
+        >
+            Stream Mode
+        </button>
+        <button
+            class="btn variant-filled-warning bg-opacity-80 h-3 text-sm mx-2"
+            on:click={(e) => modalStore.trigger(modal)}
+        >
+            Server Info
+        </button>
+    </div>
 </div>

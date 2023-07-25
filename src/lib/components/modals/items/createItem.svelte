@@ -5,16 +5,12 @@
         toastStore,
         type ToastSettings,
     } from "@skeletonlabs/skeleton";
-    import type {
-        EquipmentItem,
-        ItemWithRoll,
-        SimpleItem,
-    } from "$lib/scripts/types";
-    import { Bag } from "$lib/characterData";
     import ItemWithRollCreator from "../itemWithRollCreator.svelte";
     import SimpleItemCreator from "../simpleItemCreator.svelte";
     import EquippableItemCreator from "./creation/equippableItemCreator.svelte";
     import WeaponCreator from "./creation/WeaponCreator.svelte";
+    import { Bag } from "$lib/scripts/stores/storege";
+    import type { T_SimpleItem, T_EquipmentItem, T_ItemWithRoll } from "$lib/scripts/types/items";
     let tabSet: number = 0;
 
     const success: ToastSettings = {
@@ -23,7 +19,7 @@
     };
 
     const addToInventory = (
-        item: SimpleItem | EquipmentItem | ItemWithRoll
+        item: T_SimpleItem | T_EquipmentItem | T_ItemWithRoll
     ) => {
         toastStore.trigger(success);
         $Bag.push({...item});

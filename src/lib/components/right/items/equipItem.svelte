@@ -1,15 +1,11 @@
 <script lang="ts">
-    import { MainDefensiveStats } from "$lib/characterData";
-    import {
-        StatModifiers,
-        type EquipmentItem,
-        type Inventory,
-    } from "$lib/scripts/types";
     import { AccordionItem, modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
     import { createEventDispatcher } from "svelte";
     import BookMark from "../bookMark.svelte";
+    import { storeDefensiveStats } from "$lib/scripts/stores/stats";
+    import { E_StatModifiers, type T_EquipmentItem } from "$lib/scripts/types/items";
 
-    export let data: EquipmentItem;
+    export let data: T_EquipmentItem;
     export let canBeRemove = true;
     export let canBeEditable = true;
 
@@ -23,15 +19,15 @@
         data.isEquip = !data.isEquip;
 
         switch (data.modifyStat) {
-            case StatModifiers.Defesa:
+            case E_StatModifiers.Defesa:
                 if (data.isEquip)
-                    $MainDefensiveStats.DEF_equipment += data.value;
-                else $MainDefensiveStats.DEF_equipment -= data.value;
+                    $storeDefensiveStats.DEF_equipment += data.value;
+                else $storeDefensiveStats.DEF_equipment -= data.value;
                 break;
-            case StatModifiers.Esquiva:
+            case E_StatModifiers.Esquiva:
                 if (data.isEquip)
-                    $MainDefensiveStats.DOGE_equipment += data.value;
-                else $MainDefensiveStats.DOGE_equipment -= data.value;
+                    $storeDefensiveStats.DOGE_equipment += data.value;
+                else $storeDefensiveStats.DOGE_equipment -= data.value;
                 break;
         }
     };
@@ -40,11 +36,11 @@
     const remove = () => {
         if (data.isEquip) {
             switch (data.modifyStat) {
-                case StatModifiers.Defesa:
-                    $MainDefensiveStats.DEF_equipment -= data.value;
+                case E_StatModifiers.Defesa:
+                    $storeDefensiveStats.DEF_equipment -= data.value;
                     break;
-                case StatModifiers.Esquiva:
-                    $MainDefensiveStats.DOGE_equipment -= data.value;
+                case E_StatModifiers.Esquiva:
+                    $storeDefensiveStats.DOGE_equipment -= data.value;
                     break;
             }
         }
@@ -56,7 +52,7 @@
 <div class="items-center bg-surface-800 rounded-md relative">
     <input
         checked={data.isEquip}
-        class="checkbox absolute translate-y-2 translate-x-[28rem]"
+        class="checkbox absolute translate-y-2 translate-x-[34.4rem]"
         on:click={(e) => {
             applyModifier();
         }}
@@ -70,7 +66,7 @@
             </span>
         </svelte:fragment>
         <svelte:fragment slot="summary">
-            {StatModifiers[data.modifyStat]}: +{data.value}
+            {E_StatModifiers[data.modifyStat]}: +{data.value}
         </svelte:fragment>
         <svelte:fragment slot="content">
             {data.description}

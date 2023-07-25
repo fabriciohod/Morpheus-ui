@@ -7,10 +7,10 @@
         Tab,
     } from "@skeletonlabs/skeleton";
     import EquipItem from "./items/equipItem.svelte";
-    import { Bag } from "$lib/characterData";
     import SimpleItem from "./items/simpleItem.svelte";
     import WithRollItem from "./items/withRollItem.svelte";
     import WeaponItem from "./items/weaponItem.svelte";
+    import { Bag } from "$lib/scripts/stores/storege";
 
     let unique = {};
     let tabSet: number = 0;

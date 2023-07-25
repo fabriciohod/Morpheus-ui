@@ -1,10 +1,7 @@
 <script lang="ts">
-    import { Bag } from "$lib/characterData";
     import { DefItemsList } from "$lib/scripts/items/items";
-    import { StatModifiers, type EquipmentItem } from "$lib/scripts/types";
     import {
         Accordion,
-        AccordionItem,
         Tab,
         TabGroup,
         Toast,
@@ -14,6 +11,8 @@
     import CreateItem from "./createItem.svelte";
     import AddItem from "../addItem.svelte";
     import WeaponsSection from "./weaponsSection.svelte";
+    import { Bag } from "$lib/scripts/stores/storege";
+    import { E_StatModifiers, type T_EquipmentItem } from "$lib/scripts/types/items";
 
     let tabSet: number = 0;
 
@@ -26,7 +25,7 @@
         message: "ja existente",
         background: "variant-filled-error",
     };
-    const addToInventory = (item: EquipmentItem) => {
+    const addToInventory = (item: T_EquipmentItem) => {
         if ($Bag.find((i) => i.name === item.name)) {
             toastStore.trigger(error);
             return;
@@ -52,7 +51,7 @@
                     {#each DefItemsList as item}
                         <AddItem
                             data={item}
-                            summary={`${StatModifiers[item.modifyStat]}: +${
+                            summary={`${E_StatModifiers[item.modifyStat]}: +${
                                 item.value
                             }`}
                             on:addBtnClicked={(e) => addToInventory(e.detail)}

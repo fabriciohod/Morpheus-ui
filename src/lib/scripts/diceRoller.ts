@@ -1,25 +1,29 @@
-import type { DiceType, RollResult, Weapon, WeaponRollResult } from './types';
-import { CharacterData, GetBaseStat, GetProficiency, GetValueProficiency, RollHistory } from '../characterData';
-import { getClient } from '$lib/supabaseClient';
 import { get } from 'svelte/store';
-import { db } from './store';
+import { db } from './stores/db';
+import CharInfo from './stores/character';
+import { Proficiency } from './stores/proficiencys';
+import { RollHistory } from './stores/roll';
+import { FindStat } from './stores/stats';
+import type { E_DiceType, T_RollResult, T_WeaponRollResult } from './types/dice';
+import type { T_Weapon } from './types/items';
 
 
-const rollDiceSimple = (diceType: DiceType) => {
+function rollDiceSimple(diceType: E_DiceType) {
     return Math.floor(Math.random() * diceType) + 1;
-};
+}
 
-export const RollDice = (name: string, diceType: DiceType, rollTimes: number = 1, bonus: number[] = [], resultToHistory: boolean = true) => {
+export const RollDice = (name: string, diceType: E_DiceType, rollTimes: number = 1, bonus: number[] = [], resultToHistory: boolean = true) => {
     const rolls: number[] = [];
 
     for (let i = 0; i < rollTimes; i++) {
         rolls.push(rollDiceSimple(diceType));
     }
+
     const bonusValue = bonus.length > 0 ? bonus.reduce((accumulator, currentValue) => accumulator + currentValue, 0) : 0;
     const bonusString = bonus.length > 0 ? bonus.join("+") : "";
     const rollsBonus = rolls.reduce((total, roll) => total + roll, 0) + bonusValue;
 
-    const res: RollResult = {
+    const res: T_RollResult = {
         name,
         individualRolls: rolls,
         rollSummary: `[${rolls.toString()}]${bonus.length > 0 ? ` + ${bonusString}` : ""}`,
@@ -34,11 +38,11 @@ export const RollDice = (name: string, diceType: DiceType, rollTimes: number = 1
         return u;
     });
 
-    if (get(db) !== null || get(db) !== undefined) {
+    if (get(db) !== undefined) {
         get(db)
             .from("rolls")
             .upsert(
-                { id: get(CharacterData).name, roll: res },
+                { id: get(CharInfo).name, roll: res },
                 { onConflict: "id" }
             )
             .then((onrejected) => {
@@ -50,11 +54,11 @@ export const RollDice = (name: string, diceType: DiceType, rollTimes: number = 1
     return res;
 };
 
-export const WeaponDicesRoll = (weapon: Weapon) => {
+export function WeaponDicesRoll(weapon: T_Weapon) {
     const hitBonus = [
         weapon.hitDiceBonusFlat,
-        ...weapon.profBonus.map(p => GetValueProficiency(GetProficiency(p))),
-        ...weapon.mainStatBonus.map(m => GetBaseStat(m).value)
+        ...weapon.profBonus.map(p => Proficiency.FindAndGetValue(p)),
+        ...weapon.mainStatBonus.map(b => FindStat(b).value)
     ]
 
     const hitRes = RollDice(weapon.name, weapon.hitDice, weapon.hitDice_rollTimes, hitBonus, false)
@@ -68,7 +72,7 @@ export const WeaponDicesRoll = (weapon: Weapon) => {
         }
     })
 
-    const res: WeaponRollResult = {
+    const res: T_WeaponRollResult = {
         hitRes,
         damageRes
     }
@@ -78,11 +82,11 @@ export const WeaponDicesRoll = (weapon: Weapon) => {
         return u;
     });
 
-    if (get(db) !== null || get(db) !== undefined) {
+    if (get(db) !== undefined) {
         get(db)
             .from("rolls")
             .upsert(
-                { id: get(CharacterData).name, roll: res },
+                { id: get(CharInfo).name, roll: res },
                 { onConflict: "id" }
             )
             .then((onrejected) => {
@@ -94,7 +98,7 @@ export const WeaponDicesRoll = (weapon: Weapon) => {
     return res
 };
 
-export const RollDiceString = (diceNotation: string) => {
+export function RollDiceString(diceNotation: string) {
     const regex = /^(\d*)?d(\d+)((\s*[+-]\s*\d+\s*)+)?$/i;
     const match = diceNotation.match(regex);
 
@@ -120,11 +124,12 @@ export const RollDiceString = (diceNotation: string) => {
     const modifierSum = modifierValues.reduce((total, modifier) => total + modifier, 0);
     const rollsBonus = rollsSum + modifierSum;
 
-    const res: RollResult = {
+    const res: T_RollResult = {
         name: "👀",
         individualRolls: rolls,
         rollSummary: `[${rolls.toString()}]${modifierString ? `${modifierString}` : ""}`,
         result: rollsBonus,
+        isCrit: false
     };
 
     RollHistory.update(u => {
@@ -136,7 +141,7 @@ export const RollDiceString = (diceNotation: string) => {
         get(db)
             .from("rolls")
             .upsert(
-                { id: get(CharacterData).name, roll: res },
+                { id: get(CharInfo).name, roll: res },
                 { onConflict: "id" }
             )
             .then((onrejected) => {

@@ -1,15 +1,13 @@
 <script lang="ts">
-    import {
-        DiceType,
-        ProficiencysEnum,
-        UseStat,
-        type Weapon,
-    } from "$lib/scripts/types";
+    import { E_DiceType } from "$lib/scripts/types/dice";
+    import type { T_Weapon } from "$lib/scripts/types/items";
+    import { E_Proficiencys } from "$lib/scripts/types/proficiencys";
+    import { E_Stat } from "$lib/scripts/types/stat";
     import { modalStore } from "@skeletonlabs/skeleton";
 
-    let item = $modalStore[0].meta?.info as Weapon;
+    let item = $modalStore[0].meta?.info as T_Weapon;
 
-    const addOrRemoveBaseStat = (add: boolean, stat: UseStat) => {
+    const addOrRemoveBaseStat = (add: boolean, stat: E_Stat) => {
         switch (add) {
             case true:
                 item.mainStatBonus.push(stat);
@@ -21,7 +19,7 @@
         console.log(item);
     };
 
-    const addOrRemoveProficiency = (add: boolean, prof: ProficiencysEnum) => {
+    const addOrRemoveProficiency = (add: boolean, prof: E_Proficiencys) => {
         switch (add) {
             case true:
                 item.profBonus.push(prof);
@@ -31,10 +29,10 @@
         }
     };
 
-    const proficiencysNames = Object.values(ProficiencysEnum).filter((v) =>
+    const proficiencysNames = Object.values(E_Proficiencys).filter((v) =>
         isNaN(Number(v))
     );
-    const mainStatsNames = Object.values(UseStat).filter((v) =>
+    const mainStatsNames = Object.values(E_Stat).filter((v) =>
         isNaN(Number(v))
     );
 </script>
@@ -74,7 +72,7 @@
                                 class="select variant-form-material w-24"
                                 bind:value={item.hitDice}
                             >
-                                {#each Object.values(DiceType).filter((v) => !isNaN(Number(v))) as dice}
+                                {#each Object.values(E_DiceType).filter((v) => !isNaN(Number(v))) as dice}
                                     <option value={dice}>D{dice}</option>
                                 {/each}
                             </select>
@@ -99,7 +97,7 @@
                                 class="select variant-form-material w-24"
                                 bind:value={item.damageDice}
                             >
-                                {#each Object.values(DiceType).filter((v) => !isNaN(Number(v))) as dice}
+                                {#each Object.values(E_DiceType).filter((v) => !isNaN(Number(v))) as dice}
                                     <option value={dice}>D{dice}</option>
                                 {/each}
                             </select>

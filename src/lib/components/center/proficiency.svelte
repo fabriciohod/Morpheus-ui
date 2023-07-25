@@ -1,29 +1,25 @@
 <script lang="ts">
-    import {
-        GetValueProficiency,
-        MainStats,
-        MainProficiencys,
-    } from "$lib/characterData";
     import { RollDice } from "$lib/scripts/diceRoller";
+    import { Proficiency } from "$lib/scripts/stores/proficiencys";
+    import { storeBaseState } from "$lib/scripts/stores/stats";
+    import { E_DiceType, type T_RollResult } from "$lib/scripts/types/dice";
+    import {
+        E_TrainingLevel,
+        type T_Proficiency,
+    } from "$lib/scripts/types/proficiencys";
+    import { E_Stat } from "$lib/scripts/types/stat";
     import { toastStore } from "@skeletonlabs/skeleton";
     import type { ToastSettings } from "@skeletonlabs/skeleton";
-    import {
-        UseStat,
-        type RollResult,
-        DiceType,
-        type Proficiency,
-        TrainingLevel,
-    } from "$lib/scripts/types";
 
-    export let data: Proficiency;
+    export let data: T_Proficiency;
 
     const rollTest = () => {
         let t: ToastSettings;
-        let res: RollResult;
+        let res: T_RollResult;
 
-        data.value = GetValueProficiency(data);
+        data.value = Proficiency.GetValueProficiency(data);
 
-        res = RollDice(data.name, DiceType.D20, 1, [data.value, data.bonus]);
+        res = RollDice(data.name, E_DiceType.D20, 1, [data.value, data.bonus]);
 
         t = {
             message: `${res.rollSummary} = ${res.result}`,
@@ -32,16 +28,16 @@
         toastStore.trigger(t);
     };
 
-    MainStats.subscribe((_) => (data.value = GetValueProficiency(data)));
+    storeBaseState.subscribe(
+        (_) => (data.value = Proficiency.GetValueProficiency(data))
+    );
 </script>
 
-<div
-    class="flex"
->
+<div class="flex">
     <div class="flex items-center relative">
         {#if data.value > 0}
             <p
-                class={`absolute ${
+                class={`absolute text-left ${
                     data.value >= 100 ? "-translate-x-12" : "-translate-x-10"
                 }`}
             >
@@ -53,8 +49,8 @@
             type="checkbox"
             bind:checked={data.upgraded}
             on:change={() =>
-                MainProficiencys.update((arr) => {
-                    data.value = GetValueProficiency(data);
+                Proficiency.store.update((arr) => {
+                    data.value = Proficiency.GetValueProficiency(data);
                     return arr;
                 })}
         />
@@ -63,25 +59,25 @@
         class="select variant-form-material w-32 translate-y-[0.2rem]"
         bind:value={data.training}
         on:change={() =>
-            MainProficiencys.update((arr) => {
-                data.value = GetValueProficiency(data);
+            Proficiency.store.update((arr) => {
+                data.value = Proficiency.GetValueProficiency(data);
                 return arr;
             })}
     >
-        <option value={0}>{TrainingLevel[0]}</option>
-        <option value={1}>{TrainingLevel[1]}</option>
+        <option value={0}>{E_TrainingLevel[0]}</option>
+        <option value={1}>{E_TrainingLevel[1]}</option>
     </select>
     <select
         class="select variant-form-material w-20 mx-2 translate-y-[0.2rem]"
         bind:value={data.selectedIndex}
         on:change={() =>
-            MainProficiencys.update((arr) => {
-                data.value = GetValueProficiency(data);
+            Proficiency.store.update((arr) => {
+                data.value = Proficiency.GetValueProficiency(data);
                 return arr;
             })}
     >
         {#each data.use as item, i}
-            <option value={i}>{UseStat[item]}</option>
+            <option value={i}>{E_Stat[item]}</option>
         {/each}
     </select>
     <button

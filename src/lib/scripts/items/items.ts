@@ -1,33 +1,33 @@
-import { StatModifiers, type EquipmentItem } from "$lib/scripts/types";
+import { type T_EquipmentItem, E_StatModifiers } from "../types/items";
 
-const coleteLeve: EquipmentItem = {
+const coleteLeve: T_EquipmentItem = {
     name: "Colete Leve",
     description: "Pouca proteção mas ótima mobilidade",
     value: 2,
-    modifyStat: StatModifiers.Defesa,
+    modifyStat: E_StatModifiers.Defesa,
     isEquip: false,
     pinned:false
 };
 
-const coleteMedio: EquipmentItem = {
+const coleteMedio: T_EquipmentItem = {
     name: "Colete Médio",
     description: "Média proteção e mobilidade",
     value: 5,
-    modifyStat: StatModifiers.Defesa,
+    modifyStat: E_StatModifiers.Defesa,
     isEquip: false,
     pinned:false
 };
 
-const coletePesado: EquipmentItem = {
+const coletePesado: T_EquipmentItem = {
     name: "Colete Pesado",
     description: "Ótima proteção e pouca mobilidade",
     value: 10,
-    modifyStat: StatModifiers.Defesa,
+    modifyStat: E_StatModifiers.Defesa,
     isEquip: false,
     pinned:false
 };
 
-export const DefItemsList: EquipmentItem[] = [
+export const DefItemsList: T_EquipmentItem[] = [
     coleteLeve,
     coleteMedio,
     coletePesado

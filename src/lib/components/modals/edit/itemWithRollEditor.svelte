@@ -1,15 +1,13 @@
 <script lang="ts">
-    import {
-        DiceType,
-        ProficiencysEnum,
-        UseStat,
-        type ItemWithRoll,
-    } from "$lib/scripts/types";
+    import { E_DiceType } from "$lib/scripts/types/dice";
+    import type { T_ItemWithRoll } from "$lib/scripts/types/items";
+    import { E_Proficiencys } from "$lib/scripts/types/proficiencys";
+    import { E_Stat } from "$lib/scripts/types/stat";
     import { modalStore } from "@skeletonlabs/skeleton";
 
-    let item = $modalStore[0].meta?.info as ItemWithRoll;
+    let item = $modalStore[0].meta?.info as T_ItemWithRoll;
 
-    const addOrRemoveBaseStat = (add: boolean, stat: UseStat) => {
+    const addOrRemoveBaseStat = (add: boolean, stat: E_Stat) => {
         switch (add) {
             case true:
                 item.baseStat.push(stat);
@@ -21,7 +19,7 @@
         console.log(item);
     };
 
-    const addOrRemoveProficiency = (add: boolean, prof: ProficiencysEnum) => {
+    const addOrRemoveProficiency = (add: boolean, prof: E_Proficiencys) => {
         switch (add) {
             case true:
                 item.proficiencys.push(prof);
@@ -31,7 +29,7 @@
         }
     };
 
-    const proficiencysNames = Object.values(ProficiencysEnum).filter((v) =>
+    const proficiencysNames = Object.values(E_Proficiencys).filter((v) =>
         isNaN(Number(v))
     );
 </script>
@@ -68,7 +66,7 @@
                         class="select variant-form-material"
                         bind:value={item.diceToRoll}
                     >
-                        {#each Object.values(DiceType).filter((v) => !isNaN(Number(v))) as dice}
+                        {#each Object.values(E_DiceType).filter((v) => !isNaN(Number(v))) as dice}
                             <option value={dice}>D{dice}</option>
                         {/each}
                     </select>
@@ -78,7 +76,7 @@
             <div class="mx-6">
                 <span class="m-auto">Stats Base</span>
                 <div class="flex flex-wrap justify-between w-32">
-                    {#each Object.values(UseStat).filter( (v) => isNaN(Number(v)) ) as stat, i}
+                    {#each Object.values(E_Stat).filter( (v) => isNaN(Number(v)) ) as stat, i}
                         <label class="flex items-center space-x-2">
                             <input
                                 checked={item.baseStat.find((b) => b === i)

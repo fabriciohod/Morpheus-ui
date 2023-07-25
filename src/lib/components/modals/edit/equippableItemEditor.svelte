@@ -1,8 +1,8 @@
 <script lang="ts">
-    import { StatModifiers, type EquipmentItem } from "$lib/scripts/types";
+    import { type T_EquipmentItem, E_StatModifiers } from "$lib/scripts/types/items";
     import { modalStore } from "@skeletonlabs/skeleton";
 
-    let item = $modalStore[0].meta?.info as EquipmentItem;
+    let item = $modalStore[0].meta?.info as T_EquipmentItem;
 </script>
 
 <div class="bg-surface-600 w-[35rem] p-5 rounded-2xl">
@@ -33,7 +33,7 @@
             <div class="flex flex-col">
                 <span class="mb-2">Modificador de</span>
                 <select class="select w-32" bind:value={item.modifyStat}>
-                    {#each Object.values(StatModifiers).filter( (v) => isNaN(Number(v)) ) as modifier, i}
+                    {#each Object.values(E_StatModifiers).filter( (v) => isNaN(Number(v)) ) as modifier, i}
                         <option value={i}>{modifier}</option>
                     {/each}
                 </select>
