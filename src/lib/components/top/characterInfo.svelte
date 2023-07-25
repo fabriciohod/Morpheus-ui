@@ -3,8 +3,7 @@
     import type { DrawerSettings } from "@skeletonlabs/skeleton";
     import { drawerStore } from "@skeletonlabs/skeleton";
     import RaceSelector from "./raceSelector.svelte";
-
-    import { CharacterData } from "$lib/characterData";
+    import CharacterData from "$lib/scripts/stores/character";
 
     const drawerSettings: DrawerSettings = {
         id: "roll-history",

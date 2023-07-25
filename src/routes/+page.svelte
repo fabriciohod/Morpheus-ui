@@ -10,7 +10,6 @@
     } from "@floating-ui/dom";
     import { storePopup, type ModalComponent } from "@skeletonlabs/skeleton";
     import { Drawer, Modal, Toast, drawerStore } from "@skeletonlabs/skeleton";
-    import { RollHistory } from "$lib/characterData";
     import RollHistoryComp from "$lib/components/modals/rollHistory.svelte";
     import AbilitysSelection from "$lib/components/modals/abilitys/abilitysSelection.svelte";
     import ItemSelection from "$lib/components/modals/items/itemSelection.svelte";
@@ -26,6 +25,7 @@
     import MildePanel from "$lib/components/mildePanel.svelte";
     import MenuBar from "$lib/components/top/menuBar.svelte";
     import CharacterInfo from "$lib/components/top/characterInfo.svelte";
+    import { RollHistory } from "$lib/scripts/stores/roll";
 
     const modalComponentRegistry: Record<string, ModalComponent> = {
         modalComponentOne: {

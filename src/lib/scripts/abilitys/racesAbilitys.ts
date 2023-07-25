@@ -1,6 +1,5 @@
 import type { SimpleItem } from '../types';
 
-
 export const GetRaceAbilitys = (index: number): SimpleItem[] =>
 {
     switch (index) {
@@ -23,7 +22,6 @@ export const GetRaceAbilitys = (index: number): SimpleItem[] =>
         default: return [];
     }
 };
-
 
 
 const Humano: SimpleItem[] = [

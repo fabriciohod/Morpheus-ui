@@ -1,14 +1,17 @@
 <script lang="ts">
-    import { CharacterData, MainStats } from "$lib/characterData";
     import DefCalc from "$lib/components/left/defCounter.svelte";
     import DogeCalc from "$lib/components/left/dogeCounter.svelte";
     import BaseStat from "$lib/components/left/primaryStats.svelte";
     import StatsBar from "$lib/components/left/statBar.svelte";
     import { RollDiceString } from "$lib/scripts/diceRoller";
     import { db } from "$lib/scripts/store";
+    import { CharInfo } from "$lib/scripts/stores/character";
     import { ApBar, HpBar } from "$lib/scripts/stores/hpAndAp";
+    import { BaseStats } from "$lib/scripts/stores/stats";
+    import type { T_RollResult } from "$lib/scripts/types/dice";
     import Icon from "@iconify/svelte";
     import { toastStore, type ToastSettings } from "@skeletonlabs/skeleton";
+    import { get } from "svelte/store";
 
     let diceString = "";
 
@@ -34,9 +37,7 @@
             return;
         }
 
-        const res: import("$lib/scripts/types").RollResult = RollDiceString(
-            diceString.trim()
-        );
+        const res: T_RollResult = RollDiceString(diceString.trim());
 
         const t: import("@skeletonlabs/skeleton").ToastSettings = {
             message: `${res.rollSummary} = ${res.result}`,
@@ -49,7 +50,7 @@
         localStorage.setItem("hpBar", JSON.stringify($HpBar));
         localStorage.setItem("apBar", JSON.stringify($ApBar));
 
-        if ($CharacterData.name == "") return;
+        if ($CharInfo.name == "") return;
 
         if (!(localStorage.getItem("url") && localStorage.getItem("key"))) {
             toastStore.trigger(error2);
@@ -59,7 +60,7 @@
         $db.from("characters")
             .upsert(
                 {
-                    id: $CharacterData.name,
+                    id: $CharInfo.name,
                     hpBar: $HpBar,
                     apBar: $ApBar,
                 },
@@ -91,8 +92,8 @@
         <div
             class="h-fit bg-surface-600 p-3 m-2 rounded-2xl flex flex-wrap max-lg:grid grid-cols-2"
         >
-            {#each $MainStats as _, i}
-                <BaseStat bind:data={$MainStats[i]} />
+            {#each get(BaseStats.store) as stat, i}
+                <BaseStat bind:data={stat} />
             {/each}
         </div>
         <div class="max-lg:grid grid-cols-[54%_1fr]">

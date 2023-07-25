@@ -9,31 +9,27 @@
     import { onMount } from "svelte";
     import { open } from "@tauri-apps/api/dialog";
     import {
-        CharacterData,
-        MainStats,
-        MainProficiencys,
-        MainDefensiveStats,
-        Abilitys,
-        RaceAbilitys,
-        Bag,
-    } from "$lib/characterData";
-    import {
         toastStore,
         type ToastSettings,
-        Modal,
         modalStore,
         type ModalSettings,
     } from "@skeletonlabs/skeleton";
-    import type {
-        CharInfo,
-        DefensiveStats,
-        Inventory,
-        Proficiency,
-        Stat,
-    } from "$lib/scripts/types";
     import type { StatBarType } from "$lib/scripts/stores/hpAndAp";
     import { HpBar, ApBar } from "$lib/scripts/stores/hpAndAp";
-    
+    import type { T_CharInfo } from "$lib/scripts/types/character";
+    import type { T_DefensiveStats, T_Stat } from "$lib/scripts/types/stat";
+    import type { T_Proficiency } from "$lib/scripts/types/proficiencys";
+    import {
+        Abilitys,
+        Bag,
+        RaceAbilitys,
+        type T_Inventory,
+    } from "$lib/scripts/stores/storege";
+    import CharacterData from "$lib/scripts/stores/character";
+    import { BaseStats, DefensiveStats } from "$lib/scripts/stores/stats";
+    import { Proficiency } from "$lib/scripts/stores/proficiencys";
+    import { get } from "svelte/store";
+
     const savedBaseDir = BaseDirectory.Document;
 
     const saved: ToastSettings = {
@@ -49,23 +45,23 @@
     };
 
     interface charData {
-        $CharacterData: CharInfo;
-        $MainStats: Stat[];
-        $MainProficiencys: Proficiency[];
-        $MainDefensiveStats: DefensiveStats;
-        $Bag: Inventory;
-        $Abilitys: Inventory;
-        $RaceAbilitys: Inventory;
+        $CharacterData: T_CharInfo;
+        $MainStats: T_Stat[];
+        $MainProficiencys: T_Proficiency[];
+        $MainDefensiveStats: T_DefensiveStats;
+        $Bag: T_Inventory;
+        $Abilitys: T_Inventory;
+        $RaceAbilitys: T_Inventory;
         $HpBar: StatBarType;
         $ApBar: StatBarType;
     }
 
     const getJSONData = () => {
-        const temp: charData = {
-            $CharacterData,
-            $MainStats,
-            $MainProficiencys,
-            $MainDefensiveStats,
+        const temp = {
+            $CharacterData: get(CharacterData),
+            $MainStats: get(BaseStats.store),
+            $MainProficiencys: get(Proficiency.store),
+            $MainDefensiveStats: get(DefensiveStats.store),
             $Bag,
             $Abilitys,
             $RaceAbilitys,
@@ -131,15 +127,15 @@
     };
 
     const loadCharData = (char: charData) => {
-        $CharacterData = char.$CharacterData;
-        $MainStats = char.$MainStats;
-        $MainProficiencys = char.$MainProficiencys;
-        $MainDefensiveStats = char.$MainDefensiveStats;
-        $Bag = char.$Bag;
-        $Abilitys = char.$Abilitys;
-        $RaceAbilitys = char.$RaceAbilitys;
-        $HpBar = char.$HpBar;
-        $ApBar = char.$ApBar;
+        CharacterData.set(char.$CharacterData);
+        BaseStats.store.set(char.$MainStats);
+        Proficiency.store.set(char.$MainProficiencys);
+        DefensiveStats.store.set(char.$MainDefensiveStats);
+        Bag.set(char.$Bag);
+        Abilitys.set(char.$Abilitys);
+        RaceAbilitys.set(char.$RaceAbilitys);
+        HpBar.set(char.$HpBar);
+        ApBar.set(char.$ApBar);
     };
 
     onMount(async () => {

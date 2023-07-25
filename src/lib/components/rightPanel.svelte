@@ -1,9 +1,9 @@
 <script>
-    import { CharacterData } from "$lib/characterData";
     import { Tab, TabGroup } from "@skeletonlabs/skeleton";
     import AbilitysSection from "./right/abilitysSection.svelte";
     import Inventory from "./right/inventorySection.svelte";
     import CharBio from "./right/charBioSection.svelte";
+    import { CharInfo } from "$lib/scripts/stores/character";
 
     let tabSet = 0
 </script>
@@ -22,7 +22,7 @@
                 {:else if tabSet === 1}
                     <Inventory />
                 {:else if tabSet === 2}
-                    <CharBio bind:content={$CharacterData} />
+                    <CharBio bind:content={$CharInfo} />
                 {/if}
             </svelte:fragment>
         </TabGroup>
