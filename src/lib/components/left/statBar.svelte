@@ -1,14 +1,12 @@
 <script lang="ts">
     import { ProgressBar } from "@skeletonlabs/skeleton";
-    import {
-        GetValueProficiency,
-        MainStats,
-        MainProficiencys,
-    } from "$lib/characterData";
     import Icon from "@iconify/svelte";
     import { taphold } from "$lib/scripts/taphold";
     import { createEventDispatcher } from "svelte";
     import type { StatBarType } from "$lib/scripts/stores/hpAndAp";
+    import { BaseStats } from "$lib/scripts/stores/stats";
+    import { get } from "svelte/store";
+    import { Proficiency } from "$lib/scripts/stores/proficiencys";
     const dispatch = createEventDispatcher();
 
     export let color: string = "bg-error-500";
@@ -21,18 +19,18 @@
     export let showBtns: boolean = true;
     export let animateWhenCloseToEnd: boolean = false;
 
-    const incresse = () => {
+    function incresse() {
         if (data.currentValue >= data.maxValue)
             return (data.currentValue = data.maxValue);
 
         return (data.currentValue += 1);
-    };
+    }
 
-    const decresce = () => {
+    function decresce() {
         if (data.currentValue <= 0) return (data.currentValue = 0);
 
         return (data.currentValue -= 1);
-    };
+    }
 
     function calculateResult() {
         try {
@@ -42,12 +40,14 @@
             console.log(error);
         }
     }
-    const calc = () => {
+    function calc() {
         data.maxValue =
-            ($MainStats[baseStatIndex].value +
-                GetValueProficiency($MainProficiencys[proficiencyIndex])) *
+            (get(BaseStats.store)[baseStatIndex].value +
+                Proficiency.GetValueProficiency(
+                    get(Proficiency.store)[proficiencyIndex]
+                )) *
             multipliers;
-    };
+    }
 
     function handleKeyDown(event: KeyboardEvent) {
         if (event.key === "Enter") {
@@ -55,8 +55,8 @@
         }
     }
 
-    MainStats.subscribe((_) => calc());
-    MainProficiencys.subscribe((_) => calc());
+    BaseStats.store.subscribe((_) => calc());
+    Proficiency.store.subscribe((_) => calc());
 </script>
 
 <div class="relative">
