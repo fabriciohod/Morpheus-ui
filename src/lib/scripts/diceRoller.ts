@@ -1,6 +1,6 @@
 import { get } from 'svelte/store';
-import { db } from './store';
-import { CharInfo } from './stores/character';
+import { db } from './stores/db';
+import  CharInfo  from './stores/character';
 import { Proficiency } from './stores/proficiencys';
 import { RollHistory } from './stores/roll';
 import { BaseStats } from './stores/stats';
@@ -58,7 +58,7 @@ export function WeaponDicesRoll(weapon: T_Weapon) {
     const hitBonus = [
         weapon.hitDiceBonusFlat,
         ...weapon.profBonus.map(p => Proficiency.FindAndGetValue(p)),
-        ...weapon.mainStatBonus.map(b => BaseStats.FindBaseStat(b).value)
+        ...weapon.mainStatBonus.map(b => BaseStats.FindStat(b).value)
     ]
 
     const hitRes = RollDice(weapon.name, weapon.hitDice, weapon.hitDice_rollTimes, hitBonus, false)

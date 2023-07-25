@@ -1,16 +1,5 @@
 <script lang="ts">
-    import {
-        GetBaseStat,
-        GetProficiency,
-        GetValueProficiency,
-    } from "$lib/characterData";
     import { RollDice } from "$lib/scripts/diceRoller";
-    import {
-        ProficiencysEnum,
-        type ItemWithRoll,
-        UseStat,
-        type Inventory,
-    } from "$lib/scripts/types";
     import Icon from "@iconify/svelte";
     import {
         AccordionItem,
@@ -21,8 +10,13 @@
     } from "@skeletonlabs/skeleton";
     import { createEventDispatcher } from "svelte";
     import BookMark from "../bookMark.svelte";
+    import { BaseStats } from "$lib/scripts/stores/stats";
+    import { Proficiency } from "$lib/scripts/stores/proficiencys";
+    import type { T_ItemWithRoll } from "$lib/scripts/types/items";
+    import { E_Stat } from "$lib/scripts/types/stat";
+    import { E_Proficiencys } from "$lib/scripts/types/proficiencys";
 
-    export let data: ItemWithRoll;
+    export let data: T_ItemWithRoll;
     export let canBeRemove: boolean = true;
     export let canBeEditable: boolean = true;
 
@@ -31,18 +25,16 @@
         component: "withRollItemEdit",
         meta: { info: data },
     };
-
     const roll = () => {
         const baseValue: number[] = data.baseStat.map((v) => {
-            const value = GetBaseStat(v).value;
-            const bonus = GetBaseStat(v).bonus;
+            const value = BaseStats.FindStat(v).value;
+            const bonus = BaseStats.FindStat(v).bonus;
 
             return value + bonus;
         });
 
         const proficiencysValue = data.proficiencys.map((v) => {
-            const prof = GetProficiency(v);
-            const value = GetValueProficiency(prof);
+            const value = Proficiency.FindAndGetValue(v);
 
             return value;
         });
@@ -67,9 +59,9 @@
 
     const calcInfo =
         `${data.rollTimes}xD${data.diceToRoll} + ` +
-        data.baseStat.map((v) => UseStat[v]).join(" + ") +
+        data.baseStat.map((v) => E_Stat[v]).join(" + ") +
         " + " +
-        data.proficiencys.map((v) => ProficiencysEnum[v]).join(" + ");
+        data.proficiencys.map((v) => E_Proficiencys[v]).join(" + ");
 </script>
 
 <div class="relative">

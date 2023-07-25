@@ -4,8 +4,8 @@
     import BaseStat from "$lib/components/left/primaryStats.svelte";
     import StatsBar from "$lib/components/left/statBar.svelte";
     import { RollDiceString } from "$lib/scripts/diceRoller";
-    import { db } from "$lib/scripts/store";
-    import { CharInfo } from "$lib/scripts/stores/character";
+    import { db } from "$lib/scripts/stores/db";
+    import CharInfo from "$lib/scripts/stores/character";
     import { ApBar, HpBar } from "$lib/scripts/stores/hpAndAp";
     import { BaseStats } from "$lib/scripts/stores/stats";
     import type { T_RollResult } from "$lib/scripts/types/dice";

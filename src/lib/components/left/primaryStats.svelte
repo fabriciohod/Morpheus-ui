@@ -1,15 +1,14 @@
 <script lang="ts">
-    import Icon from "@iconify/svelte";
-    import { DiceType, type RollResult, type Stat } from "$lib/scripts/types";
-
     import { RollDice } from "$lib/scripts/diceRoller";
-    import { toastStore } from "@skeletonlabs/skeleton";
+    import { E_DiceType, type T_RollResult } from "$lib/scripts/types/dice";
+    import type { T_Stat } from "$lib/scripts/types/stat";
     import type { ToastSettings } from "@skeletonlabs/skeleton";
+    import { toastStore } from "@skeletonlabs/skeleton";
 
-    export let data: Stat;
+    export let data: T_Stat;
 
     const rollTest = () => {
-        const res: RollResult = RollDice(data.name, DiceType.D20, 1, [
+        const res: T_RollResult = RollDice(data.name, E_DiceType.D20, 1, [
             data.value,
             data.bonus,
         ]);
@@ -45,7 +44,6 @@
 </div>
 
 <style>
-    /* Chrome, Safari, Edge, Opera */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;

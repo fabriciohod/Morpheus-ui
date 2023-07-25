@@ -22,7 +22,7 @@ export namespace Proficiency {
         { name: "Luta", upgraded: false, value: 0, use: [E_Stat.FOR, E_Stat.DEX], selectedIndex: 0, training: E_TrainingLevel.Leigo, bonus: 0 },
     ]
 
-    function FindProficiency(proficiency: E_Proficiencys) {
+    export function FindProficiency(proficiency: E_Proficiencys) {
         switch (proficiency) {
             case E_Proficiencys.Pilotagem:
                 return get(store)[0];

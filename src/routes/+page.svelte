@@ -19,7 +19,7 @@
     import WeaponEditor from "$lib/components/modals/edit/WeaponEditor.svelte";
     import { getClient } from "$lib/supabaseClient";
     import ServerInfo from "$lib/components/modals/serverInfo.svelte";
-    import { db } from "$lib/scripts/store";
+    import { db } from "$lib/scripts/stores/db";
     import LeftPanel from "$lib/components/leftPanel.svelte";
     import RightPanel from "$lib/components/rightPanel.svelte";
     import MildePanel from "$lib/components/mildePanel.svelte";

@@ -1,10 +1,11 @@
 <script lang="ts">
-    import { RaceAbilitys } from "$lib/characterData";
     import { GetRaceAbilitys } from "$lib/scripts/abilitys/racesAbilitys";
-    import type { CharInfo, SimpleItem } from "$lib/scripts/types";
+    import { RaceAbilitys } from "$lib/scripts/stores/storege";
+    import type { T_CharInfo } from "$lib/scripts/types/character";
+    import type { T_SimpleItem } from "$lib/scripts/types/items";
 
-    export let data: CharInfo;
-    let leastAbilitys: SimpleItem[];
+    export let data: T_CharInfo;
+    let leastAbilitys: T_SimpleItem[];
 
     const addRaceAbilitys = () => {
         if (data.race === 0) return;
@@ -14,8 +15,8 @@
         console.log(data.race);
         console.log(temp);
 
-        $RaceAbilitys = [];
-        $RaceAbilitys = { ...temp };
+        RaceAbilitys.set([]);
+        RaceAbilitys.set({ ...temp });
     };
 </script>
 

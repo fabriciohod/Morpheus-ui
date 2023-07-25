@@ -23,7 +23,7 @@ export namespace BaseStats {
 
     export const store = writable(baseStats)
 
-    export function FindBaseStat(baseStat: E_Stat) {
+    export function FindStat(baseStat: E_Stat) {
         switch (baseStat) {
             case E_Stat.CON:
                 return get(store)[0];

@@ -6,22 +6,19 @@
         toastStore,
         type ToastSettings,
     } from "@skeletonlabs/skeleton";
-    import { Abilitys } from "$lib/characterData";
     import AddItem from "../../addItem.svelte";
-    import {
-        ProficiencysEnum,
-        type ItemWithRoll,
-        type SimpleItem,
-        UseStat,
-    } from "$lib/scripts/types";
+    import { Abilitys } from "$lib/scripts/stores/storege";
+    import type { T_SimpleItem, T_ItemWithRoll } from "$lib/scripts/types/items";
+    import { E_Proficiencys } from "$lib/scripts/types/proficiencys";
+    import { E_Stat } from "$lib/scripts/types/stat";
 
     export let name1: string;
     export let name2: string;
     export let name3: string;
 
-    export let arr1: (SimpleItem | ItemWithRoll)[];
-    export let arr2: (SimpleItem | ItemWithRoll)[];
-    export let arr3: (SimpleItem | ItemWithRoll)[];
+    export let arr1: (T_SimpleItem | T_ItemWithRoll)[];
+    export let arr2: (T_SimpleItem | T_ItemWithRoll)[];
+    export let arr3: (T_SimpleItem | T_ItemWithRoll)[];
 
     let tabSet: number = 0;
 
@@ -35,7 +32,7 @@
         background: "variant-filled-error",
     };
 
-    const addAbility = (newAbility: SimpleItem | ItemWithRoll) => {
+    const addAbility = (newAbility: T_SimpleItem | T_ItemWithRoll) => {
         if ($Abilitys.find((a) => a.name.trim() === newAbility.name.trim())) {
             toastStore.trigger(error);
             return;
@@ -71,11 +68,11 @@
                             <p class="text-xs opacity-70 mb-1">
                                 Rolagem: {`${ability.rollTimes}xD${ability.diceToRoll} + ` +
                                     ability.baseStat
-                                        .map((v) => UseStat[v])
+                                        .map((v) => E_Stat[v])
                                         .join(" + ") +
                                     " + " +
                                     ability.proficiencys
-                                        .map((v) => ProficiencysEnum[v])
+                                        .map((v) => E_Proficiencys[v])
                                         .join(" + ")}
                             </p>
                         {/if}
@@ -96,11 +93,11 @@
                             <p class="text-xs opacity-70 mb-1">
                                 Rolagem: {`${ability.rollTimes}xD${ability.diceToRoll} + ` +
                                     ability.baseStat
-                                        .map((v) => UseStat[v])
+                                        .map((v) => E_Stat[v])
                                         .join(" + ") +
                                     " + " +
                                     ability.proficiencys
-                                        .map((v) => ProficiencysEnum[v])
+                                        .map((v) => E_Proficiencys[v])
                                         .join(" + ")}
                             </p>
                         {/if}
@@ -121,11 +118,11 @@
                             <p class="text-xs opacity-70 mb-1">
                                 Rolagem: {`${ability.rollTimes}xD${ability.diceToRoll} + ` +
                                     ability.baseStat
-                                        .map((v) => UseStat[v])
+                                        .map((v) => E_Stat[v])
                                         .join(" + ") +
                                     " + " +
                                     ability.proficiencys
-                                        .map((v) => ProficiencysEnum[v])
+                                        .map((v) => E_Proficiencys[v])
                                         .join(" + ")}
                             </p>
                         {/if}

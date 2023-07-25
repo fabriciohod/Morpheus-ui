@@ -1,15 +1,12 @@
 <script lang="ts">
-    import { MainDefensiveStats } from "$lib/characterData";
-    import {
-        StatModifiers,
-        type EquipmentItem,
-        type Inventory,
-    } from "$lib/scripts/types";
     import { AccordionItem, modalStore, type ModalSettings } from "@skeletonlabs/skeleton";
     import { createEventDispatcher } from "svelte";
     import BookMark from "../bookMark.svelte";
+    import { get } from "svelte/store";
+    import { DefensiveStats } from "$lib/scripts/stores/stats";
+    import { E_StatModifiers, type T_EquipmentItem } from "$lib/scripts/types/items";
 
-    export let data: EquipmentItem;
+    export let data: T_EquipmentItem;
     export let canBeRemove = true;
     export let canBeEditable = true;
 
@@ -23,15 +20,15 @@
         data.isEquip = !data.isEquip;
 
         switch (data.modifyStat) {
-            case StatModifiers.Defesa:
+            case E_StatModifiers.Defesa:
                 if (data.isEquip)
-                    $MainDefensiveStats.DEF_equipment += data.value;
-                else $MainDefensiveStats.DEF_equipment -= data.value;
+                    get(DefensiveStats.store).DEF_equipment += data.value;
+                else get(DefensiveStats.store).DEF_equipment -= data.value;
                 break;
-            case StatModifiers.Esquiva:
+            case E_StatModifiers.Esquiva:
                 if (data.isEquip)
-                    $MainDefensiveStats.DOGE_equipment += data.value;
-                else $MainDefensiveStats.DOGE_equipment -= data.value;
+                    get(DefensiveStats.store).DOGE_equipment += data.value;
+                else get(DefensiveStats.store).DOGE_equipment -= data.value;
                 break;
         }
     };
@@ -40,11 +37,11 @@
     const remove = () => {
         if (data.isEquip) {
             switch (data.modifyStat) {
-                case StatModifiers.Defesa:
-                    $MainDefensiveStats.DEF_equipment -= data.value;
+                case E_StatModifiers.Defesa:
+                    get(DefensiveStats.store).DEF_equipment -= data.value;
                     break;
-                case StatModifiers.Esquiva:
-                    $MainDefensiveStats.DOGE_equipment -= data.value;
+                case E_StatModifiers.Esquiva:
+                    get(DefensiveStats.store).DOGE_equipment -= data.value;
                     break;
             }
         }
@@ -70,7 +67,7 @@
             </span>
         </svelte:fragment>
         <svelte:fragment slot="summary">
-            {StatModifiers[data.modifyStat]}: +{data.value}
+            {E_StatModifiers[data.modifyStat]}: +{data.value}
         </svelte:fragment>
         <svelte:fragment slot="content">
             {data.description}

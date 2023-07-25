@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { Abilitys, RaceAbilitys } from "$lib/characterData";
     import {
         Accordion,
         modalStore,
@@ -9,6 +8,7 @@
     } from "@skeletonlabs/skeleton";
     import WithRollItem from "./items/withRollItem.svelte";
     import SimpleItem from "./items/simpleItem.svelte";
+    import { Abilitys, RaceAbilitys } from "$lib/scripts/stores/storege";
 
     let unique = {};
     let tabSet: number = 0;

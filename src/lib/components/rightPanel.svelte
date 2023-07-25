@@ -3,7 +3,7 @@
     import AbilitysSection from "./right/abilitysSection.svelte";
     import Inventory from "./right/inventorySection.svelte";
     import CharBio from "./right/charBioSection.svelte";
-    import { CharInfo } from "$lib/scripts/stores/character";
+    import CharInfo from "$lib/scripts/stores/character";
 
     let tabSet = 0
 </script>
