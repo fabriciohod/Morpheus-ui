@@ -58,17 +58,17 @@
             toastStore.trigger(error2);
             return;
         }
-        
-        $db.from("characters")
-            .upsert(
-                {
-                    id: $CharInfo.name,
-                    hpBar: $HpBar,
-                    apBar: $ApBar,
-                },
-                { onConflict: "id" }
-            )
-            .then((onrejected) => console.log(onrejected));
+        if (Boolean(localStorage.getItem("useDB")))
+            $db.from("characters")
+                .upsert(
+                    {
+                        id: $CharInfo.name,
+                        hpBar: $HpBar,
+                        apBar: $ApBar,
+                    },
+                    { onConflict: "id" }
+                )
+                .then((onrejected) => console.log(onrejected));
     }
 </script>
 

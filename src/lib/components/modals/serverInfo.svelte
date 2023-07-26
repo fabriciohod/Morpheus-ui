@@ -6,6 +6,7 @@
 
     let url: string;
     let key: string;
+    let useDB = true;
 
     const success: ToastSettings = {
         message: "Salvo",
@@ -15,7 +16,7 @@
     function save() {
         localStorage.setItem("url", url);
         localStorage.setItem("key", key);
-        
+
         if (url === undefined || key === undefined) return;
 
         toastStore.trigger(success);
@@ -25,6 +26,7 @@
     onMount(() => {
         let temp_key = localStorage.getItem("key");
         let temp_url = localStorage.getItem("url");
+        useDB = Boolean(localStorage.getItem("useDB"))
 
         if (temp_key !== null || temp_key !== undefined)
             key = temp_key as string;
@@ -47,7 +49,17 @@
         type="text"
         bind:value={key}
     />
-    <div class="flex justify-end">
+    <div class="flex justify-between">
+        <label class="flex items-center space-x-2">
+            <input
+                class="checkbox"
+                type="checkbox"
+                bind:checked={useDB}
+                on:change={() =>
+                    localStorage.setItem("useDB", useDB ? "t" : "")}
+            />
+            <p>Conectar com server</p>
+        </label>
         <button
             type="button"
             on:click={(e) => save()}
