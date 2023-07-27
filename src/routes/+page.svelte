@@ -17,7 +17,6 @@
     import EquippableItemEditor from "$lib/components/modals/edit/equippableItemEditor.svelte";
     import ItemWithRollEditor from "$lib/components/modals/edit/itemWithRollEditor.svelte";
     import WeaponEditor from "$lib/components/modals/edit/WeaponEditor.svelte";
-    import { getClient } from "$lib/supabaseClient";
     import ServerInfo from "$lib/components/modals/serverInfo.svelte";
     import { db } from "$lib/scripts/stores/db";
     import LeftPanel from "$lib/components/leftPanel.svelte";
@@ -27,6 +26,8 @@
     import CharacterInfo from "$lib/components/top/characterInfo.svelte";
     import { RollHistory } from "$lib/scripts/stores/roll";
     import { storeBaseState } from "$lib/scripts/stores/stats";
+    import { appWindow } from "@tauri-apps/api/window";
+    import CharacterData from "$lib/scripts/stores/character";
 
     const modalComponentRegistry: Record<string, ModalComponent> = {
         modalComponentOne: {
@@ -59,8 +60,14 @@
     });
 
     storeBaseState.subscribe((v) => {
-        console.log($db)
+        console.log($db);
         console.log(v);
+    });
+
+    CharacterData.subscribe((v) => {
+        const name = v.name === "" ? "" : `[${v.name}]`;
+
+        appWindow.setTitle(`Morpheus UI ${name}`);
     });
 </script>
 
