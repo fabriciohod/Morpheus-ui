@@ -1,7 +1,7 @@
 <script lang="ts">
     import { RollDice } from "$lib/scripts/diceRoller";
     import { Proficiency } from "$lib/scripts/stores/proficiencys";
-    import { storeBaseState } from "$lib/scripts/stores/stats";
+    import { FindStat, storeBaseState } from "$lib/scripts/stores/stats";
     import { E_DiceType, type T_RollResult } from "$lib/scripts/types/dice";
     import {
         E_TrainingLevel,
@@ -18,8 +18,9 @@
         let res: T_RollResult;
 
         data.value = Proficiency.GetValueProficiency(data);
-
-        res = RollDice(data.name, E_DiceType.D20, 1, [data.value, data.bonus]);
+        
+        res = RollDice(data.name, E_DiceType.D20, 1, [data.value, data.bonus, FindStat(data.use[data.selectedIndex]).bonus]);
+        console.log(res)
 
         t = {
             message: `${res.rollSummary} = ${res.result}`,

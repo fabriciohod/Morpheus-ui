@@ -9,7 +9,7 @@ import type { T_Weapon } from './types/items';
 
 
 function rollDiceSimple(diceType: E_DiceType) {
-    return Math.floor(Math.random() * diceType) + 1;
+    return Math.ceil(Math.random() * diceType) + 1;
 }
 
 export const RollDice = (name: string, diceType: E_DiceType, rollTimes: number = 1, bonus: number[] = [], resultToHistory: boolean = true) => {
