@@ -1,97 +1,56 @@
-<script lang="ts">
-    import { emit } from "@tauri-apps/api/event";
-    import {
-        computePosition,
-        autoUpdate,
-        offset,
-        shift,
-        flip,
-        arrow,
-    } from "@floating-ui/dom";
-    import { storePopup, type ModalComponent } from "@skeletonlabs/skeleton";
-    import { Drawer, Modal, Toast, drawerStore } from "@skeletonlabs/skeleton";
-    import RollHistoryComp from "$lib/components/modals/rollHistory.svelte";
-    import AbilitysSelection from "$lib/components/modals/abilitys/abilitysSelection.svelte";
-    import ItemSelection from "$lib/components/modals/items/itemSelection.svelte";
-    import SimpleItemEditor from "$lib/components/modals/edit/simpleItemEditor.svelte";
-    import EquippableItemEditor from "$lib/components/modals/edit/equippableItemEditor.svelte";
-    import ItemWithRollEditor from "$lib/components/modals/edit/itemWithRollEditor.svelte";
-    import WeaponEditor from "$lib/components/modals/edit/WeaponEditor.svelte";
-    import ServerInfo from "$lib/components/modals/serverInfo.svelte";
-    import { db } from "$lib/scripts/stores/db";
-    import LeftPanel from "$lib/components/leftPanel.svelte";
-    import RightPanel from "$lib/components/rightPanel.svelte";
-    import MildePanel from "$lib/components/mildePanel.svelte";
-    import MenuBar from "$lib/components/top/menuBar.svelte";
-    import CharacterInfo from "$lib/components/top/characterInfo.svelte";
-    import { RollHistory } from "$lib/scripts/stores/roll";
-    import { storeBaseState } from "$lib/scripts/stores/stats";
-    import { appWindow } from "@tauri-apps/api/window";
-    import CharacterData from "$lib/scripts/stores/character";
-
-    const modalComponentRegistry: Record<string, ModalComponent> = {
-        modalComponentOne: {
-            ref: AbilitysSelection,
-        },
-        modalComponentTwo: {
-            ref: ItemSelection,
-        },
-        simpleItemEdit: {
-            ref: SimpleItemEditor,
-        },
-        equipItemEdit: {
-            ref: EquippableItemEditor,
-        },
-        withRollItemEdit: {
-            ref: ItemWithRollEditor,
-        },
-        weaponEdit: {
-            ref: WeaponEditor,
-        },
-        serverInfo: {
-            ref: ServerInfo,
-        },
-    };
-
-    storePopup.set({ computePosition, autoUpdate, offset, shift, flip, arrow });
-
-    RollHistory.subscribe((v) => {
-        emit("NewRoll", JSON.stringify(v));
-    });
-
-    storeBaseState.subscribe((v) => {
-        console.log($db);
-        console.log(v);
-    });
-
-    CharacterData.subscribe((v) => {
-        const name = v.name === "" ? "" : `[${v.name}]`;
-
-        appWindow.setTitle(`Morpheus UI ${name}`);
-    });
+<script>
+	import welcome from '$lib/images/svelte-welcome.webp';
+	import welcome_fallback from '$lib/images/svelte-welcome.png';
 </script>
 
-<main class="text-white p-2">
-    <MenuBar />
-    <CharacterInfo />
-    <div class="flex flex-wrap max-lg:grid max-lg:grid-flow-row">
-        <LeftPanel />
-        <MildePanel />
-        <RightPanel />
-    </div>
-    <Modal
-        background="bg-surface-600"
-        regionBackdrop="bg-surface-800/80"
-        components={modalComponentRegistry}
-    />
-    <Drawer
-        bgBackdrop="bg-surface-800/80"
-        bgDrawer="bg-surface-600"
-        width="w-96"
-    >
-        {#if $drawerStore.id === "roll-history"}
-            <RollHistoryComp />
-        {/if}
-    </Drawer>
-    <Toast />
-</main>
+<svelte:head>
+	<title>Home</title>
+	<meta name="description" content="Svelte demo app" />
+</svelte:head>
+
+<section>
+	<h1>
+		<span class="welcome">
+			<picture>
+				<source srcset={welcome} type="image/webp" />
+				<img src={welcome_fallback} alt="Welcome" />
+			</picture>
+		</span>
+
+		to your new<br />SvelteKit app
+	</h1>
+
+	<h2>
+		try editing <strong>src/routes/+page.svelte</strong>
+	</h2>
+</section>
+
+<style>
+	section {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex: 0.6;
+	}
+
+	h1 {
+		width: 100%;
+	}
+
+	.welcome {
+		display: block;
+		position: relative;
+		width: 100%;
+		height: 0;
+		padding: 0 0 calc(100% * 495 / 2048) 0;
+	}
+
+	.welcome img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		display: block;
+	}
+</style>

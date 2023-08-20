@@ -1,47 +1,38 @@
-# M.C.C.T (Morpheus Character Creator Tool)
+# create-svelte
 
-![M.C.C.T](./static/FEDERACAO_GALATICA_TITULO.png)
+Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
 
-This is a character creator tool for a tabletop RPG called Morpheus. The user interface is currently in Portuguese, but you can modify the code to display the content in your desired language. Additionally, you have the flexibility to add features or make corrections based on player feedback.
+## Creating a project
 
-To download the latest build, visit the [releases](https://github.com/fabriciohod/Morpheus-ui/releases) page. **Windows Only**
+If you're seeing this, you've probably already done this step. Congrats!
 
-![demo](static/demo.png)
+```bash
+# create a new project in the current directory
+npm create svelte@latest
 
-## Development
+# create a new project in my-app
+npm create svelte@latest my-app
+```
 
-Before getting started, make sure you have [Node.js](https://nodejs.org/) and [Cargo](https://www.rust-lang.org/tools/install) (Rust package manager) installed on your system. Please refer to the respective websites for OS-specific installation guides.
+## Developing
 
-1. After installing Rust and Cargo, follow these steps to install Tauri:
-   - Open a terminal and navigate to the root directory of the project.
-   - Run the following commands:
-     ```shell
-     cd ./src-tauri
-     cargo build
-     ```
-   This will download and install Tauri and its dependencies.
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-2. To install Svelte and Skeleton UI, return to the root directory and run the following command:
-   ```shell
-   cd ..
-   npm install
-   ```
-   This will install all project dependencies.
+```bash
+npm run dev
 
-   You can now run the project using the following commands:
-   ```shell
-   # for development
-   npm run tauri dev
-   # or
-   tauri dev
+# or start the server and open the app in a new browser tab
+npm run dev -- --open
+```
 
-   # to make a build
-   npm run tauri build
-   # or
-   tauri build
+## Building
 
-   # to create a debug build, add --debug at the end
-   tauri build --debug
-   ```
+To create a production version of your app:
 
-Please note that the user interface is currently in Portuguese, but you can modify the code to display the content in your desired language.
+```bash
+npm run build
+```
+
+You can preview the production build with `npm run preview`.
+
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
