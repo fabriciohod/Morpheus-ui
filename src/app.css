@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	--border-width: 0.55em;
+	--edge-size: 0.55em;
+}
+
+.card-polygon-1 {
+	clip-path: polygon(
+		var(--edge-size) 0%,
+		100% 0,
+		100% calc(100% - var(--edge-size)),
+		calc(100% - var(--edge-size)) 100%,
+		0 100%,
+		0% var(--edge-size)
+	);
+}
+
+.card-polygon-2 {
+	clip-path: polygon(
+		calc(100% - var(--edge-size)) 0%, 
+		100% var(--edge-size), 
+		100% 100%, 
+		var(--edge-size) 100%,
+		0% calc(100% - var(--edge-size)),
+		0 0
+	);
+}

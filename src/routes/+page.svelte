@@ -1,56 +1,23 @@
-<script>
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+<script lang="ts">
+	import AppShell from '$lib/componets/appShell.svelte';
+	import Panel from '$lib/componets/panel.svelte';
+	const base = ['Contituicao', 'Intelecto', 'Forca', 'Destreza', 'Carisma'];
 </script>
 
-<svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
-</svelte:head>
-
-<section>
-	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
-	</h1>
-
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
-</section>
-
-<style>
-	section {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex: 0.6;
-	}
-
-	h1 {
-		width: 100%;
-	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	}
-</style>
+<AppShell>
+	<div slot="right">
+		<Panel title="Atributos">
+			<div class="flex justify-around flex-wrap">
+				{#each base as item}
+					<div class="flex flex-col items-center justify-center">
+						<p>{item}</p>
+						<input type="number" class="bg-morpheus-darker w-12 h-12 text-center" value="0" />
+					</div>
+				{/each}
+			</div>
+		</Panel>
+		<Panel title="Info" cardBevel={2}>
+			<h1>Rolls</h1>
+		</Panel>
+	</div>
+</AppShell>
