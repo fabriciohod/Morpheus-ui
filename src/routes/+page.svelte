@@ -1,16 +1,29 @@
 <script lang="ts">
-	import AppShell from '$lib/componets/appShell.svelte';
-	import BaseAttributes from '$lib/componets/character sheet/baseAttributes.svelte';
-	import Panel from '$lib/componets/panel.svelte';
-	const base = ['Contituicao', 'Intelecto', 'Forca', 'Destreza', 'Carisma'];
+	import AppShell from '$lib/components/appShell.svelte';
+	import BaseAttributes from '$lib/components/characterSheet/baseAttributes.svelte';
+	import Panel from '$lib/components/panel.svelte';
+	import { recordAsArray, type SystemConfiguration } from '$lib/types/systemConfiguration';
+	let test: SystemConfiguration = {
+		name: 'test',
+		label: 't',
+		characterSheet: {
+			attributes: {
+				CON: { name: 'Constituicao', label: 'CON', value: 0, bonus: 0 },
+				INT: { name: 'Intelecto', label: 'INT', value: 0, bonus: 0 },
+				FOR: { name: 'Forca', label: 'FOR', value: 0, bonus: 0 },
+				DEX: { name: 'Destreza', label: 'DEX', value: 0, bonus: 0 },
+				CAR: { name: 'Carisma', label: 'CAR', value: 0, bonus: 0 }
+			}
+		}
+	};
 </script>
 
 <AppShell>
 	<div slot="right">
 		<Panel title="Atributos">
 			<div class="flex justify-around flex-wrap">
-				{#each base as item}
-					<BaseAttributes name={item} />
+				{#each recordAsArray(test.characterSheet.attributes) as item}
+					<BaseAttributes name={item.name} />
 				{/each}
 			</div>
 		</Panel>
