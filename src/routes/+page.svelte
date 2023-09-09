@@ -3,6 +3,8 @@
 	import BaseAttributes from '$lib/components/characterSheet/baseAttributes.svelte';
 	import Panel from '$lib/components/panel.svelte';
 	import { recordAsArray, type SystemConfiguration } from '$lib/types/systemConfiguration';
+	import HpBar from '$lib/components/characterSheet/hpBar.svelte';
+	import ArmorStat from '$lib/components/characterSheet/armorStat.svelte';
 	let test: SystemConfiguration = {
 		name: 'test',
 		label: 't',
@@ -27,25 +29,17 @@
 				{/each}
 			</div>
 		</Panel>
-		<Panel title="Info" cardBevel={2}>
-			<div class="grid grid-rows-2 gap-2">
-				<div class="w-64 h-9">
-					<progress value="30" max="100" class="card-polygon-1 bg-morpheus-darker h-full" />
-				</div>
-				<div class="w-64 h-9">
-					<progress value="30" max="100" class="card-polygon-1 bg-morpheus-darker h-full" />
-				</div>
+		<Panel title="Info" cardBevel={2} width="w-96">
+		<div class="flex">
+			<div class="flex flex-col justify-around mr-16">
+				<HpBar currentValue={30} maxValue={100}/>
+				<HpBar currentValue={30} maxValue={100}/>
 			</div>
+			<div class="flex justify-around">
+				<ArmorStat/>
+				<ArmorStat/>
+			</div>
+		</div>
 		</Panel>
 	</div>
 </AppShell>
-
-<style>
-	progress::-webkit-progress-bar {
-		background-color: red;
-	}
-
-	progress::-moz-progress-bar {
-		background-color: red;
-	}
-</style>

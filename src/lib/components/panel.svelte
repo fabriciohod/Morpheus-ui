@@ -1,9 +1,11 @@
 <script lang="ts">
 	export let title = '';
 	export let cardBevel: 1 | 2 = 1;
+	export let width = ''
+	export let hight = 'h-fit'
 </script>
 
-<div class={`card-polygon-${cardBevel} text-white m-2 pb-2 bg-morpheus-dark h-fit`}>
+<div class={`card-polygon-${cardBevel} text-white m-2 pb-2 bg-morpheus-dark  ${width} ${hight}`}>
 	{#if title !== ''}
 		<h1 class={`card-polygon-${cardBevel} text-white bg-morpheus-highlight w-40 mb-1 px-4`}>
 			{title}
