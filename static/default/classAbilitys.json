@@ -1,0 +1,139 @@
+{
+    "Engineer": {
+        "regulator": {
+            "id": "regulator",
+            "name": {
+                "pt": "Regulador",
+                "en": "Regulator"
+            },
+            "abilitys": [
+                {
+                    "id":"brakes",
+                    "name": {
+                        "pt": "Tranqueira",
+                        "en": "Brakes"
+                    },
+                    "description": {
+                        "pt": "Consegue reconhecer a engenharia de qualquer tranqueira (ganha +2 inteligência e +1 engenharia mecânica)",
+                        "en": "Can recognize any brake (gains +2 Intelligence and +1 Mechanical Engineering)"
+                    },
+                    "roll": "1d20 + @int + @prof.mechanicalEng"
+                },
+                {
+                    "id":"newRoutes",
+                    "name": {
+                        "pt": "Novas Rotas",
+                        "en": "New Routes"
+                    },
+                    "description": {
+                        "pt": "Consegue achar um jeito melhor de chegar em algum lugar no gps (ganha +2 inteligência e +1 engenharia mecânica)",
+                        "en": "Can find a better way to get to any place on the gps (gains +2 Intelligence and +1 Mechanical Engineering)"
+                    },
+                    "roll": "1d20 + @int + @prof.mechanicalEng"
+                },
+                {
+                    "id":"up",
+                    "name": {
+                        "pt": "Up",
+                        "en": "Up"
+                    },
+                    "description": {
+                        "pt": "Consegue atualizar partes da nave em pouquíssimo tempo (ganha +3 inteligência e +2 engenharia mecânica)",
+                        "en": "Can update parts of a ship in very short time (gains +3 Intelligence and +2 Mechanical Engineering)"
+                    },
+                    "roll": "1d20 + @int + @prof.mechanicalEng"
+                }
+            ]
+        },
+        "Scholar": {
+            "id": "Scholar",
+            "name": {
+                "pt": "Acadêmico",
+                "en": "Scholar"
+            },
+            "abilitys": [
+                {
+                    "id":"encyclopedia",
+                    "name": {
+                        "pt": "Enciclopédia",
+                        "en": "Encyclopedia"
+                    },
+                    "description": {
+                        "pt": "Consegue relembrar de fatos e coisas importantes na história (ganha +2 inteligência e +1 história)",
+                        "en": "Can recall facts and important things in the life (gains +2 Intelligence and +1 History)"
+                    },
+                    "roll": "1d20 + @int + @prof.history"
+                },
+                {
+                    "id":"convening",
+                    "name": {
+                        "pt": "Convencimento",
+                        "en": "Convening"
+                    },
+                    "description": {
+                        "pt": "Consegue usar seu conhecimento para convencer alguém de algo (ganha +2 carisma e +1 charlate)",
+                        "en": "Can use your knowledge to convince someone of something (gains +2 Charisma and +1 Charlatan)"
+                    },
+                    "roll": "1d20 + [@int, @car] + @prof.history"
+                },
+                {
+                    "id":"examine",
+                    "name": {
+                        "pt": "Examinar",
+                        "en": "Examine"
+                    },
+                    "description": {
+                        "pt": "Consegue examinar as coisas bem mais profundamente (ganha +2 inteligência e +1 investigação)",
+                        "en": "Can examine things well more deeply (gains +2 Intelligence and +1 Investigation)"
+                    },
+                    "roll": "1d20 + @int + @prof.history"
+                }
+            ]
+        },
+        "gunsmith": {
+            "id": "gunsmith",
+            "name": {
+                "pt": "Armeiro",
+                "en": "Gunsmith"
+            },
+            "abilitys": [
+                {
+                    "id":"recognition",
+                    "name": {
+                        "pt": "Reconhecimento",
+                        "en": "Recognition"
+                    },
+                    "description": {
+                        "pt": "Consegue reconhecer a engenharia de qualquer arma (ganha +2 inteligência e +1 Engenharia armamentista)",
+                        "en": "Can recognize any weapons (gains +2 Intelligence and +1 Armament Engineering)"
+                    },
+                    "roll": "1d20 + @int + @prof.armamentEng"
+                },
+                {
+                    "id":"modify",
+                    "name": {
+                        "pt": "Modificar",
+                        "en": "Modify"
+                    },
+                    "description": {
+                        "pt": "Consegue atualizar partes de armas em pouquíssimo tempo (ganha +3 inteligência e +2 engenharia Eng.mecânica)",
+                        "en": "Can update parts of weapons in very short time (gains +3 Intelligence and +2 Mechanical Engineering)"
+                    },
+                    "roll": "1d20 + @int + @prof.armamentEng"
+                },
+                {
+                    "id":"anyOne",
+                    "name": {
+                        "pt": "Qualquer Uma",
+                        "en": "Any One"
+                    },
+                    "description": {
+                        "pt": "Consegue utilizar qualquer tipo armas( ganha +3 inteligência e +2 engenharia Eng.mecânica)",
+                        "en": "Can use any type of weapons (gains +3 Intelligence and +2 Mechanical Engineering)"
+                    },
+                    "roll": "1d20 + @int + @prof.armamentEng"
+                }
+            ]
+        }
+    }
+}
