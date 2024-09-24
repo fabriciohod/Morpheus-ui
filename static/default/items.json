@@ -1,0 +1,53 @@
+[
+    {
+        "type": "armor",
+        "name": {
+            "pt": "Colete Leve",
+            "en": "Light Vest"
+        },
+        "description": {
+            "pt": "Pouca proteção mas ótima mobilidade",
+            "en": "Little protection but excellent mobility"
+        },
+        "modifiers": [
+            {
+                "attribute": "@def",
+                "value": 2
+            }
+        ]
+    },
+    {
+        "type": "armor",
+        "name": {
+            "pt": "Colete Médio",
+            "en": "Medium Vest"
+        },
+        "description": {
+            "pt": "Média proteção e mobilidade",
+            "en": "Medium protection and mobility"
+        },
+        "modifiers": [
+            {
+                "attribute": "@def",
+                "value": 5
+            }
+        ]
+    },
+    {
+        "type": "armor",
+        "name": {
+            "pt": "Colete Pesado",
+            "en": "Have Vest"
+        },
+        "description": {
+            "pt": "Ótima proteção e pouca mobilidade",
+            "en": "Excellent protection and little mobility"
+        },
+        "modifiers": [
+            {
+                "attribute": "@def",
+                "value": 10
+            }
+        ]
+    }
+]
