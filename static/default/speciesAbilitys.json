@@ -1,0 +1,622 @@
+{
+    "human": [
+        {
+            "id": "gambiarra",
+            "from":"species",
+            "name": {
+                "pt": "Gambiarra",
+                "en": "Gambiarra"
+            },
+            "description": {
+                "pt": "Consegue fazer tecnologias funcionarem (Bonus INT)",
+                "en": "Can make technologies work (Bonus INT)"
+            }
+        },
+        {
+            "id": "fastShots",
+            "from":"species",
+            "name": {
+                "pt": "Tiros Rápidos",
+                "en": "Fast Shots"
+            },
+            "description": {
+                "pt": "Consegue atirar numa alta velocidade (Ganha bonus de DEX e Tiro)",
+                "en": "Can shoot with high speed (Bonus DEX and Tiro)"
+            }
+        },
+        {
+            "id": "tacticalHeal",
+            "from":"species",
+            "name": {
+                "pt": "Cura Tática",
+                "en": "Tactical Heal"
+            },
+            "description": {
+                "pt": "Consegue se curar ou curar aliado em batalha (Bonus INT)",
+                "en": "Can heal or heal an ally in battle (Bonus INT)"
+            }
+        }
+    ],
+    "ehi": [
+        {
+            "id": "metamorphosis",
+            "from":"species",
+            "name": {
+                "pt": "Metamorfose",
+                "en": "Metamorphosis"
+            },
+            "description": {
+                "pt": "Consegue se tornar qualquer ser biológico, copiando inclusive suas memorias",
+                "en": "Can become any biological being, even copying their memories"
+            }
+        },
+        {
+            "id": "understandable",
+            "from":"species",
+            "name": {
+                "pt": "Entendível",
+                "en": "Understandable"
+            },
+            "description": {
+                "pt": "Entende parcialmente tecnologias que analise (Ganha bonus de INT)",
+                "en": "Partially understands technologies that are analyzed (Bonus INT)"
+            }
+        }
+    ],
+    "andromedaEhi": [
+        {
+            "id": "defectiveMetamorphosis",
+            "from":"species",
+            "name": {
+                "pt": "Metamorfose Defeituosa",
+                "en": "Defective Metamorphosis"
+            },
+            "description": {
+                "pt": "Seu corpo talvez consiga virar algo",
+                "en": "Your body might turn into something"
+            }
+        },
+        {
+            "id": "deception",
+            "from":"species",
+            "name": {
+                "pt": "A Enganação",
+                "en": "Deception"
+            },
+            "description": {
+                "pt": "Usa sue cahrlate pra seu beneficiar (Bonus CAR + Charlate)",
+                "en": "Uses your charisma for personal benefit (Bonus CAR + Charlatan)"
+            }
+        },
+        {
+            "id": "disgust",
+            "from":"species",
+            "name": {
+                "pt": "Nojo",
+                "en": "Disgust"
+            },
+            "description": {
+                "pt": "Usa a sua imagem e a repulsa que os outros tem de você para causar intimidação (Bonus Intimidação + INT)",
+                "en": "Uses your image and the disgust others have for you to cause intimidation (Bonus Intimidation + INT)"
+            }
+        }
+    ],
+    "kletka": [
+        {
+            "id": "wordsOfKta",
+            "from":"species",
+            "name": {
+                "pt": "Palavras de Kta",
+                "en": "Words of Kta"
+            },
+            "description": {
+                "pt": "Consegue user seu charlate para animar aliados",
+                "en": "Can use your charisma to cheer up allies"
+            }
+        },
+        {
+            "id": "poisoning",
+            "from":"species",
+            "name": {
+                "pt": "Envenenar",
+                "en": "Poisoning"
+            },
+            "description": {
+                "pt": "Consegue envenenar",
+                "en": "Can poison"
+            }
+        },
+        {
+            "id": "insaneGallop",
+            "from":"species",
+            "name": {
+                "pt": "Galope Insano",
+                "en": "Insane Gallop"
+            },
+            "description": {
+                "pt": "Usa suas patas para correr elouquecido (ganha bonus de DEX + FOR + Intimidação)",
+                "en": "Uses your legs to run madly (bonus DEX + STR + Intimidation)"
+            }
+        },
+        {
+            "id": "contempt",
+            "from":"species",
+            "name": {
+                "pt": "Desprezo (Quando luta contra Tockta)",
+                "en": "Contempt"
+            },
+            "description": {
+                "pt": "Se sente totalmente superior e sente nojo ao lutar com um Tockta (ganha bonus de INT)",
+                "en": "You feel superior and disgusted when fighting a Tockta (bonus INT)"
+            }
+        }
+    ],
+    "tockta": [
+        {
+            "id": "harden",
+            "from":"species",
+            "name": {
+                "pt": "Enrijecer",
+                "en": "Harden"
+            },
+            "description": {
+                "pt": "Consegue enrijecer sua carapaça",
+                "en": "Can harden your shell"
+            }
+        },
+        {
+            "id": "quick",
+            "from":"species",
+            "name": {
+                "pt": "Ligeiro",
+                "en": "Quick"
+            },
+            "description": {
+                "pt": "Consegue acelerar seu movimento",
+                "en": "Can speed up your movement"
+            }
+        },
+        {
+            "id": "sharpTeeth",
+            "from":"species",
+            "name": {
+                "pt": "Pontiagudos",
+                "en": "Sharp Teeth"
+            },
+            "description": {
+                "pt": "Consegue utilizar seus dentes e garras (Bonus FOR + Intimidação)",
+                "en": "Can use your teeth and claws (Bonus STR + Intimidation)"
+            }
+        },
+        {
+            "id": "forTheCause",
+            "from":"species",
+            "name": {
+                "pt": "Pela Causa (Quando luta contra Kletka)",
+                "en": "For the Cause"
+            },
+            "description": {
+                "pt": "Ficar enjoado e enraivecido ao lutar contra um Kletka (ganha bonus de DEX)",
+                "en": "Feel sick and enraged when fighting a Kletka (bonus DEX)"
+            }
+        }
+    ],
+    "fuwus": [
+        {
+            "id": "hunt",
+            "from":"species",
+            "name": {
+                "pt": "Caçada",
+                "en": "Hunt"
+            },
+            "description": {
+                "pt": "Persegue seu alvo (Bonus de DEX)",
+                "en": "Pursue your target (Bonus DEX)"
+            }
+        },
+        {
+            "id": "starving",
+            "from":"species",
+            "name": {
+                "pt": "Esfomeado",
+                "en": "Starving"
+            },
+            "description": {
+                "pt": "Ao sentir o sangue seus instintos primais agem (Bonus de FOR)",
+                "en": "Upon sensing blood, your primal instincts kick in (Bonus STR)"
+            }
+        },
+        {
+            "id": "nonsense",
+            "from":"species",
+            "name": {
+                "pt": "Balela",
+                "en": "Nonsense"
+            },
+            "description": {
+                "pt": "Usa de seu charlate pra proveito (Bonus CAR e Chalate)",
+                "en": "Use your charisma to your advantage (Bonus CHA and Charlatan)"
+            }
+        }
+    ],
+    "ankemoDor": [
+        {
+            "id": "bulletTrain",
+            "from":"species",
+            "name": {
+                "pt": "Trem Bala",
+                "en": "Bullet Train"
+            },
+            "description": {
+                "pt": "Consegue preparar seu corpo acelerar ao máximo (Ganha bonus de DEX e FOR)",
+                "en": "Can prepare your body to accelerate to the maximum (Bonus DEX and STR)"
+            }
+        },
+        {
+            "id": "adulteratedFuel",
+            "from":"species",
+            "name": {
+                "pt": "Combustível Adulterando",
+                "en": "Adulterated Fuel"
+            },
+            "description": {
+                "pt": "Aumenta o uso de seus fluidos para gerar uma potencia maior (Bonus de FOR e COS)",
+                "en": "Increases the use of your fluids to generate more power (Bonus STR and CON)"
+            }
+        },
+        {
+            "id": "horror",
+            "from":"species",
+            "name": {
+                "pt": "Horror",
+                "en": "Horror"
+            },
+            "description": {
+                "pt": "Ultiliza sua fama e espectro visual para causar horror (Bonus de Intimidação)",
+                "en": "Use your reputation and appearance to cause horror (Bonus Intimidation)"
+            }
+        }
+    ],
+    "daeHonis": [
+        {
+            "id": "honianDiplomacy",
+            "from":"species",
+            "name": {
+                "pt": "Diplomacia Honiana",
+                "en": "Honian Diplomacy"
+            },
+            "description": {
+                "pt": "Consegue usar seu charlate para ganhar discussões, preços e etc (Bonus INT + Charlate)",
+                "en": "Can use your charisma to win arguments, prices, etc. (Bonus INT + Charlatan)"
+            }
+        },
+        {
+            "id": "absoluteFocus",
+            "from":"species",
+            "name": {
+                "pt": "Foco Absoluto",
+                "en": "Absolute Focus"
+            },
+            "description": {
+                "pt": "Consegue se focar em uma única coisa 100% (Bonus INT)",
+                "en": "Can focus 100% on a single thing (Bonus INT)"
+            }
+        },
+        {
+            "id": "honianKnowledge",
+            "from":"species",
+            "name": {
+                "pt": "Conhecimento Honiano",
+                "en": "Honian Knowledge"
+            },
+            "description": {
+                "pt": "Consegue resgatar algum conhecimento (Bonus INT + Historia)",
+                "en": "Can retrieve some knowledge (Bonus INT + History)"
+            }
+        }
+    ],
+    "cephacto": [
+        {
+            "id": "krakenTouch",
+            "from":"species",
+            "name": {
+                "pt": "Toque de Kraken",
+                "en": "Kraken Touch"
+            },
+            "description": {
+                "pt": "Conseguem usar seus tentaculos para dar dano massivo (Bonus FOR)",
+                "en": "Can use your tentacles to deal massive damage (Bonus STR)"
+            }
+        },
+        {
+            "id": "electrified",
+            "from":"species",
+            "name": {
+                "pt": "Eletrificado",
+                "en": "Electrified"
+            },
+            "description": {
+                "pt": "Consegue user a energia de sue corpo pra dar um choque potente (Bonus INT)",
+                "en": "Can use your body’s energy to deliver a powerful shock (Bonus INT)"
+            }
+        },
+        {
+            "id": "theGhost",
+            "from":"species",
+            "name": {
+                "pt": "O Fantasma",
+                "en": "The Ghost"
+            },
+            "description": {
+                "pt": "Consegue utilizar seu corpo esguio para atingir uma boa velocidade (Bonus DEX + Atletismo)",
+                "en": "Can use your slim body to achieve high speed (Bonus DEX + Athletics)"
+            }
+        }
+    ],
+    "uworcus": [
+        {
+            "id": "sweetMeyva",
+            "from":"species",
+            "name": {
+                "pt": "Doce Meyva",
+                "en": "Sweet Meyva"
+            },
+            "description": {
+                "pt": "Ao comer Meyva, seus sentidos se tornam aguçados (Bonus INT)",
+                "en": "When eating Meyva, your senses become sharper (Bonus INT)"
+            }
+        },
+        {
+            "id": "faith",
+            "from":"species",
+            "name": {
+                "pt": "Fé",
+                "en": "Faith"
+            },
+            "description": {
+                "pt": "Ao rezar sua fé o preenche de esperança (Bonus de INT e Vontade)",
+                "en": "When praying, your faith fills you with hope (Bonus INT and Willpower)"
+            }
+        },
+        {
+            "id": "flight",
+            "from":"species",
+            "name": {
+                "pt": "Revoada",
+                "en": "Flight"
+            },
+            "description": {
+                "pt": "Utiliza a agilidade de seu corpo ao máximo (Bonus DEX)",
+                "en": "Use the full agility of your body (Bonus DEX)"
+            }
+        }
+    ],
+    "wux": [
+        {
+            "id": "jupiterianPressure",
+            "from":"species",
+            "name": {
+                "pt": "Pressão Juperiana",
+                "en": "Jupiterian Pressure"
+            },
+            "description": {
+                "pt": "Consegue usar a pressão de seu traje para dar dano (Bonus FOR)",
+                "en": "Can use the pressure of your suit to deal damage (Bonus STR)"
+            }
+        },
+        {
+            "id": "vapors",
+            "from":"species",
+            "name": {
+                "pt": "Vapores",
+                "en": "Vapors"
+            },
+            "description": {
+                "pt": "Consegue usar os vapores de seu traje para queimar (Bonus INT)",
+                "en": "Can use the vapors of your suit to burn (Bonus INT)"
+            }
+        },
+        {
+            "id": "indestructible",
+            "from":"species",
+            "name": {
+                "pt": "Indetrutive",
+                "en": "Indestructible"
+            },
+            "description": {
+                "pt": "Consegue fortificar sue traje para aguentar o tranco (Bonus CON + Rusticidade)",
+                "en": "Can reinforce your suit to withstand damage (Bonus CON + Toughness)"
+            }
+        }
+    ],
+    "emordoris": [
+        {
+            "id": "clamorOfLharm",
+            "from":"species",
+            "name": {
+                "pt": "Clamor de Lharm",
+                "en": "Clamor of Lharm"
+            },
+            "description": {
+                "pt": "Sua vontade de ir a Lharm lhe preenche (Bonus FOR)",
+                "en": "Your desire to go to Lharm fills you (Bonus STR)"
+            }
+        },
+        {
+            "id": "silentAssassin",
+            "from":"species",
+            "name": {
+                "pt": "Assassino Silencioso",
+                "en": "Silent Assassin"
+            },
+            "description": {
+                "pt": "Você invoca o frio assassino que há em todos da sua especie (Bonus DEX)",
+                "en": "You summon the cold assassin within all of your species (Bonus DEX)"
+            }
+        },
+        {
+            "id": "nearDeath",
+            "from":"species",
+            "name": {
+                "pt": "Perto da Morte",
+                "en": "Near Death"
+            },
+            "description": {
+                "pt": "Estar perto do seu destino lhe enche de vontade de lutar (Bonus FOR + Atletismo + Rusticidade)",
+                "en": "Being near your destiny fills you with the will to fight (Bonus STR + Athletics + Toughness)"
+            }
+        }
+    ],
+    "honTas": [
+        {
+            "id": "focusOfToyo",
+            "from":"species",
+            "name": {
+                "pt": "Foco de Toyo",
+                "en": "Focus of Toyo"
+            },
+            "description": {
+                "pt": "Consegue se focar em um alvo e achar pontos fracos (Bonus FOR)",
+                "en": "Can focus on a target and find weak points (Bonus STR)"
+            }
+        },
+        {
+            "id": "dodgeOfHuyIn",
+            "from":"species",
+            "name": {
+                "pt": "Esquiva de Huy'In",
+                "en": "Dodge of Huy'In"
+            },
+            "description": {
+                "pt": "Consegue perceber precisamente os ataques inimigos (Bonus DEX)",
+                "en": "Can precisely detect enemy attacks (Bonus DEX)"
+            }
+        },
+        {
+            "id": "powerOfCamaR",
+            "from":"species",
+            "name": {
+                "pt": "Poder de Cama'r",
+                "en": "Power of Cama'r"
+            },
+            "description": {
+                "pt": "Consegue focar sua mente na arte da laminia (Bonus de DEX + Laminina)",
+                "en": "Can focus your mind on the art of lamina (Bonus DEX + Lamina)"
+            }
+        }
+    ],
+    "panzer": [
+        {
+            "id": "ubercharger",
+            "from":"species",
+            "name": {
+                "pt": "Ubercharger",
+                "en": "Ubercharger"
+            },
+            "description": {
+                "pt": "Prepara o seu corpo para resistir ao que atacar (Bonus de COS)",
+                "en": "Prepare your body to withstand attacks (Bonus CON)"
+            }
+        },
+        {
+            "id": "potent",
+            "from":"species",
+            "name": {
+                "pt": "Potente",
+                "en": "Potent"
+            },
+            "description": {
+                "pt": "Prepara seu corpo pra matar qualquer ser (Bonus de FOR)",
+                "en": "Prepare your body to kill any being (Bonus STR)"
+            }
+        },
+        {
+            "id": "unstoppable",
+            "from":"species",
+            "name": {
+                "pt": "Imparável",
+                "en": "Unstoppable"
+            },
+            "description": {
+                "pt": "Prepara seu corpo pra perseguir qualquer ser (Bonus de DEX e Atletismo)",
+                "en": "Prepare your body to pursue any being (Bonus DEX and Athletics)"
+            }
+        }
+    ],
+    "carjarel": [
+        {
+            "id": "jumpStart",
+            "from":"species",
+            "name": {
+                "pt": "Pegar no Tranco",
+                "en": "Jump Start"
+            },
+            "description": {
+                "pt": "Consegue entender a pilotagem e engenharia de naves que analise (Bonus INT + Pilotagem + Engenharia Mecanica)",
+                "en": "Can understand piloting and engineering of analyzed ships (Bonus INT + Piloting + Mechanical Engineering)"
+            }
+        },
+        {
+            "id": "repair",
+            "from":"species",
+            "name": {
+                "pt": "Conserto",
+                "en": "Repair"
+            },
+            "description": {
+                "pt": "Consegue consertar parcialmente naves e armamentos (Bonus INT + Engenharia Mecanica e Armamentista)",
+                "en": "Can partially repair ships and weapons (Bonus INT + Mechanical and Armament Engineering)"
+            }
+        },
+        {
+            "id": "quickAssembly",
+            "from":"species",
+            "name": {
+                "pt": "Montagem Rápida",
+                "en": "Quick Assembly"
+            },
+            "description": {
+                "pt": "Consegue modificar naves e armamentos (Bonus INT + Engenharia Mecanica e Armamentista)",
+                "en": "Can modify ships and weapons (Bonus INT + Mechanical and Armament Engineering)"
+            }
+        }
+    ],
+    "baalzuc": [
+        {
+            "id": "beelzebub",
+            "from":"species",
+            "name": {
+                "pt": "Beelzebub",
+                "en": "Beelzebub"
+            },
+            "description": {
+                "pt": "Consegue sentir a morte (Bonus INT + Intimidação)",
+                "en": "Can sense death (Bonus INT + Intimidation)"
+            }
+        },
+        {
+            "id": "lucifer",
+            "from":"species",
+            "name": {
+                "pt": "Lucifer",
+                "en": "Lucifer"
+            },
+            "description": {
+                "pt": "Consegue sentir o medo (Bonus INT + Intimidação)",
+                "en": "Can sense fear (Bonus INT + Intimidation)"
+            }
+        },
+        {
+            "id": "asmodeus",
+            "from":"species",
+            "name": {
+                "pt": "Asmodeus",
+                "en": "Asmodeus"
+            },
+            "description": {
+                "pt": "Consegue sentir a dor (Bonus CON + Intimidação)",
+                "en": "Can sense pain (Bonus CON + Intimidation)"
+            }
+        }
+    ]
+}
