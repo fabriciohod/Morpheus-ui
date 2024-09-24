@@ -1,0 +1,198 @@
+{
+    "firearms": [
+        {
+            "type": "weapon",
+            "name": {
+                "pt": "Rifle",
+                "en": "Rifle"
+            },
+            "description": {
+                "pt": "Mediana potência, mira e recarga</br>2 ações de dano antes de recarrega",
+                "en": "Medium power, sight and reload</br>2 damage before reload"
+            },
+            "baseAtributeBonus": "",
+            "hitRoll": "1d20 + @prof.shooting",
+            "damageRoll": "2d10"
+        },
+        {
+            "type": "weapon",
+            "name": {
+                "pt": "Metralhadora",
+                "en": "Assault Rifle"
+            },
+            "description": {
+                "pt": "Altíssima potência e recarga mas nenhuma mira</br>4 ações de dano antes de recarregar",
+                "en": "High power and reload but no sight</br>4 damage before reload"
+            },
+            "baseAtributeBonus": "",
+            "hitRoll": "1d20 + @prof.shooting",
+            "damageRoll": "3d12"
+        },
+        {
+            "type": "weapon",
+            "name": {
+                "pt": "Pistola",
+                "en": "Pistol"
+            },
+            "description": {
+                "pt": "Pouca potencia, mas alta recarga e mira</br>3 ações de dano antes de recarregar",
+                "en": "Low power but high reload and sight</br>3 damage before reload"
+            },
+            "baseAtributeBonus": "",
+            "hitRoll": "1d20 + @prof.shooting",
+            "damageRoll": "2d6"
+        },
+        {
+            "type": "weapon",
+            "name": {
+                "pt": "SMG",
+                "en": "SMG"
+            },
+            "description": {
+                "pt": "Pouca potência e mira, mas altíssima recarga</br>4 ações de dano antes de recarregar",
+                "en": "Low power and sight but high reload</br>4 damage before reload"
+            },
+            "baseAtributeBonus": "",
+            "hitRoll": "1d20 + @prof.shooting",
+            "damageRoll": "3d6"
+        },
+        {
+            "type": "weapon",
+            "name": {
+                "pt": "Escopeta",
+                "en": "Shotgun"
+            },
+            "description": {
+                "pt": "Altíssima potência, porém pouca mira e recarga</br>1 ação de dano antes de recarregar",
+                "en": "High power but low sight and reload</br>1 damage before reload"
+            },
+            "baseAtributeBonus": "",
+            "hitRoll": "1d20 + @prof.shooting",
+            "damageRoll": "1d20"
+        }
+    ],
+    "melee": [
+        {
+            "type": "weapon",
+            "damageType": "melee",
+            "name": {
+                "pt": "Espada",
+                "en": "Sword"
+            },
+            "description": {
+                "pt": "Foco em corte, pode usar perfuração</br>pode realizar 2 ataques",
+                "en": "Focus on cut, can use penetration</br>can make 2 attacks"
+            },
+            "baseAtributeBonus": "@dex",
+            "hitRoll": "1d20 + @prof.blade",
+            "damageRoll": "2d8"
+        },
+        {
+            "type": "weapon",
+            "damageType": "melee",
+            "name": {
+                "pt": "Lança",
+                "en": "Spear"
+            },
+            "description": {
+                "pt": "Foco em perfuração, pode usar impacto</br>pode atacar de uma distancia média",
+                "en": "Focus on penetration, can use impact</br>can make a medium attack"
+            },
+            "baseAtributeBonus": "@for",
+            "hitRoll": "1d20 + @prof.blade",
+            "damageRoll": "3d8"
+        },
+        {
+            "type": "weapon",
+            "damageType": "melee",
+            "name": {
+                "pt": "Machado",
+                "en": "Axe"
+            },
+            "description": {
+                "pt": "foco em impacto, pode usar corte</br>porém com maior peso e menor mobilidade",
+                "en": "Focus on impact, can use cut</br>weight and less mobility"
+            },
+            "baseAtributeBonus": "@for, @dex",
+            "hitRoll": "1d20 + @prof.blade",
+            "damageRoll": "3d10"
+        },
+        {
+            "type": "weapon",
+            "damageType": "melee",
+            "name": {
+                "pt": "Martelo",
+                "en": "Hammer"
+            },
+            "description": {
+                "pt": "Foco somente em impacto</br>porém com maior peso e pouca mobilidade",
+                "en": "Focus only on impact</br>weight and less mobility"
+            },
+            "baseAtributeBonus": "@for",
+            "hitRoll": "1d20 + @prof.blade",
+            "damageRoll": "3d12"
+        }
+    ],
+    "explosion": [
+        {
+            "type": "weapon",
+            "damageType": "explosion",
+            "name": {
+                "pt": "Granada",
+                "en": "Grandee"
+            },
+            "description": {
+                "pt": "Pode usar força para jogar longe ou destreza para jogar rápido",
+                "en": "Can use force to play far or strength to play close"
+            },
+            "baseAtributeBonus": "",
+            "hitRoll": "1d20",
+            "damageRoll": "4d12"
+        },
+        {
+            "type": "weapon",
+            "damageType": "explosion",
+            "name": {
+                "pt": "Mine",
+                "en": "Land Mine"
+            },
+            "description": {
+                "pt": "Pode ser colocada no chão para alvos que passem por cima",
+                "en": "Can be placed on the ground to hit targets that pass through it"
+            },
+            "baseAtributeBonus": "",
+            "hitRoll": "1d20",
+            "damageRoll": "6d12"
+        },
+        {
+            "type": "weapon",
+            "damageType": "explosion",
+            "name": {
+                "pt": "Lança Foguetes",
+                "en": "Rock Launcher"
+            },
+            "description": {
+                "pt": "1d12 para cada</br>Pode lançar até 4 foguetes antes de recarregar</br>veloz e pode atingir o alvo mais facilmente",
+                "en": "1d12 for each</br>Can fire up to 4 rockets before reloading</br>fast and can hit the target easily"
+            },
+            "baseAtributeBonus": "",
+            "hitRoll": "1d20",
+            "damageRoll": "1d12"
+        },
+        {
+            "type": "weapon",
+            "damageType": "explosion",
+            "name": {
+                "pt": "Lança Granadas",
+                "en": "Grenade Launcher"
+            },
+            "description": {
+                "pt": "2d12 para cada</br>Pode lançar até 4 granadas antes de recarregar</br>potente mas com pouca mira",
+                "en": "2d12 for each</br>Can fire up to 4 grenades before reloading</br>powerful but less sight"
+            },
+            "baseAtributeBonus": "",
+            "hitRoll": "1d20",
+            "damageRoll": "2d12"
+        }
+    ]
+}
