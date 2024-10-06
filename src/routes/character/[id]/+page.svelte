@@ -1,5 +1,14 @@
 <script>
 	import Icon from '@iconify/svelte';
+	import { onMount } from 'svelte';
+
+	export let data;
+
+	let isPortuguese = false;
+
+	onMount(() => {
+		isPortuguese = window.navigator.language === 'pt-BR';
+	});
 </script>
 
 <header class="flex flex-row w-full justify-between bg-zinc-900/35 px-96 py-2 mb-2 clipped-btn">
@@ -155,21 +164,32 @@
 		</div>
 	</div>
 	<div class="flex flex-col w-fit h-fit bg-zinc-900/35 polygonR p-4 mx-2">
-		{#each [1, 2, 3] as _}
+		{#each data.defaults.proficiencys as proficiency}
 			<div class="bg-zinc-900/35 polygonL my-1 p-2">
 				<input
 					type="checkbox"
 					class="h-4 w-4 appearance-none bg-zinc-700 checked:bg-yellow-600 hover:bg-yellow-700 clipped-small"
 				/>
-				<select name="profLevel" id="profLevel" class="text-white w-30 mx-2 p-1 bg-zinc-700/45 polygonL">
+				<select
+					name="profLevel"
+					id="profLevel"
+					class="text-white w-30 mx-2 p-1 bg-zinc-700/45 polygonL"
+				>
 					<option value="1">Leigo</option>
 					<option value="2">Trainado</option>
 				</select>
 				<select name="atribute" id="atribute" class="text-white w-30 p-1 bg-zinc-700/45 polygonL">
-					<option value="@for">Força</option>
-					<option value="@dex">Destreza</option>
+					{#each proficiency.attribute as attribute}
+						<option value={attribute}>{attribute}</option>
+					{/each}
 				</select>
-				<span class="mx-2">Pilotagem</span>
+				<span class="mx-2">
+					{#if isPortuguese}
+						{proficiency.name.pt}
+					{:else}
+						{proficiency.name.en}
+					{/if}
+				</span>
 				<input
 					type="number"
 					min="0"

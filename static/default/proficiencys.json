@@ -1,0 +1,145 @@
+[
+    {
+        "name": {
+            "pt": "Pilotagem",
+            "en": "Pilot"
+        },
+        "attribute": [
+            "@dex",
+            "@int"
+        ]
+    },
+    {
+        "name": {
+            "pt": "Tiro",
+            "en": "Shooting"
+        },
+        "attribute": [
+            "@dex",
+            "@str"
+        ]
+    },
+    {
+        "name": {
+            "pt": "Lamina",
+            "en": "Blade"
+        },
+        "attribute": [
+            "@dex",
+            "@str"
+        ]
+    },
+    {
+        "name": {
+            "pt": "Charlata",
+            "en": "Charlatan"
+        },
+        "attribute": [
+            "@car",
+            "@int"
+        ]
+    },
+    {
+        "name": {
+            "pt": "Percepção",
+            "en": "Perception"
+        },
+        "attribute": [
+            "@int"
+        ]
+    },
+    {
+        "name": {
+            "pt": "Enganação",
+            "en": "Deception"
+        },
+        "attribute": [
+            "@car",
+            "@int"
+        ]
+    },
+    {
+        "name": {
+            "pt": "Intimidação",
+            "en": "Intimidation"
+        },
+        "attribute": [
+            "@car",
+            "@con"
+        ]
+    },
+    {
+        "name": {
+            "pt": "Investigação",
+            "en": "Investigation"
+        },
+        "attribute": [
+            "@int"
+        ]
+    },
+    {
+        "name": {
+            "pt": "Atletismo",
+            "en": "Athletics"
+        },
+        "attribute": [
+            "@dex"
+        ]
+    },
+    {
+        "name": {
+            "pt": "Rusticidade",
+            "en": "Rustic"
+        },
+        "attribute": [
+            "@con",
+            "@for"
+        ]
+    },
+    {
+        "name": {
+            "pt": "Vontade",
+            "en": "Willpower"
+        },
+        "attribute": [
+            "@int"
+        ]
+    },
+    {
+        "name": {
+            "pt": "Engenharia Mecânica",
+            "en": "Mechanical Engineering"
+        },
+        "attribute": [
+            "@int"
+        ]
+    },
+    {
+        "name": {
+            "pt": "Engenharia Armamentista",
+            "en": "Armament Engineering"
+        },
+        "attribute": [
+            "@int"
+        ]
+    },
+    {
+        "name": {
+            "pt": "Historia",
+            "en": "History"
+        },
+        "attribute": [
+            "@int"
+        ]
+    },
+    {
+        "name": {
+            "pt": "Luta",
+            "en": "Fighting"
+        },
+        "attribute": [
+            "@for",
+            "@dex"
+        ]
+    }
+]
